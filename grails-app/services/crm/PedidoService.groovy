@@ -230,9 +230,9 @@ class PedidoService {
         // Pedido Compras y almacen
       
         
-        if (xestado=='pedpencom3' && xtipo in ['pedido'] && xrol!='COMPRADOR' && xrol!='ALMACENISTA') return false
+        if ((xestado=='pedpencom3' || xestado=='pedpenrec4') && (xtipo in ['pedido'] && xrol!='COMPRADOR' && xrol!='ALMACENISTA')) return false
         
-        if (xestado=='pedpencom3' && xtipo in ['producto','anexo'] && xrol!='COMPRADOR' && xrol!='ALMACENISTA') return false
+        if ((xestado=='pedpencom3' || xestado=='pedpenrec4') && (xtipo in ['producto','anexo'] && xrol!='COMPRADOR' && xrol!='ALMACENISTA')) return false
         
         // Pedido en  Facturacion
         if (xestado=='pedpenfac2' && xtipo in ['pedido']) return false

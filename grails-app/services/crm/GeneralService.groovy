@@ -2189,7 +2189,7 @@ class GeneralService {
 	 def filtrarPedidosCableadoFacturados(params)
 	 {		 		
 		String procesarPara=""
-		params.max=2000
+		params.max=2200
 		//generalService.filtrarPedidosCableadoFacturados(params)
 		params.listDistinct=true
 		params.uniqueCountColumn='numPedido'
