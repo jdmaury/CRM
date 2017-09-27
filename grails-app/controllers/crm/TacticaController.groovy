@@ -97,9 +97,17 @@ class TacticaController extends BaseController {
 		//def tactico=Tactica.get(params.id?:24)
 		//println params
 		def query="from Estrategia  where eliminado=0 order by descripcion"
-		def listaEstrategias=Estrategia.executeQuery(query) 		
+		def listaEstrategias=Estrategia.executeQuery(query) 
+		
+		def queryUrls="From ValorParametro where idParametro='cyeventos' and estadoValorParametro='A'"
+		def	listaUrls=ValorParametro.executeQuery(queryUrls)
+		listaUrls.each{
+			println "URL "+it.valor
+			println "TEXTO PARA MOSTRAR "+it.descValParametro
+		}
+		//println "La lista de URLS ES ........ "+listaUrls	
 				
-		render view:"detallesTactica",model:[listaEstrategias:listaEstrategias]
+		render view:"detallesTactica",model:[listaEstrategias:listaEstrategias,listaUrls:listaUrls]
 		
 		
 		
@@ -115,6 +123,10 @@ class TacticaController extends BaseController {
 		String nombreTactica=params.nombreTactica?:''	
 		
 		String date=params.fechaFiltro?:''	
+		
+		
+		def queryUrls="From ValorParametro where idParametro='cyeventos' and estadoValorParametro='A'"
+		def	listaUrls=ValorParametro.executeQuery(queryUrls)
 		
 		//def idTactica=Tactica.find{tactica==nombreTactica}.id
 		def idTactica=Tactica.executeQuery("Select t.id From Tactica t where t.tactica='${nombreTactica}' and t.eliminado=0")[0]
@@ -137,7 +149,7 @@ class TacticaController extends BaseController {
 		//render datos
 		render(template: "ProspectosOportunidadesPorTactica", model:[prospectoInstanceList:resultadoProspectos,
 			oportunidadInstanceList:resultadoOportunidades,resultadoOpptysAsignadasPorCliente:resultadoOpptysAsignadasPorCliente,
-			resultadoProspsGeneradosPorCliente:resultadoProspsGeneradosPorCliente])
+			resultadoProspsGeneradosPorCliente:resultadoProspsGeneradosPorCliente,listaUrls:listaUrls])
 	}
 	
 

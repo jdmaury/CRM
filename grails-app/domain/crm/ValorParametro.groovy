@@ -14,7 +14,7 @@ class ValorParametro {
         idValorParametro(unique:true)
         valor()
         orden(nullable:true)
-        descValParametro nullable:true, maxSize: 100
+        descValParametro nullable:true, maxSize: 150
         estadoValorParametro inList:['A','I'] 
         eliminado defaultValue:0
     }

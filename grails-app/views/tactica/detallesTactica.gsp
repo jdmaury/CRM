@@ -151,6 +151,7 @@
 		  </li>
 		  <li><a href="#prospectosAsignados" data-toggle="tab">Prospectos por cliente</a></li>
 		  <li><a href="#oportunidadesGeneradas" data-toggle="tab">Oportunidades por cliente</a></li>
+		  <li><a href="#urlCampanasYEventos" data-toggle="tab">Campañas y eventos</a></li>
 		</ul>
 
 <div id="loading" style="margin:0 auto;" class="loadingGif">
@@ -170,6 +171,11 @@
      			<div id="prospectosAsignados" class="tab-pane fade in">
      			</div>
      			<div id="oportunidadesGeneradas" class="tab-pane fade in">
+     			</div>
+     			<div id="urlCampanasYEventos" class="tab-pane fade in">
+     			 <g:each in="${listaUrls}" status="url" var="valorParametroUrl">     			 
+     			 	<br><a style="color:#e95a0c;font-size:1.7em;font-family:'Calibri'" target="_blank" href="${valorParametroUrl.valor}">${url+1}. ${valorParametroUrl.descValParametro}</a><br>
+     			 </g:each>
      			</div>
      		</div>     		
 		</div>

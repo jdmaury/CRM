@@ -3,7 +3,7 @@
      				<!-- <iframe id="iftactica" src="/crm/estrategia/index" style="border:0;overflow:hidden;width:100%;" ></iframe> -->
      				<object type="text/html" width="100%"; height="700px;" data="/crm/estrategia/index"></object>
      				
-     			</div>
+</div>
 
 
 
@@ -123,6 +123,12 @@
                 
 </table>
 </div>
+
+     			<div id="urlCampanasYEventos" class="tab-pane fade in">     			
+     			 <g:each in="${listaUrls}" status="url" var="valorParametroUrl">     			 
+     			 	<br><a style="color:#e95a0c;font-size:1.7em;font-family:'Calibri'" target="_blank" href="${valorParametroUrl.valor}">${url+1}. ${valorParametroUrl.descValParametro}</a><br>
+     			 </g:each>
+     			</div>
 
 
 

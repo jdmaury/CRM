@@ -641,7 +641,7 @@ class EmpresaController extends BaseController{
 				
 				String nit9digitos=it.nit.toString().split("-")[0]
 				if(nit9digitos.length()>9)
-					nit9digitos=nit9digitos.substring(0, 9)				
+					nit9digitos=nit9digitos.substring(0,9)				
 				//cliente.put("nit",it.nit.toString().split("-")[0])
 				cliente.put("nit",nit9digitos)
 				
