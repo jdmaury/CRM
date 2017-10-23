@@ -2236,5 +2236,15 @@ class GeneralService {
 		 def resultadoOportunidades=Prospecto.executeQuery(queryOportunidadesGeneradas)		 		 
 		 return [resultadoProspectos,resultadoOportunidades]
 		 
+	 }
+	 
+	 def notificarRequerimientoCreado(String numeroReq)
+	 {
+		 String notificadosSRR=getValorParametro('notiSRR')
+		 //println 	"LISTA ES ..."+notificadosSRR		 
+		 def listaNotificados=convertirEnLista(notificadosSRR)
+		 //println "Lista notificados "+listaNotificados
+		 
+		 enviarCorreo(1,listaNotificados,"Se ha registrado un nuevo requerimiento: ${numeroReq}","Favor verifique los detalles del requerimiento ${numeroReq} en la herramienta de SRR")
 	 }	 
 }

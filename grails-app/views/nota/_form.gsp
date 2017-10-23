@@ -56,7 +56,7 @@
              </label>
              <div class="controls" > 
                  <g:textField name="funcionariosNotificados1" required="" style="width:500px;"  value="${notaInstance?.funcionariosNotificados}" id="notaAutoComplete" disabled="${xronly}" />
-                 <img  class="icon-question-sign" title="Digite las direcciones de correo completas en formato xxxxxx@redsis.com separándolas por coma">
+                 <!-- <img  class="icon-question-sign" title="Digite las direcciones de correo completas en formato xxxxxx@redsis.com separándolas por coma"> -->
           
              </div>
         </div>

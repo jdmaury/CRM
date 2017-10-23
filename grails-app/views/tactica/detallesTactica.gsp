@@ -151,7 +151,7 @@
 		  </li>
 		  <li><a href="#prospectosAsignados" data-toggle="tab">Prospectos por cliente</a></li>
 		  <li><a href="#oportunidadesGeneradas" data-toggle="tab">Oportunidades por cliente</a></li>
-		  <li><a href="#urlCampanasYEventos" data-toggle="tab">Campañas y eventos</a></li>
+		  <li><a href="#urlCampanasYEventos" data-toggle="tab">Piezas</a></li>
 		</ul>
 
 <div id="loading" style="margin:0 auto;" class="loadingGif">

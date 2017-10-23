@@ -686,6 +686,10 @@ class ReqLotusSwController {
 		if(params.tipoRequerimiento=='Servicio')//Si es un pedido
 		{
 			idClienteOptty=Pedido.findByNumPedido(params.numOptty).empresa.nit.toString().split("-")[0]//AJUSTAR ACÁ PARA LOS NIT MAYORES A 9
+			//AJUSTADO
+			if(idClienteOptty.length()>9)
+				idClienteOptty=idClienteOptty.substring(0,9)
+			//AJUSTADO
 			nombreClienteOptty=Pedido.findByNumPedido(params.numOptty).empresa.razonSocial
 			idUsrEjecutivo=Pedido.findByNumPedido(params.numOptty).empleado?.identificacion.toString()
 			nombreUsrEjecutivo=Pedido.findByNumPedido(params.numOptty).empleado.nombreCompleto()?:"No hay ejecutivo"
@@ -830,8 +834,10 @@ class ReqLotusSwController {
 			response.success = { resp,json ->
 				println "Exitoooooooo! ${resp.status}"
 				log.info("Respuesta del WS : "+json)
+				
 				println json
 				numReq=json.NoRequerimiento.toString()
+				
 				//println "El numero de requerimiento es "+numReq
 				/*render "El numero de requerimiento es \n"+numReq+"\n"
 				render "....   El nit del cliente es es \n"+idClienteOptty
@@ -844,9 +850,11 @@ class ReqLotusSwController {
 				//render body as JSON
 				
 				
-				def listaDocumentos=generalService.traerRequerimientosSrrLotus(numPedido)
-				
+				def listaDocumentos=generalService.traerRequerimientosSrrLotus(numPedido)				
 				def listaReqSrr=generalService.infoSRR(numPedido)
+				
+				//generalService.enviarCorreo(1,["jmaury@redsis.com"],"SRR ${numReq} creado","Srr creado exitosamente")
+				generalService.notificarRequerimientoCreado(numReq)
 				
 				
 				render(view:"index",  model:[requerimientoList : listaDocumentos, numOportunidad:numPedido,requerimientosListSrr:listaReqSrr, pedido:'Si'])

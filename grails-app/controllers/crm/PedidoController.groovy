@@ -42,7 +42,9 @@ class PedidoController extends BaseController{
 	def filterList
 	   
 	@Transactional
-	def index(Integer max) {		
+	def index(Integer max) {	
+		
+		
 		
 		int itemxview=generalService.getItemsxView(0)
 		params.max =itemxview
@@ -1679,7 +1681,8 @@ class PedidoController extends BaseController{
 		//A continuacion un caso especial donde el pedido es del 2017 pero se realizó con un iva del 16%
 			if(pedidoInstance.numPedido=='BAQ-0156-17' || pedidoInstance.numPedido=='BAQ-0271-17' || pedidoInstance.numPedido=='BAQ-0270-17'
 				||pedidoInstance.numPedido=='BAQ-0294-17'||pedidoInstance.numPedido=='BAQ-0293-17'||pedidoInstance.numPedido=='BAQ-0295-17'
-				||pedidoInstance.numPedido=='BAQ-0296-17'||pedidoInstance.numPedido=='BAQ-0356-17'||pedidoInstance.numPedido=='BAQ-0358-17')
+				||pedidoInstance.numPedido=='BAQ-0296-17'||pedidoInstance.numPedido=='BAQ-0356-17'||pedidoInstance.numPedido=='BAQ-0358-17'
+				||pedidoInstance.numPedido=='BAQ-0426-17')
 				xiva=0.16*(xsubtotal-xdescuento)
 		//-----------------------------------------------------------------------------------
 			
