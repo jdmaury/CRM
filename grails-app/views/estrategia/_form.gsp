@@ -38,7 +38,8 @@
 
 
 <g:if test="${estrategiaInstance.id !=null}">
-  <iframe id="iftactica" height="500" src="/crm/tactica/index/${estrategiaInstance.id}?sw=${sw}" style="border:0;overflow:hidden;width:100%;" ></iframe> 
+  <!--<iframe id="iftactica" height="700" src="/crm/tactica/index/${estrategiaInstance.id}?sw=${sw}" style="overflow: hidden;border:0;width:100%;"></iframe> -->
+  <object type="text/html" width="100%" height="1000px" data="/crm/tactica/index/${estrategiaInstance.id}?sw=${sw}"></object>  
 </g:if> 
 <%--  <script>
     IFRAME_DETALLE=$("#ifsubl");

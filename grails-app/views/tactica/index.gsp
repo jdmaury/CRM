@@ -54,7 +54,6 @@
                     <tr>
                         <td style="width:18px"></td>
                         <g:sortableColumn property="idEstrategia" title="${message(code: 'tactica.idEstrategia.label', default: 'Id.')}" style="width:5%" />
-
                         <g:sortableColumn property="tactica" title="${message(code: 'tactica.tactica.label', default: 'Táctica')}" />
 
                     </tr>
@@ -63,10 +62,10 @@
                     <g:each in="${tacticaInstanceList}" status="i" var="tacticaInstance">
                         <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
                                 <td><g:checkBox name="tacticas" value="${tacticaInstance.id}" checked="false" /></td>
-                            <td><g:link action="show" style="text-decoration:underline" id="${tacticaInstance.id}">
-                                ${tacticaInstance.id}</g:link></td>
+                            <td>${tacticaInstance.id}</td>
                             
-                            <td>${fieldValue(bean: tacticaInstance, field: "tactica")}</td>                          
+                            <td><g:link action="show" style="text-decoration:underline" id="${tacticaInstance.id}"> 
+                                ${fieldValue(bean: tacticaInstance, field: "tactica")}</g:link></td>                          
 
                         </tr>
                     </g:each>

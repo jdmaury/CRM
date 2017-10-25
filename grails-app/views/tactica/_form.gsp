@@ -3,7 +3,10 @@
 
 <g:hiddenField id="eliminado" name="eliminado" value="${tacticaInstance?.eliminado?:0}"/>
 <g:hiddenField name="idEstadoTactica"  value="${tacticaInstance?.idEstadoTactica?:'genactivo'}"/>
-<g:hiddenField name="idestrategia" value="${params.id}"/> 
+<g:hiddenField name="idestrategia" value="${params.id}"/>
+
+<script>redimIFRAME();</script>
+ 
 <g:if test="${tacticaInstance?.eliminado==1}" >
     <div id="men_eliminado" class="pull-right label label-important">
         Eliminado
@@ -59,6 +62,13 @@
 
     </div>
 </div>
+
+
+<g:if test="${tacticaInstance.id !=null}">
+	<object type="text/html" width="100%" height="600px" data="/crm/pieza/index/${tacticaInstance.id}"></object>
+   <!-- <iframe id="ifPiezas" height="500" src="/crm/pieza/index/${tacticaInstance.id}" style="border:0;overflow:hidden;width:100%;" ></iframe> --> 
+</g:if>
+
 <script src="${resource(dir: 'perfectum/js', file: 'bootstrap-datetimepicker.js')}"></script>
 <script src="${resource(dir: 'perfectum/js', file: 'bootstrap-datetimepicker.es.js')}"></script>
 <script type="text/javascript">

@@ -125,8 +125,8 @@
 </div>
 
      			<div id="urlCampanasYEventos" class="tab-pane fade in">     			
-     			 <g:each in="${listaUrls}" status="url" var="valorParametroUrl">     			 
-     			 	<br><a style="color:#e95a0c;font-size:1.7em;font-family:'Calibri'" target="_blank" href="${valorParametroUrl.valor}">${url+1}. ${valorParametroUrl.descValParametro}</a><br>
+     			 <g:each in="${listaDePiezas}" status="piezaNumber" var="valorPieza">     			 
+     			 	<br><a style="color:#e95a0c;font-size:1.7em;font-family:'Calibri'" target="_blank" href="${valorPieza.url}">${piezaNumber+1}. ${valorPieza.textoParaMostrar}</a><br>
      			 </g:each>
      			</div>
 

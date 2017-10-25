@@ -10,6 +10,7 @@ class Tactica {
     Byte   eliminado    
 
     static belongsTo=[estrategia:Estrategia]
+	static hasMany=[pieza:Pieza]
     
     static mapping = {
         table 'tacticas'

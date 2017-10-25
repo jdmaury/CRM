@@ -28,7 +28,8 @@ class TacticaController extends BaseController {
         respond tacticaInstanceList, model:[tacticaInstanceCount: xnum]
     }
 
-    def show(Tactica tacticaInstance) {
+    def show(Tactica tacticaInstance) {		
+		session["tactica_id"]=params.id
         respond tacticaInstance
     }
     
@@ -80,8 +81,6 @@ class TacticaController extends BaseController {
 	
 	def tacticasDisponibles()
 	{
-
-				
 		def query="Select t.tactica From Tactica t where t.estrategia=${params.idEstrategia} and t.eliminado=0"
 		//def query="Select t.tactica From Tactica t where t.eliminado=0"
 		def result=Tactica.executeQuery(query)
@@ -95,9 +94,11 @@ class TacticaController extends BaseController {
 	def campanasYEventos()
 	{
 		//def tactico=Tactica.get(params.id?:24)
-		//println params
+		println "esta gente si habla nojoda + "+params
 		def query="from Estrategia  where eliminado=0 order by descripcion"
 		def listaEstrategias=Estrategia.executeQuery(query) 
+		
+		
 		
 		def queryUrls="From ValorParametro where idParametro='cyeventos' and estadoValorParametro='A'"
 		def	listaUrls=ValorParametro.executeQuery(queryUrls)
@@ -132,6 +133,15 @@ class TacticaController extends BaseController {
 		def idTactica=Tactica.executeQuery("Select t.id From Tactica t where t.tactica='${nombreTactica}' and t.eliminado=0")[0]
 		
 		
+		println "la lista de Urls es  "+listaUrls
+		println "El id de esta tactica es "+idTactica
+		
+		def piezasQuery="From Pieza where tactica=${idTactica} and eliminado=0"
+		def listaDePiezas=Pieza.executeQuery(piezasQuery)
+		
+		println "Lista de piezas es "+listaDePiezas
+		
+		
 		def queryProspectosAsignados="From Prospecto p Where p.idTactica=${idTactica} and p.idTactica IS NOT NULL and p.eliminado=0 and p.fechaApertura LIKE '%${fechaFiltro}%'"
 		def resultadoProspectos=Prospecto.executeQuery(queryProspectosAsignados)
 		
@@ -149,7 +159,7 @@ class TacticaController extends BaseController {
 		//render datos
 		render(template: "ProspectosOportunidadesPorTactica", model:[prospectoInstanceList:resultadoProspectos,
 			oportunidadInstanceList:resultadoOportunidades,resultadoOpptysAsignadasPorCliente:resultadoOpptysAsignadasPorCliente,
-			resultadoProspsGeneradosPorCliente:resultadoProspsGeneradosPorCliente,listaUrls:listaUrls])
+			resultadoProspsGeneradosPorCliente:resultadoProspsGeneradosPorCliente,/*listaUrls:listaUrls*/,listaDePiezas:listaDePiezas])
 	}
 	
 
