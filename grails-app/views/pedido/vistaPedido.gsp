@@ -3,10 +3,15 @@
     <head>
         <meta name="layout" content="detalle">
         <style TYPE="text/css">
+        @page{
+        margin-left:-35px;
+        margin-right:30px;
+        margin-top:30px;
+        padding:0px;}
            .table {  
              margin-left:40px;
            border: 1px solid #dddddd;
-           width:900px;
+           width:765px;
            }
          .table th, .table td {
             padding: 2px;
@@ -22,13 +27,15 @@
 
            
          .col1 {width:80px;background:#eee;}
-         .col2{width:200px;}
+         .col2{width:180px;}
          @media print{
          .col1 {width:80px;background:#eee}
-         .col2{width:200px;}
+         .col2{width:180px;}
 
         
          }
+         
+         
         </style>   
        
 </head>
@@ -128,7 +135,7 @@
  <h2 style="margin-left:50px;"> Productos </h2>
  <table class="table table-bordered">         
     <tr style="background:#eee">
-        <th style="width:14px">#</th>
+        <th style="width:12px">#</th>
         <th>Referencia</th>
         <th>Descripción</th>
         <th>Cantidad</th>       
@@ -144,11 +151,11 @@
         
             <td>${i+1}</td>
             <td>${detPedidoInstance?.refProducto}</td>
-            <td style="width:460px;">${detPedidoInstance?.descProducto}</td>
+            <td style="width:380px;">${detPedidoInstance?.descProducto}</td>
             <td style="text-align:right;">${formatNumber(number:detPedidoInstance.cantidad,format:'###,###,###', locale:'co')}</td>
             <td style="text-align:right;">${formatNumber(number:detPedidoInstance.valor,format:'###,###,###.00', locale:'co')}</td>
             <td style="text-align:right;">${formatNumber(number:detPedidoInstance.cantidad*detPedidoInstance.valor,format:'###,###,###.00', locale:'co')}</td>
-            <td>&nbsp;${detPedidoInstance?.ordenCompra}</td>
+            <td style="width:90px;">&nbsp;${detPedidoInstance?.ordenCompra}</td>
             
              
           	

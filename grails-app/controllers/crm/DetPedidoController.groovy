@@ -57,23 +57,39 @@ class DetPedidoController extends BaseController{
         def xpiva=Double.parseDouble(generalService.getValorParametro('iva').toString())
 		
 		
-		//----------------------EMPANADA PARA CORREGIR EL PEDIDO BOG-0001-17 CON IVA DE 19%
 		
+		//-------------------------------------CORRECCION TOTAL-------------------------------
 		
-		if(pedidoInstance.numPedido.toString().split("-")[2]=="17" || pedidoInstance.numPedido=='BAQ-0557-16' ||
-			pedidoInstance.numPedido=='BAQ-0488-16' || pedidoInstance.numPedido=='BAQ-0489-16' || 
-			pedidoInstance.numPedido=='BOG-0190-16' || pedidoInstance.numPedido=='BAQ-0554-16' ||pedidoInstance.numPedido=='BAQ-0556-16'
-			|| pedidoInstance.numPedido=='BUC-0033-16' || pedidoInstance.numPedido=='BAQ-0338-16' || pedidoInstance.numPedido=='BAQ-0553-16')
+		if(pedidoInstance.numPedido.toString().split("-")[2]=="17")			
+			xpiva=Double.parseDouble(generalService.getValorParametro('iva2017').toString())
+			
+		def listaPed16Iva19=generalService.getValorParametro('ped16iva19').toString().split(",")
+		def listaPed17Iva16=generalService.getValorParametro('ped17iva16').toString().split(",")
+						
+		if(listaPed17Iva16.contains(pedidoInstance.numPedido))//Si el pedido actual se encuentra en la lista de casos especiales de 2017 con iva 16%
+			xpiva=Double.parseDouble(generalService.getValorParametro('iva').toString())
+				
+		if(listaPed16Iva19.contains(pedidoInstance.numPedido))//Si el pedido actual se encuentra en la lista de casos especiales de 2016 con iva 19%
 			xpiva=Double.parseDouble(generalService.getValorParametro('iva2017').toString())		
 		
-		//----------------------EMPANADA PARA CORREGIR EL PEDIDO BOG-0001-17 CON IVA DE 19%
+		//-------------------------------------CORRECCION TOTAL-------------------------------
+		
+		
+		
+		/*if(pedidoInstance.numPedido.toString().split("-")[2]=="17") || pedidoInstance.numPedido=='BAQ-0557-16' ||
+			pedidoInstance.numPedido=='BAQ-0488-16' || pedidoInstance.numPedido=='BAQ-0489-16' 
+			|| pedidoInstance.numPedido=='BOG-0190-16' || pedidoInstance.numPedido=='BAQ-0554-16' || pedidoInstance.numPedido=='BAQ-0556-16'
+			|| pedidoInstance.numPedido=='BUC-0033-16' || pedidoInstance.numPedido=='BAQ-0338-16' || pedidoInstance.numPedido=='BAQ-0553-16')
+			xpiva=Double.parseDouble(generalService.getValorParametro('iva2017').toString())*/		
+
 			
 		//A continuacion un caso especial donde el pedido es del 2017 pero se realizó con un iva del 16%
-			if(pedidoInstance.numPedido=='BAQ-0156-17'||pedidoInstance.numPedido=='BAQ-0271-17'|| pedidoInstance.numPedido=='BAQ-0270-17'
+			/*if(pedidoInstance.numPedido=='BAQ-0156-17' || pedidoInstance.numPedido=='BAQ-0271-17' || pedidoInstance.numPedido=='BAQ-0270-17'
 				||pedidoInstance.numPedido=='BAQ-0294-17'||pedidoInstance.numPedido=='BAQ-0293-17'||pedidoInstance.numPedido=='BAQ-0295-17'
 				||pedidoInstance.numPedido=='BAQ-0296-17'||pedidoInstance.numPedido=='BAQ-0356-17'||pedidoInstance.numPedido=='BAQ-0358-17'
-				||pedidoInstance.numPedido=='BAQ-0426-17')
-				xpiva=Double.parseDouble(generalService.getValorParametro('iva').toString())
+				||pedidoInstance.numPedido=='BAQ-0426-17'||pedidoInstance.numPedido=='BAQ-0458-17'||pedidoInstance.numPedido=='BAQ-0469-17'
+				||pedidoInstance.numPedido=='BAQ-0473-17'||pedidoInstance.numPedido=='BAQ-0474-17'||pedidoInstance.numPedido=='BAQ-0495-17')				
+				xpiva=Double.parseDouble(generalService.getValorParametro('iva').toString())*/
 		//-----------------------------------------------------------------------------------
            
         def detPedidoInstanceList = filterPaneService.filter( params, DetPedido )

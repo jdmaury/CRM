@@ -34,7 +34,7 @@ import="crm.Persona"
             <div class="pull-left">
                 <g:if test="${'CREAR' in seguridadService.operacionesPorOpcion(session['idUsuario'],'/reqLotusSw/index')}">
                    <g:if test="${pedido=='Si'}">
-                     <g:if test="${userActual=='Katerine Delgado' || userActual=='José Maury'}">
+                     <g:if test="${userActual=='Katerine Delgado' || userActual=='Jose Maury'|| userActual=='Danna Zarate'|| userActual=='Diana Heredia'}">
                      	<a class="btn btn-mini btn-primary" href="/crm/reqLotusSw/create/?pedido=S&numOportunidad=${numOportunidad}">
 	                        <i class="icon-plus icon-white"></i>
 	                        <strong><g:message code="default.nuevo.req"/></strong>

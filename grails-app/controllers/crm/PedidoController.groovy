@@ -114,7 +114,7 @@ class PedidoController extends BaseController{
 					if(params.filter?.detpedido?.idProcesarPara)
 					{
 						
-						params.max=2000
+						params.max=3000
 						params.listDistinct=true
 						params.uniqueCountColumn='numPedido'
 						params['filter.op.detpedido.eliminado']="Equal"
@@ -186,9 +186,21 @@ class PedidoController extends BaseController{
 		if ('VENDEDOR'  in generalService.getRolUsuario(session['idUsuario'].toLong())){
 		   params.filter+=[empleado:[:]]
 		   params['filter.op.empleado.id']="Equal"
-		   params.filter.empleado.id=generalService.getIdEmpleado(session['idUsuario'].toLong())
-				
+		   params.filter.empleado.id=generalService.getIdEmpleado(session['idUsuario'].toLong())				
 		}
+		
+		if (!('GERENTE' in generalService.getRolUsuario(session['idUsuario'].toLong()))){
+			println "Usted no es GERENTE"
+			Calendar cal=Calendar.getInstance()
+			//cal.set(2017,Calendar.AUGUST,1)
+			cal.set(2015,Calendar.DECEMBER,31)
+			Date date=cal.getTime()
+			params.filter.op.fechaApertura="GreaterThan"
+			params.filter.fechaApertura=date
+		}
+		
+		
+		
 		session.filterParams=params  // para recordar parmeros para exportaciÃ³n
 		String ztrm=generalService.getValorParametro('trm')
 		def xtrm=new BigDecimal(ztrm)
@@ -217,7 +229,7 @@ class PedidoController extends BaseController{
 			facturaPesos=pedidoService.totalFacturaPedidos(pedidoInstanceList2).facturaPesos
 		}
 		
-		println "HAY ESTE NUMERO DE ARCHIVOS EN ESTA LISTA "+pedidoInstanceList2.size()
+		//println "HAY ESTE NUMERO DE ARCHIVOS EN ESTA LISTA "+pedidoInstanceList2.size()
 		
 		
 		
@@ -275,12 +287,12 @@ class PedidoController extends BaseController{
 		
 		def pedidoInstanceList = filterPaneService.filter( params, Pedido )
 		 //println "Pedidos completo"+ pedidoInstanceList
-		pedidoInstanceList.each
+		/*pedidoInstanceList.each
 		{
-			// 'it' is the element
+			
 			println it.properties
 			return
-		}
+		}*/
   
 		 // llamada al servicio para traer la informacion de cuota y estado del EC
 		def idUsuario=generalService.getIdEmpleado(session['idUsuario'])
@@ -699,6 +711,11 @@ class PedidoController extends BaseController{
 	}
 	
 	def listarBorrados(Integer max) {
+		
+		//def a=generalService.formatearNitPedido("d456456f14f56-dsd  ")
+		//println "La respuesta es "+a		
+		
+		
 		int itemxview=generalService.getItemsxView(0)
 		params.max = Math.min(max ?: itemxview, 100)
 		String  xoffset=params.offset?:0
@@ -1660,30 +1677,47 @@ class PedidoController extends BaseController{
 			xtrm=pedidoInstance?.trm?:xtrm
 	   if (pedidoInstance?.idTipoPrecio=='pedtprec02' && pedidoInstance?.valorPedido)
 			 xvalorpedido=pedidoInstance?.valorPedido/xtrm
-		 else
+	   else
 			 xvalorpedido=pedidoInstance?.valorPedido
 	   
-		 def query="from DetPedido  where pedido.id=${params.id} and eliminado=0"
-		 def detPedidoInstanceList=DetPedido.findAll(query)
+		def query="from DetPedido  where pedido.id=${params.id} and eliminado=0"
+		def detPedidoInstanceList=DetPedido.findAll(query)
 		  
 		def xsubtotal=pedidoService.valorPedido(params.id)
 		def xdescuento=pedidoInstance?.descuentoPedido?:0
 		def xiva=0.16*(xsubtotal-xdescuento)
 		
+		//-------------------------------------CORRECCION TOTAL-------------------------------
 		
-		if(pedidoInstance.numPedido.toString().split("-")[2]=="17" || pedidoInstance.numPedido=='BAQ-0557-16' ||
+		if(pedidoInstance.numPedido.toString().split("-")[2]=="17")
+			xiva=0.19*(xsubtotal-xdescuento)		
+			
+		def listaPed16Iva19=generalService.getValorParametro('ped16iva19').toString().split(",")			
+		def listaPed17Iva16=generalService.getValorParametro('ped17iva16').toString().split(",")
+						
+		if(listaPed17Iva16.contains(pedidoInstance.numPedido))//Si el pedido actual se encuentra en la lista de casos especiales de 2017 con iva 16%
+			xiva=0.16*(xsubtotal-xdescuento)
+				
+		if(listaPed16Iva19.contains(pedidoInstance.numPedido))//Si el pedido actual se encuentra en la lista de casos especiales de 2016 con iva 19%
+			xiva=0.19*(xsubtotal-xdescuento)
+				
+		//-------------------------------------CORRECCION TOTAL-------------------------------
+		
+		
+		
+		/*if(pedidoInstance.numPedido.toString().split("-")[2]=="17") || pedidoInstance.numPedido=='BAQ-0557-16' ||
 			pedidoInstance.numPedido=='BAQ-0488-16' || pedidoInstance.numPedido=='BAQ-0489-16' 
 			|| pedidoInstance.numPedido=='BOG-0190-16' || pedidoInstance.numPedido=='BAQ-0554-16' || pedidoInstance.numPedido=='BAQ-0556-16'
 			|| pedidoInstance.numPedido=='BUC-0033-16' || pedidoInstance.numPedido=='BAQ-0338-16' || pedidoInstance.numPedido=='BAQ-0553-16')
-			xiva=0.19*(xsubtotal-xdescuento)
-		//if(pedidoInstance.numPedido=='BOG-0001-17')//EMPANADA
+			xiva=0.19*(xsubtotal-xdescuento)*/
 			
 		//A continuacion un caso especial donde el pedido es del 2017 pero se realizó con un iva del 16%
-			if(pedidoInstance.numPedido=='BAQ-0156-17' || pedidoInstance.numPedido=='BAQ-0271-17' || pedidoInstance.numPedido=='BAQ-0270-17'
+			/*if(pedidoInstance.numPedido=='BAQ-0156-17' || pedidoInstance.numPedido=='BAQ-0271-17' || pedidoInstance.numPedido=='BAQ-0270-17'
 				||pedidoInstance.numPedido=='BAQ-0294-17'||pedidoInstance.numPedido=='BAQ-0293-17'||pedidoInstance.numPedido=='BAQ-0295-17'
 				||pedidoInstance.numPedido=='BAQ-0296-17'||pedidoInstance.numPedido=='BAQ-0356-17'||pedidoInstance.numPedido=='BAQ-0358-17'
-				||pedidoInstance.numPedido=='BAQ-0426-17')
-				xiva=0.16*(xsubtotal-xdescuento)
+				||pedidoInstance.numPedido=='BAQ-0426-17'||pedidoInstance.numPedido=='BAQ-0458-17'||pedidoInstance.numPedido=='BAQ-0469-17'
+				||pedidoInstance.numPedido=='BAQ-0473-17'||pedidoInstance.numPedido=='BAQ-0474-17'||pedidoInstance.numPedido=='BAQ-0495-17')
+				xiva=0.16*(xsubtotal-xdescuento)*/
 		//-----------------------------------------------------------------------------------
 			
 			
@@ -1849,7 +1883,7 @@ class PedidoController extends BaseController{
 		cf = new WritableCellFormat(empresa)
 		cell.setCellFormat(cf)
 		
-		wsheet.addCell(new Label(10, 0, "Creado el"))
+		wsheet.addCell(new Label(10, 0, "Creado el dia"))
 		cell = wsheet.getWritableCell(10, 0)
 		cf = new WritableCellFormat()
 		cf.setAlignment(Alignment.RIGHT)
@@ -1959,7 +1993,7 @@ class PedidoController extends BaseController{
 		cf = new WritableCellFormat(empresa)
 		cell.setCellFormat(cf)
 		
-		wsheet1.addCell(new Label(10, 0, "Creado el dÃ­a"))
+		wsheet1.addCell(new Label(10, 0, "Creado el dia"))
 		cell = wsheet1.getWritableCell(10, 0)
 		cf = new WritableCellFormat()
 		cf.setAlignment(Alignment.RIGHT)
@@ -2084,7 +2118,7 @@ class PedidoController extends BaseController{
 		cf = new WritableCellFormat(empresa)
 		cell.setCellFormat(cf)
 		
-		wsheet2.addCell(new Label(10, 0, "Creado el dÃ­a"))
+		wsheet2.addCell(new Label(10, 0, "Creado el dia"))
 		cell = wsheet2.getWritableCell(10, 0)
 		cf = new WritableCellFormat()
 		cf.setAlignment(Alignment.RIGHT)
@@ -2262,6 +2296,257 @@ class PedidoController extends BaseController{
 		}
 		
 	   // FIN DE PEDIDOS EN FACTURADOS PARCIALMENTE
+		
+		
+	   //PEDIDOS PENDIENTES X RECIBIR
+		   WritableSheet wsheet4 = wworkbook.createSheet("Pedidos Pendiente X Recibir", 1);
+		
+		   wsheet4.addCell(new Label(0, 0,"REPORTE DE PEDIDOS PENDIENTES X RECIBIR"))
+		   wsheet4.mergeCells(0, 0, 7, 0)
+		   cell = wsheet4.getWritableCell(0, 0)
+		   cf = new WritableCellFormat(empresa)
+		   cell.setCellFormat(cf)
+		   
+		   wsheet4.addCell(new Label(10, 0, "Creado el dia"))
+		   cell = wsheet4.getWritableCell(10, 0)
+		   cf = new WritableCellFormat()
+		   cf.setAlignment(Alignment.RIGHT)
+		   cell.setCellFormat(cf)
+		   
+		   wsheet4.addCell(new Label(11, 0, hoy))
+		   wsheet4.mergeCells(11, 0, 12, 0)
+		   cell = wsheet4.getWritableCell(11, 0)
+		   cf = new WritableCellFormat()
+		   cf.setAlignment(Alignment.RIGHT)
+		   cell.setCellFormat(cf)
+		   
+		   // Creamos el encabezado del reporte para los pedidos
+		   def filaEmpiezaHoja4 = 4
+		   wsheet4.addCell(new Label(0, filaEmpiezaHoja4, "Pedido No."))
+		   cell = wsheet4.getWritableCell(0, filaEmpiesa)
+		   cf = new WritableCellFormat(boldTitulo)
+		   cell.setCellFormat(cf)
+		   
+		   wsheet4.addCell(new Label(1, filaEmpiezaHoja4, "Empresa"))
+		   cell = wsheet4.getWritableCell(1, filaEmpiesa)
+		   cf = new WritableCellFormat(boldTitulo)
+		   cell.setCellFormat(cf)
+		
+		   wsheet4.addCell(new Label(2, filaEmpiesa, "Forma de Pago"))
+		   cell = wsheet4.getWritableCell(2, filaEmpiesa)
+		   cf = new WritableCellFormat(boldTitulo)
+		   cell.setCellFormat(cf)
+		
+		   wsheet4.addCell(new Label(3, filaEmpiesa, "Precios En"))
+		   cell = wsheet4.getWritableCell(3, filaEmpiesa)
+		   cf = new WritableCellFormat(boldTitulo)
+		   cell.setCellFormat(cf)
+		   
+		   wsheet4.addCell(new Label(4, filaEmpiesa, "Moneda a Facturar"))
+		   cell = wsheet4.getWritableCell(4, filaEmpiesa)
+		   cf = new WritableCellFormat(boldTitulo)
+		   cell.setCellFormat(cf)
+	   
+		   wsheet4.addCell(new Label(5, filaEmpiezaHoja4, "Valor USD"))
+		   cell = wsheet4.getWritableCell(5, filaEmpiesa)
+		   cf = new WritableCellFormat(boldTitulo)
+		   cell.setCellFormat(cf)
+		   
+		   wsheet4.addCell(new Label(6, filaEmpiezaHoja4, "Valor COP"))
+		   cell = wsheet4.getWritableCell(6, filaEmpiesa)
+		   cf = new WritableCellFormat(boldTitulo)
+		   cell.setCellFormat(cf)
+		   
+		   wsheet4.addCell(new Label(7, filaEmpiezaHoja4, "Arquitectos"))
+		   cell = wsheet4.getWritableCell(7, filaEmpiesa)
+		   cf = new WritableCellFormat(boldTitulo)
+		   cell.setCellFormat(cf)
+		   
+		   def pedidosH4 = Pedido.executeQuery("FROM Pedido p WHERE p.idEstadoPedido =:estado and  p.eliminado=0  order by p.nombreCliente", [estado:"pedpenrec4"] )
+	   //println "Pedidos"+pedidos.idEstadoPedido
+			i =1
+		   pedidosH4.each{
+			   def filaReporte = filaEmpiezaHoja4 + i
+			   // numero del pedido
+			 
+			   wsheet4.addCell(new Label(0, filaReporte, it.numPedido))
+   
+			   // nommre de la empresa
+				def xsucursal=Empresa.get(it.empresaId)
+			  
+			   wsheet4.addCell(new Label(1, filaReporte, xsucursal.toString()))
+				 
+			   def xformaPago=generalService.getValorParametro(it.idFormaPago)
+			   wsheet4.addCell(new Label(2, filaReporte, xformaPago.toString()))
+			  
+			   def xpreciosEn=generalService.getValorParametro(it?.idTipoPrecio)
+			   wsheet4.addCell(new Label(3, filaReporte, xpreciosEn.toString()))
+					  
+			  //def xestado=generalService.getValorParametro(it?.idEstadoPedido)
+			  //  println "ESTADO DEL PEDIDO"+xestado
+				
+			   def xfacturarEn=generalService.getValorParametro(it?.idMondedaFactura)
+			   wsheet4.addCell(new Label(4, filaReporte, xfacturarEn.toString()))
+				 
+			   def xvalorpedido
+			   String ztrm=generalService.getValorParametro('trm')
+			   BigDecimal xtrm=new BigDecimal(ztrm)
+			   xtrm=it?.trm?:xtrm
+				  
+				   NumberFormat  decimalNo = new NumberFormat("#.0");
+				   WritableCellFormat numberFormat = new WritableCellFormat(decimalNo);
+				 if (it?.idTipoPrecio=='pedtprec02' && it?.valorPedido){
+				  xvalorpedido=it?.valorPedido/xtrm
+				 
+				   //write to datasheet
+				  Number numberCell = new Number(5, filaReporte, xvalorpedido, numberFormat);
+				  wsheet4.addCell(numberCell);
+			  
+				 }else{
+				  xvalorpedido=it?.valorPedido
+				  Number numberCell = new Number(6, filaReporte, xvalorpedido, numberFormat);
+				  wsheet4.addCell(numberCell);
+				 }
+				def listaArqui=pedidoService.getArquitectosPedido(it?.id)
+				def listaDef=[]
+				  if (it?.arquitectoSol=='S'){
+				   listaArqui.each(){
+					listaDef.add(generalService.getValorParametro(it))
+				   }
+				   }else
+					 listaDef=['N']
+			   
+				   wsheet4.addCell(new Label(7, filaReporte, listaDef.toString()))
+			   i++
+		   }
+		
+	   //PEDIDOS PENDIENTES X RECIBIR
+		   
+		   
+		   
+	   //PEDIDOS PENDIENTES X FACTURAR
+		   WritableSheet wsheet6 = wworkbook.createSheet("Pedidos Pendiente X Facturar", 1);
+		   
+			  wsheet6.addCell(new Label(0, 0,"REPORTE DE PEDIDOS PENDIENTES X FACTURAR"))
+			  wsheet6.mergeCells(0, 0, 7, 0)
+			  cell = wsheet6.getWritableCell(0, 0)
+			  cf = new WritableCellFormat(empresa)
+			  cell.setCellFormat(cf)
+			  
+			  wsheet6.addCell(new Label(10, 0, "Creado el dia"))
+			  cell = wsheet6.getWritableCell(10, 0)
+			  cf = new WritableCellFormat()
+			  cf.setAlignment(Alignment.RIGHT)
+			  cell.setCellFormat(cf)
+			  
+			  wsheet6.addCell(new Label(11, 0, hoy))
+			  wsheet6.mergeCells(11, 0, 12, 0)
+			  cell = wsheet6.getWritableCell(11, 0)
+			  cf = new WritableCellFormat()
+			  cf.setAlignment(Alignment.RIGHT)
+			  cell.setCellFormat(cf)
+			  
+			  // Creamos el encabezado del reporte para los pedidos
+			  def filaEmpiezaHoja6 = 4
+			  wsheet6.addCell(new Label(0, filaEmpiezaHoja6, "Pedido No."))
+			  cell = wsheet6.getWritableCell(0, filaEmpiesa)
+			  cf = new WritableCellFormat(boldTitulo)
+			  cell.setCellFormat(cf)
+			  
+			  wsheet6.addCell(new Label(1, filaEmpiezaHoja6, "Empresa"))
+			  cell = wsheet6.getWritableCell(1, filaEmpiesa)
+			  cf = new WritableCellFormat(boldTitulo)
+			  cell.setCellFormat(cf)
+		   
+			  wsheet6.addCell(new Label(2, filaEmpiesa, "Forma de Pago"))
+			  cell = wsheet6.getWritableCell(2, filaEmpiesa)
+			  cf = new WritableCellFormat(boldTitulo)
+			  cell.setCellFormat(cf)
+		   
+			  wsheet6.addCell(new Label(3, filaEmpiesa, "Precios En"))
+			  cell = wsheet6.getWritableCell(3, filaEmpiesa)
+			  cf = new WritableCellFormat(boldTitulo)
+			  cell.setCellFormat(cf)
+			  
+			  wsheet6.addCell(new Label(4, filaEmpiesa, "Moneda a Facturar"))
+			  cell = wsheet6.getWritableCell(4, filaEmpiesa)
+			  cf = new WritableCellFormat(boldTitulo)
+			  cell.setCellFormat(cf)
+		  
+			  wsheet6.addCell(new Label(5, filaEmpiezaHoja6, "Valor USD"))
+			  cell = wsheet6.getWritableCell(5, filaEmpiesa)
+			  cf = new WritableCellFormat(boldTitulo)
+			  cell.setCellFormat(cf)
+			  
+			  wsheet6.addCell(new Label(6, filaEmpiezaHoja6, "Valor COP"))
+			  cell = wsheet6.getWritableCell(6, filaEmpiesa)
+			  cf = new WritableCellFormat(boldTitulo)
+			  cell.setCellFormat(cf)
+			  
+			  wsheet6.addCell(new Label(7, filaEmpiezaHoja6, "Arquitectos"))
+			  cell = wsheet6.getWritableCell(7, filaEmpiesa)
+			  cf = new WritableCellFormat(boldTitulo)
+			  cell.setCellFormat(cf)
+			  
+			  def pedidosH6 = Pedido.executeQuery("FROM Pedido p WHERE p.idEstadoPedido =:estado and  p.eliminado=0  order by p.nombreCliente", [estado:"pedpenfac2"] )
+		  //println "Pedidos"+pedidos.idEstadoPedido
+			   i =1
+			  pedidosH6.each{
+				  def filaReporte = filaEmpiezaHoja6 + i
+				  // numero del pedido
+				
+				  wsheet6.addCell(new Label(0, filaReporte, it.numPedido))
+	  
+				  // nommre de la empresa
+				   def xsucursal=Empresa.get(it.empresaId)
+				 
+				  wsheet6.addCell(new Label(1, filaReporte, xsucursal.toString()))
+					
+				  def xformaPago=generalService.getValorParametro(it.idFormaPago)
+				  wsheet6.addCell(new Label(2, filaReporte, xformaPago.toString()))
+				 
+				  def xpreciosEn=generalService.getValorParametro(it?.idTipoPrecio)
+				  wsheet6.addCell(new Label(3, filaReporte, xpreciosEn.toString()))
+						 
+				 //def xestado=generalService.getValorParametro(it?.idEstadoPedido)
+				 //  println "ESTADO DEL PEDIDO"+xestado
+				   
+				  def xfacturarEn=generalService.getValorParametro(it?.idMondedaFactura)
+				  wsheet6.addCell(new Label(4, filaReporte, xfacturarEn.toString()))
+					
+				  def xvalorpedido
+				  String ztrm=generalService.getValorParametro('trm')
+				  BigDecimal xtrm=new BigDecimal(ztrm)
+				  xtrm=it?.trm?:xtrm
+					 
+					  NumberFormat  decimalNo = new NumberFormat("#.0");
+					  WritableCellFormat numberFormat = new WritableCellFormat(decimalNo);
+					if (it?.idTipoPrecio=='pedtprec02' && it?.valorPedido){
+					 xvalorpedido=it?.valorPedido/xtrm
+					
+					  //write to datasheet
+					 Number numberCell = new Number(5, filaReporte, xvalorpedido, numberFormat);
+					 wsheet6.addCell(numberCell);
+				 
+					}else{
+					 xvalorpedido=it?.valorPedido
+					 Number numberCell = new Number(6, filaReporte, xvalorpedido, numberFormat);
+					 wsheet6.addCell(numberCell);
+					}
+				   def listaArqui=pedidoService.getArquitectosPedido(it?.id)
+				   def listaDef=[]
+					 if (it?.arquitectoSol=='S'){
+					  listaArqui.each(){
+					   listaDef.add(generalService.getValorParametro(it))
+					  }
+					  }else
+						listaDef=['N']
+				  
+					  wsheet6.addCell(new Label(7, filaReporte, listaDef.toString()))
+				  i++
+			  }
+		   
+	   //PEDIDOS PENDIENTES X FACTURAR
 		   
 		wworkbook.write();
 		wworkbook.close();

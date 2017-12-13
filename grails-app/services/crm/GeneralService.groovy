@@ -2246,5 +2246,15 @@ class GeneralService {
 		 //println "Lista notificados "+listaNotificados
 		 
 		 enviarCorreo(1,listaNotificados,"Se ha registrado un nuevo requerimiento: ${numeroReq}","Favor verifique los detalles del requerimiento ${numeroReq} en la herramienta de SRR")
-	 }	 
+	 }
+	 
+	 
+	 String formatearNitPedido(String nitConEspacios)
+	 {
+		 String nitSinEspacios=nitConEspacios.replaceAll(" ","").split("-")[0]
+		 if(nitSinEspacios.length()>9)
+			 nitSinEspacios=nitSinEspacios.substring(0,9)
+		 return nitSinEspacios
+	 }
+	 	 
 }

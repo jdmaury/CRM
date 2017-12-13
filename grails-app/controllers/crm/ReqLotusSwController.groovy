@@ -685,12 +685,15 @@ class ReqLotusSwController {
 		
 		if(params.tipoRequerimiento=='Servicio')//Si es un pedido
 		{
-			idClienteOptty=Pedido.findByNumPedido(params.numOptty).empresa.nit.toString().split("-")[0]//AJUSTAR ACÁ PARA LOS NIT MAYORES A 9
-			//AJUSTADO
+			idClienteOptty=Pedido.findByNumPedido(params.numOptty).empresa.nit.toString()//AJUSTAR ACÁ PARA LOS NIT MAYORES A 9
+			idClienteOptty=generalService.formatearNitPedido(idClienteOptty)
+			/*AJUSTE
 			if(idClienteOptty.length()>9)
 				idClienteOptty=idClienteOptty.substring(0,9)
-			//AJUSTADO
+			AJUSTADO*/
 			nombreClienteOptty=Pedido.findByNumPedido(params.numOptty).empresa.razonSocial
+			log.info("Nombre Cliente Optty es "+nombreClienteOptty)
+						
 			idUsrEjecutivo=Pedido.findByNumPedido(params.numOptty).empleado?.identificacion.toString()
 			nombreUsrEjecutivo=Pedido.findByNumPedido(params.numOptty).empleado.nombreCompleto()?:"No hay ejecutivo"
 			

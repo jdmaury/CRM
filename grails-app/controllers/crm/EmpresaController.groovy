@@ -291,8 +291,12 @@ class EmpresaController extends BaseController{
              
              if (empresaInstance.idTipoEmpresa=='empcliente' && empresaInstance.idTipoSede=='empprincip')
 			 {
-                println "PARAMS.NITTTTTT"+params.nit
-				String nitNoGuion=params.nit.toString().split("-")[0] 
+                
+				log.info("Nit antes de aplicar el formatNit"+params.nit)
+				String nitNoGuion=generalService.formatearNitPedido(params.nit.toString())
+				
+				log.info("Se guardo el cliente con nit luego de format "+nitNoGuion)				
+				 
 
 				num=Empresa.executeQuery("select count(e) from Empresa e where e.nit = '${nitNoGuion}'")		   
 				
@@ -639,9 +643,10 @@ class EmpresaController extends BaseController{
 				cliente.put("cliente_id",it.id)
 				
 				
-				String nit9digitos=it.nit.toString().split("-")[0]
-				if(nit9digitos.length()>9)
-					nit9digitos=nit9digitos.substring(0,9)				
+				String nit9digitos=generalService.formatearNitPedido(it.nit.toString())
+				//log.info("Nit9Digitos es... "+nit9digitos)
+				//if(nit9digitos.length()>9)
+				//nit9digitos=nit9digitos.substring(0,9)				
 				//cliente.put("nit",it.nit.toString().split("-")[0])
 				cliente.put("nit",nit9digitos)
 				
