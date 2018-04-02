@@ -3,6 +3,7 @@
 <%@ page import="crm.Linea" %>
 %{--Use generalService--}%
 <g:set var="generalService" bean="generalService" />
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -10,16 +11,23 @@
         <g:set var="entityName" value="${message(code: 'sublinea.label', default: 'Sublinea')}" />
         <title><g:message code="default.list.label" args="[entityName]" /></title>
     </head>
+    
     <body>
-        <% def sw_crud=[1,1,1,1,0,0] %>
+        <% def sw_crud=[1,1,1,1,0,0]
+		def estilo=generalService.getMenuV(3)
+		def mover=generalService.getMenuV(1)
+   		def mout=generalService.getMenuV(2) %>
+        
         <div id="boxSublin">
             <div id="list-sublinea" class="content scaffold-list" role="main">
-
-                <h2>${xtitulo}</h2>
+			
+                <h2>${xtitulo}</h2>                
                 <hr style="margin-top:10px;margin-bottom:10px;"> 
 
  <!-- <div class="row-fluid sortable"> -->
-
+ 
+			<g:form controller="sublinea" >
+				<g:hiddenField name="idLinea" value="${params.id}" />			
                 <div class="pull-left">
                     <div class="pull-left">
 
@@ -43,9 +51,21 @@
                         <g:if test="${sw_crud[4]==1}">
                             <li><a href="${createLink(action:'eliminar')}" >Eliminar</a></li>
                             </g:if>
+                            
+                            
+                            
+                            
                             <g:if test="${'BORRAR' in session['operaciones']}">
                              <%  swacc=1 %>
-                            <li><a href="${createLink(action:'listarBorrados')}" >Ver Borrados</a></li>
+	                            <!-- <li><a href="${createLink(action:'borrar')}" >Borrar</a></li> -->
+	                            <li> <g:actionSubmit      
+	                                    onMouseOver="${mover}" 
+                                        onMouseOut="${mout}" 
+                                        style="${estilo}"                                   
+                                        value="Borrar" 
+                                        action="borrar"  />
+                                </li>
+	                            <li><a href="${createLink(action:'listarBorrados')}" >Ver Borrados</a></li>
                             </g:if>
                             <g:if test="${swacc==0}" >
                              <li align="center">Ninguna </li>
@@ -54,9 +74,7 @@
                 </div>
 
                 <a class="btn btn-mini" href="/crm/sublinea/index/${params.id}"><i class="icon-remove"></i>&nbsp;Cancelar</a>
-                <g:if test="${flash.message}">
-                    <div class="message" role="status">${flash.message}</div>
-                </g:if>
+                <g:render template="/general/mensajes" />                
                 <table class="table table-bordered">
                     <thead>
                         <tr>
@@ -73,8 +91,8 @@
                     <tbody>
                         <g:each in="${sublineaInstanceList}" status="i" var="sublineaInstance">
                             <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-                                <td><g:checkBox name="parametros" value="${sublineaInstance.id}" checked="false" /></td>
-                                <td><g:link action="show" style="text-decoration:underline"
+                                <td><g:checkBox name="sublineas" value="${sublineaInstance.id}" checked="false" /></td>
+                                <td><g:link action="show" style="text-decoration:underline" 
                                     id="${sublineaInstance.id}">${fieldValue(bean: sublineaInstance, field: "descSublinea")}</g:link></td>
 
                                 <td>${fieldValue(bean: sublineaInstance, field: "observSublinea")}</td>
@@ -88,6 +106,7 @@
                 <div class="pagination_crm">
                     <g:paginate id="${params.id}" total="${sublineaInstanceCount ?: 0}" />
                 </div>
+                </g:form>
             </div>
         </div>
         <script>

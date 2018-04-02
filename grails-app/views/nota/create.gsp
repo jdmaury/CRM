@@ -16,15 +16,13 @@
             <div id="create-nota" class="content scaffold-create" role="main">
             
             <h2>${xtitulo}</h2>
-            <hr style="margin-top:10px;margin-bottom:10px;">
-		
+            <hr style="margin-top:10px;margin-bottom:10px;">		
 		<g:form class="form-horizontal" onsubmit="desactivar('btn_save_nota')"  url="[resource:notaInstance, action:'save']" >
 		 <fieldset class="form">
                      <button type="submit" id='btn_save_nota' class="btn btn-mini btn-primary"><i class="icon-download-alt icon-white "></i>&nbsp;<g:message code="guardarSeg.label" default="Guardar Seguimiento"/></button>
                       
                       &nbsp;<a  class="btn btn-mini" href="/crm/nota/index/${params.ident}?entidad=${params.entidad}&tnota=${params.tnota}&zw=1">
-                     <i class="icon-remove"></i>&nbsp;<g:message code="cancelar.label" default="Cancelar"/></a>
-                      
+                     <i class="icon-remove"></i>&nbsp;<g:message code="cancelar.label" default="Cancelar"/></a>                      
                     <g:render template="/general/mensajes" />
                     <br>
                     <br>

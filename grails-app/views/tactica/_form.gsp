@@ -2,7 +2,7 @@
 <g:set var="generalService" bean="generalService" />
 
 <g:hiddenField id="eliminado" name="eliminado" value="${tacticaInstance?.eliminado?:0}"/>
-<g:hiddenField name="idEstadoTactica"  value="${tacticaInstance?.idEstadoTactica?:'genactivo'}"/>
+<g:hiddenField name="idEstadoTactica"  value="${tacticaInstance?.idEstadoTactica?:'genactiva'}"/>
 <g:hiddenField name="idestrategia" value="${params.id}"/>
 
 <script>redimIFRAME();</script>

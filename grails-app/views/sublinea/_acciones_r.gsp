@@ -3,7 +3,7 @@
   <a class="btn btn-mini btn-primary" href="/crm/Sublinea/edit/${sublineaInstance?.id}">
       <i class="icon-edit icon-white"  ></i>&nbsp;Editar</a>
  </g:if>
-  <g:if test="${'BORRAR' in session['operaciones']}">
+  <g:if test="${'BORRAR' in session['operaciones']}">  
     <a href="#" class="btn btn-danger btn-mini"
        onclick='return BootstrapDialog.confirm("Está seguro de borrar este registro?",function(result){
        if(result)

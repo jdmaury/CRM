@@ -25,11 +25,10 @@
 
 
             <div class="row-fluid sortable">
-
+			<g:form controller="linea" >
                 <div class="pull-left">
                     <div class="pull-left">
                         <g:if test="${'CREAR' in session['operaciones']}">
-
                             <a class="btn btn-mini btn-primary" href="${createLink(action:'create')}">
                                 <i class="icon-plus icon-white"></i>
                                 <strong>&nbsp;Nuevo</strong>
@@ -48,7 +47,14 @@
                             <li><a href="${createLink(action:'eliminar')}" >Eliminar</a></li>
                             </g:if>
                             <g:if test="${'BORRAR' in session['operaciones']}">
-                                  <%  swacc=1 %>
+                                  <%  swacc=1 %>                            
+                            <li> <g:actionSubmit      
+	                                onMouseOver="${mover}" 
+                                    onMouseOut="${mout}" 
+                                    style="${estilo}"                                   
+                                    value="Borrar" 
+                                    action="borrar"  />
+                            </li>
                             <li><a href="${createLink(action:'listarBorrados')}" >Ver Borrados</a></li>
                             </g:if>
                             <g:if test="${swacc==0}" >
@@ -57,10 +63,11 @@
                     </ul>
                 </div>
                 <a class="btn btn-mini" href="/crm/linea/index"><i class="icon-remove"></i>&nbsp;Cancelar</a>
-                <br><br>
                 
+                <br><br>
+                <g:render template="/general/mensajes" />
                <g:set var="beanInstance"  value="${lineaInstance}" />                
-               <g:render template="/general/mensajes" />
+               
             
                 <table class="table table-bordered">
                     <thead>
@@ -93,6 +100,7 @@
                 <div class="pagination_crm">
                     <g:paginate total="${lineaInstanceCount ?: 0}" />
                 </div>
+                </g:form>
             </div>
         </div>
 

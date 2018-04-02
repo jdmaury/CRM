@@ -36,18 +36,31 @@
              
                 <g:if test="${detPedidoInstance?.idEstadoDetPedido in ['peddetpd02','peddetpd05']}" > <%-- Pendiente x recibir total o parcial--%>
                    <%  swacc=1 %>
-                    <l1> <a href="/crm/detPedido/procesarProductoAlmacen/${detPedidoInstance.id}?layout=${params.layout}&sw=0" >Procesar x Recibo</a> </li>
+                    <li> <a href="/crm/detPedido/procesarProductoAlmacen/${detPedidoInstance.id}?layout=${params.layout}&sw=0" >Procesar x Recibo</a> </li>
                  </g:if>  
             </g:if>
+            
+            
+            <%--<g:if test="${detPedidoInstance.contrato}">
+            	<li><a href="/crm/detPedido/renovarContrato/${detPedidoInstance.id}">Renovar Contrato</a></li>
+            </g:if>
+            <g:if test="${detPedidoInstance?.contrato?.idEstadoVencimiento=='venvencido'}">
+                <li><a href="${createLink(action:'clienteNoRenovo',params:[idVencimiento:detPedidoInstance?.contrato?.id,idenc:params?.idenc])}" >Cliente no renovó</a></li>
+            </g:if>--%>
+            
+            
+            
+            
+            
             <g:if test="${swacc==0}" >
              <li align="center">Ninguna </li>
             </g:if>   
         </ul>										
     </div>
-<%--</g:if>--%>
+
 
     <% 
-     def  xurl      
+     def  xurl
       if (params.sw){
           if (params.sw == "0")
                xurl="/crm/detPedido/indexg"  

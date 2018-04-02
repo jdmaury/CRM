@@ -55,7 +55,7 @@
                                             style="border:none;background-color:#fff;" 
                                             value="Recibo Varios Completo" action="reciboCompleto" />
                                     </li>
-                                     <g:hiddenField  name ="layout"  value="main" />
+                                     <g:hiddenField  name ="layout"  value="main" />                                     
                                 </g:if>
                             </ul>
                         </div>

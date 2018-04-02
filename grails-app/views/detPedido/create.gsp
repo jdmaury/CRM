@@ -22,7 +22,7 @@
                         </g:eachError>
                 </ul>
             </g:hasErrors>
-            <g:form class="form-horizontal" onsubmit="desactivar('btn_save_prod')"  url="[resource:detPedidoInstance, action:'save']" >
+            <g:form class="form-horizontal" method="post" onsubmit="return validarDatos()"  enctype="multipart/form-data"  url="[resource:detPedidoInstance, action:'save']" >
                 <fieldset class="form">
                     <button type="submit" id='btn_save_prod' class="btn btn-mini btn-primary"><i class="icon-download-alt icon-white "></i>&nbsp;Guardar producto</button>
                   <a  class="btn btn-mini" href="/crm/detPedido/index/${params.pedido}"><i class="icon-remove"></i>&nbsp;Cancelar</a>
@@ -31,7 +31,6 @@
                     <g:set var="xronly" value="false" scope="request"/>
                     <g:render template="form"/>
                 </fieldset>
-
             </g:form>
         </div>
     </body>

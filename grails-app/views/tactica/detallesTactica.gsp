@@ -12,9 +12,7 @@
 		
 		<g:javascript src="pruebaTacticas.js" />
 		<link rel="stylesheet" href="${resource(dir: 'css/css-personalizados', file: 'campanasYEventos.css')}" type="text/css">
-		<meta name="layout" content="perfectum">	
-		
-		
+		<meta name="layout" content="perfectum">
 		
 		
 
@@ -80,8 +78,8 @@
     		<label class="control-label">
 	            <g:message code="tactica.anioFiltro" default="Año:" />
     	    </label>
-                   <g:select name="idFecha" id="idFecha"  from="${["2017","2016","2015","2014"]}"
-                                 value="2017"
+                   <g:select name="idFecha" id="idFecha"  from="${["2018","2017","2016","2015","2014"]}"
+                                 value="2018"
                     disabled="false" required="" style="width:80px;" />
             </div>
     </div>
@@ -183,9 +181,7 @@
      
         <script src="${resource(dir: 'perfectum/js', file: 'bootstrap-datetimepicker.js')}"></script>
 		<script src="${resource(dir: 'perfectum/js', file: 'bootstrap-datetimepicker.es.js')}"></script>
-		<script type="text/javascript">obtenerListaOrigen();//obtenerListaOrigen2();
-
-</script>            
+		<script type="text/javascript">obtenerListaOrigen();//obtenerListaOrigen2();</script>            
 
 									
     

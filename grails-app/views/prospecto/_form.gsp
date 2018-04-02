@@ -3,6 +3,7 @@
 <%@ page import="crm.Persona" %>        
 %{--Use generalService--}%
 <g:set var="generalService" bean="generalService" />
+<g:set var="oportunidadService" bean="oportunidadService" />
 <script src="${resource(dir: 'js', file:'crm_helper.js')}"></script>
 <script src="${resource(dir: 'js/jquery', file:'jquery.numeric.js')}"></script>
 <script>redimIFRAME();</script>
@@ -75,6 +76,20 @@
         <g:set var="xidp"  value="${prospectoInstance?.id}"  scope="request" />
         <g:render template="listaOportunidades" />
     </g:if>
+    
+    <div class="control-group">
+	    <label class="control-label">
+		    <g:message code="oportunidad.numOportunidadFabricante.label" default="Num Oportunidad Fabricante" />		
+	    </label>	    
+	    <div class="controls" style="padding:4px; border:solid;border-color:#ccc;border-width:1px;border-radius:5px;width:275px;min-height:21px;background-color:#EEE;" >
+	    	<g:if test="${prospectoInstance.oportunidad!=null}">
+	    		<% println "${oportunidadService?.getNumRegistros(prospectoInstance.oportunidad.id[0])}" %>
+	    	</g:if>
+	    	
+	    </div>    
+    </div>
+    
+    
     <div class="control-group ${hasErrors(bean: prospectoInstance, field: 'nombreProspecto', 'error')} required ">
         <label  class="control-label" for="nombreProspecto">
             <g:message code="prospecto.nombreProspecto.label" default="Nombre Proyecto" />
@@ -107,13 +122,13 @@
         <label class="control-label" for="fechaApertura">
             <g:message code="prospecto.fechaApertura.label" default="Apertura" />
         </label>
-        <div class="controls input-append date form_date" id="fechaapertura" data-date-format="dd-mm-yyyy" style="margin-left:20px;">
+        <div class="controls input-append date" id="fechaapertura" data-date-format="dd-mm-yyyy" style="margin-left:20px;">
             <input  type="text" name="fechaApertura" id="fechaa" 
             value="${g.formatDate(format:'dd-MM-yyyy',date:prospectoInstance?.fechaApertura)?:generalService.getHoy()}"  readonly
             onchange="validarFechas(0,'fechaa','fechac')">
-            <g:if test="${xronly!='true'}"  >             
+            <%--<g:if test="${xronly!='true'}"  >             
                 <span class="add-on"><i class="icon-th"></i></span>
-                </g:if>
+            </g:if> --%>
         </div>
 
     </div>

@@ -1,4 +1,5 @@
 package crm
+import java.util.Map
 import java.util.Random 
 /*import crm.ImportadorExcel*/
 import static org.springframework.http.HttpStatus.*
@@ -7,7 +8,7 @@ import grails.transaction.Transactional
 @Transactional(readOnly = true)
 class DetPedidoController extends BaseController{
 
-    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+    static allowedMethods = [save: "POST", update: "POST", delete: "DELETE"]
     def exportService
     def generalService
     def filterPaneService
@@ -59,14 +60,19 @@ class DetPedidoController extends BaseController{
 		
 		
 		//-------------------------------------CORRECCION TOTAL-------------------------------
+		def anioPedido=pedidoInstance.numPedido.toString().split("-")[2]
 		
-		if(pedidoInstance.numPedido.toString().split("-")[2]=="17")			
+		if(anioPedido=="17"||anioPedido=="18")			
 			xpiva=Double.parseDouble(generalService.getValorParametro('iva2017').toString())
 			
 		def listaPed16Iva19=generalService.getValorParametro('ped16iva19').toString().split(",")
 		def listaPed17Iva16=generalService.getValorParametro('ped17iva16').toString().split(",")
+		def listaPed18Iva16=generalService.getValorParametro('ped18iva16').toString().split(",")
 						
 		if(listaPed17Iva16.contains(pedidoInstance.numPedido))//Si el pedido actual se encuentra en la lista de casos especiales de 2017 con iva 16%
+			xpiva=Double.parseDouble(generalService.getValorParametro('iva').toString())
+
+		if(listaPed18Iva16.contains(pedidoInstance.numPedido))//Si el pedido actual se encuentra en la lista de casos especiales de 2018 con iva 16%
 			xpiva=Double.parseDouble(generalService.getValorParametro('iva').toString())
 				
 		if(listaPed16Iva19.contains(pedidoInstance.numPedido))//Si el pedido actual se encuentra en la lista de casos especiales de 2016 con iva 19%
@@ -83,7 +89,7 @@ class DetPedidoController extends BaseController{
 			xpiva=Double.parseDouble(generalService.getValorParametro('iva2017').toString())*/		
 
 			
-		//A continuacion un caso especial donde el pedido es del 2017 pero se realiz� con un iva del 16%
+		//A continuacion un caso especial donde el pedido es del 2017 pero se realiz� con un iva del 16%
 			/*if(pedidoInstance.numPedido=='BAQ-0156-17' || pedidoInstance.numPedido=='BAQ-0271-17' || pedidoInstance.numPedido=='BAQ-0270-17'
 				||pedidoInstance.numPedido=='BAQ-0294-17'||pedidoInstance.numPedido=='BAQ-0293-17'||pedidoInstance.numPedido=='BAQ-0295-17'
 				||pedidoInstance.numPedido=='BAQ-0296-17'||pedidoInstance.numPedido=='BAQ-0356-17'||pedidoInstance.numPedido=='BAQ-0358-17'
@@ -151,7 +157,7 @@ class DetPedidoController extends BaseController{
         
         request.withFormat {
             form {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'DePedido.label', default: 'DetPedido'), detPedidoInstance.id])
+                flash.message = message(code: 'default.updated.message', args: [message(code: 'detPedido.label', default: 'DetPedido'), detPedidoInstance.id])
                 redirect url:"/detPedido/index/"+ detPedidoInstance.pedido.id            }
             '*'{ respond facturaInstance, [status: OK] }
         }
@@ -173,32 +179,13 @@ class DetPedidoController extends BaseController{
         }
         def productoInstance=Producto.findByRefProducto(params.refProducto)
         if (productoInstance !=null)  detPedidoInstance.producto=productoInstance
+//-------------------DESDE ACÁ----------------------------------------------------
+		generalService.crearOActualizarContrato(request,servletContext,params,detPedidoInstance,"0")
 		
-		println "parametros det pedido !!"+params
-        
-        if (params.idPedido){           
-            detPedidoInstance.pedido=Pedido.get(params.long('idPedido'))
-        }
-        if (params.idProveedor) {
-            detPedidoInstance.empresa=Empresa.get(params.long('idProveedor'))
-        }
+//-------------------HASTA ACÁ----------------------------------------------------
 		
-		if(params.idProcesarPara=='pedprosp03'){//Si el campo procesarPara = Interno Redsis
-			detPedidoInstance.idEstadoDetPedido='peddetpd07'
-		}
-        
-        detPedidoInstance.cantidad=params.long('cantidad')
-        detPedidoInstance.valor=params.double('valor')
-        
-        detPedidoInstance.validate()
-       
-        if (detPedidoInstance.hasErrors()) {          
-            respond detPedidoInstance.errors, view: 'create'
-            return
-        }
-        
-   
-        detPedidoInstance.save flush: true
+			//-------------TIENE QUE GUARDARSE PRIMERO EL DETPEDIDO, LUEGO EL CONTRATO PARA SUBIR EL ARCHIVO
+		
           //Actualizar valor pedido
            actualizarValorPedido(detPedidoInstance?.pedido?.id)
               
@@ -226,16 +213,72 @@ class DetPedidoController extends BaseController{
              
         auditoriaService.logIn('DetPedido',detPedidoInstance?.id)
         
-        request.withFormat {
+        /*request.withFormat {
             form {
                 flash.message = message(code: 'default.created.message', args: [message(code: 'detPedidoInstance.label', default: 'DetPedido'), detPedidoInstance.id])
                 redirect  url:"/detPedido/index/"+ detPedidoInstance.pedidoId
             }
             '*' { respond detPedidoInstance, [status: CREATED] }
-        }
+        }*/
+		
+		redirect url:"/detPedido/index/${params.idPedido}?sw=1"
+		flash.message="Producto agregado exitosamente!"
     }
+	
+	
+	def renovarContrato(DetPedido detPedidoInstance){		
+		render view:"renovar", model:[detPedidoInstance:detPedidoInstance]
+	}
+	
+	@Transactional
+	def renovarContratoDef(){
+		 
+		println "PARAMETROS RENOVAR CONTRATO "+params
+		//-----------------------------------------------------OBTENER CONTRATO
+		Contrato contratoInstance=Contrato.get(params.idContrato)
+		//-----------------------------------------------------OBTENER CONTRATO
+		
+		def tipoVen=generalService.getValorParametro(contratoInstance.idTipoVencimiento)
+		def usuarioAccede = Empleado.findById(generalService.getIdEmpleado(session['idUsuario'].toLong())).id
+		def usuarioL=Empleado.findById(usuarioAccede)
+		String urlbase=generalService.getValorParametro('urlaplic')
+		
+
+
+		String oldFechaVencimiento = contratoInstance.getPersistentValue('fechaVencimiento').toString()
+		def newFechaVencimiento=params.fechaVencimiento
+		String oldFechaInicio=contratoInstance.getPersistentValue('fechaInicio').toString()
+		def newFechaInicio=params.fechaInicio
+		String oldFechaVenci=generalService.stringDateWithTimeToDate(oldFechaVencimiento)
+		String oldFechaIni=generalService.stringDateWithTimeToDate(oldFechaInicio)
+
+		Date fechaInicio=generalService.stringToDate(params.fechaInicio)
+		Date fechaVencimiento=generalService.stringToDate(params.fechaVencimiento)
+		
+		contratoInstance.observaciones=params?.observaciones?:''
+		contratoInstance.fechaInicio=fechaInicio
+		contratoInstance.fechaVencimiento=fechaVencimiento
+		
+		
+		def idVendedor=contratoInstance.detpedido.pedido.empleado.id
+		
+		
+		
+		String empresaVenc=Empresa.get(params.empresaPedido).razonSocial
+		String asunto="RENOVACION CONTRATO DE VENCIMIENTO - ${empresaVenc}"
+		String cuerpo="Registro elaborado por: ${usuarioL}<br><br>Se ha efectuado la renovaci&oacute;n de un vencimiento tipo <b>${tipoVen}</b> para la empresa ${empresaVenc} y usted figura como responsable del mismo.<br><br><b>Descripci&oacute;n:</b><br>${contratoInstance.descripcion?:''}<br><br>Fecha de inicio anterior: <b>${oldFechaIni}</b><br>Nueva fecha de inicio: <b>${newFechaInicio}</b><br><br>Fecha vencimiento anterior: <b>${oldFechaVenci}</b><br>Nueva fecha vencimiento: <b>${newFechaVencimiento}</b><br><br> Para m&aacute;s detalles haga clic <a href='${urlbase}/detPedido/show/${params.id}?&layout=main'> AQUI </a>"
+		generalService.notificarVencimiento(contratoInstance.idTipoVencimiento, idVendedor,asunto,cuerpo)
+		
+		
+		contratoInstance.save flush: true,failOnError: true
+		
+	   redirect url:"/detPedido/show/${params.id}"
+	   //redirect url:"/contrato/show/${params.vencimientoId}?layout=detalle&idenc=${idVenci}"
+	   flash.message="Vencimiento  renovado exitosamente"
+	}
 
     def edit(DetPedido detPedidoInstance) {
+		println "Params son... "+params
         respond detPedidoInstance, model:[sw:1]
     }
 
@@ -245,6 +288,11 @@ class DetPedidoController extends BaseController{
             notFound()
             return
         }
+		
+		//println "Parametros recibidos al editar producto... "+params
+		
+		generalService.crearOActualizarContrato(request,servletContext,params,detPedidoInstance,"1")
+		
         def productoInstance=Producto.findByRefProducto(params.refProducto)
         
         if (productoInstance !=null)  detPedidoInstance.producto=productoInstance
@@ -298,13 +346,16 @@ class DetPedidoController extends BaseController{
           }
         }      
                
-        request.withFormat {
+       /* request.withFormat {
             form {
                 flash.message = message(code: 'default.updated.message', args: [message(code: 'DetPedido.label', default: 'DetPedido'), detPedidoInstance.id])
                 redirect  url:"/detPedido/index/"+ detPedidoInstance.pedido?.id
             }
             '*' { respond detPedidoInstance, [status: OK] }
-        }
+        }*/
+		
+		redirect url:"/detPedido/index/${params.idPedido}?sw=1"
+		flash.message="Producto modificado exitosamente!"
     }
 
     @Transactional  //delete
@@ -764,6 +815,7 @@ class DetPedidoController extends BaseController{
     
     def reciboCompleto(){        
         println "ID_DEL PEDIDOJD->"+params.detpedidos
+		println "Entre ac�aaaaaa.... "+params
         if(params.detpedidos)
           {
 			  render (view:'almacenCompleto',model:[detpedidos:params.detpedidos])
@@ -773,9 +825,11 @@ class DetPedidoController extends BaseController{
          flash.warning="Debe elegir por lo menos un ítem.Verifique"        
         }
          if(params.layout=='main')
-          redirect url:"/detPedido/indexg?layout=main"
+          redirect url:"/detPedidod/indexg?layout=main"
         else
           redirect url:"/detPedido/index/${params.idpedido}"
+			//redirect url:"/crm/detPedido/index/1905?&sw=0"
+			//crm/detPedido/index/${pedidoInstance?.id}?sw=${sw}
     }
     
      @Transactional  //reciboCompletoDef
@@ -795,12 +849,15 @@ class DetPedidoController extends BaseController{
          if (detPedidoInstance)   
            pedidoService.cerrarPedidoPorCompras(detPedidoInstance.pedido.id)
            
+		   
+		  println "PARAMETROS JEJEJE "+params 
         flash.message="Recibo Completo realizado para los ítem elegidos"
         if(params.layout=='main')
           redirect url:"/detPedido/indexg?layout=main"
         else
           //redirect url:"/detPedido/index/${detPedidoInstance?.pedido?.id}"
-		redirect url:"/detPedido/indexg?layout=main"
+		//redirect url:"/detPedido/indexg?layout=main"
+		redirect url:"/detPedido/index/${detPedidoInstance.pedido.id}?&sw=0"
     }  
     
      @Transactional

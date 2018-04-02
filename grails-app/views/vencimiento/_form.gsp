@@ -16,7 +16,7 @@ input#refTipModNumContract,input#serial,input#descripcion,input#observaciones{
 <g:hiddenField name="eliminado" value="${vencimientoInstance?.eliminado?:0}" />
 <g:hiddenField  name="idencvenc" value="${vencimientoInstance?.encvencimiento?.id?:params.idenc}" />
 <g:hiddenField  name="vencimientoId" value="${vencimientoInstance?.id?:params.id}" />
-
+<% println params %>
 <g:set  var="encVencimientoInstance" value="${crm.EncVencimiento.get(params.long('idenc'))}"/>
 <div  id="boxVenc">
     <g:if test="${vencimientoInstance?.eliminado==1}" >
@@ -29,11 +29,11 @@ input#refTipModNumContract,input#serial,input#descripcion,input#observaciones{
     <g:set var="xidpedido" value="${vencimientoInstance?.pedido?.id}" scope="request" />   
 	    
 	<% def mostrarTipoConvenio='';def mostrarSerie=''
-		if(vencimientoInstance.idTipoVencimiento!='venconsop')
+		if(vencimientoInstance?.idTipoVencimiento!='venconsop')
 			mostrarTipoConvenio='display:none;'
 		
 
-		if(vencimientoInstance.idTipoVencimiento=='venhardw' ||vencimientoInstance.idTipoVencimiento=='softhw'||vencimientoInstance.idTipoVencimiento=='vensoftapl' )
+		if(vencimientoInstance?.idTipoVencimiento=='venhardw' ||vencimientoInstance?.idTipoVencimiento=='softhw'||vencimientoInstance?.idTipoVencimiento=='vensoftapl' )
 		mostrarSerie='display:block;'
 		else
 		mostrarSerie='display:none;'
@@ -84,7 +84,7 @@ input#refTipModNumContract,input#serial,input#descripcion,input#observaciones{
     
     
     <% def mostrarPlataforma=''
-		if(vencimientoInstance.idTipoVencimiento=='venarrend' || vencimientoInstance.idTipoVencimiento=='venarrter' )
+		if(vencimientoInstance?.idTipoVencimiento=='venarrend' || vencimientoInstance?.idTipoVencimiento=='venarrter' )
 		mostrarPlataforma='display:none;'
 		 %>
     
@@ -92,7 +92,7 @@ input#refTipModNumContract,input#serial,input#descripcion,input#observaciones{
 	    <g:set var="marcaList" value="${generalService.getMarcas(vencimientoInstance?.idTipoVencimiento)}" scope="request"/>
     	<g:set var="xvalor" value="${vencimientoInstance?.plataforma}" scope="request"/>
     	<g:set var="zronly" value="true" scope="request"/>
-	    <g:render template="marcas"/>
+	    <g:render template="/vencimiento/marcas"/>
 	</div>
     
             
@@ -103,7 +103,7 @@ input#refTipModNumContract,input#serial,input#descripcion,input#observaciones{
         
         
 <% def mostrarContrato=''
-	if(vencimientoInstance.idTipoVencimiento=='venarrter')
+	if(vencimientoInstance?.idTipoVencimiento=='venarrter')
 		mostrarContrato='display:block;'		
 	else	
 		mostrarContrato='display:none;'
@@ -128,11 +128,11 @@ input#refTipModNumContract,input#serial,input#descripcion,input#observaciones{
     
 	
 <% def textRefNumMod=''
-		if(vencimientoInstance.idTipoVencimiento=='venhardw' || vencimientoInstance.idTipoVencimiento=='softhw' )
+		if(vencimientoInstance?.idTipoVencimiento=='venhardw' || vencimientoInstance?.idTipoVencimiento=='softhw' )
 			textRefNumMod='Tipo modelo/referencia'
 		else
 		{
-			if(vencimientoInstance.idTipoVencimiento=='vensoftapl')
+			if(vencimientoInstance?.idTipoVencimiento=='vensoftapl')
 				textRefNumMod='Referencia/Número de contrato'
 			else
 				textRefNumMod='Número de contrato'
@@ -261,7 +261,7 @@ input#refTipModNumContract,input#serial,input#descripcion,input#observaciones{
   
     
     <% def mostrarCobertura=''
-		if(vencimientoInstance.idTipoVencimiento=='venadmter' || vencimientoInstance.idTipoVencimiento=='venarrend' ||  vencimientoInstance.idTipoVencimiento=='venarrter')
+		if(vencimientoInstance?.idTipoVencimiento=='venadmter' || vencimientoInstance?.idTipoVencimiento=='venarrend' ||  vencimientoInstance?.idTipoVencimiento=='venarrter')
 		mostrarCobertura='display:none;'
 	%>
 
@@ -327,20 +327,7 @@ input#refTipModNumContract,input#serial,input#descripcion,input#observaciones{
         </div>
     </div>
 
-    
-	<div style="display:none;" class="control-group ${hasErrors(bean: vencimientoInstance, field: 'idVendedor', 'error')} ">
-        <label class="control-label" for="idVendedor">
-            Vendedor
-        </label>
-        <div class="controls" >
-            <g:render template="/empleado/vendedorPorDefecto" />  
-            <g:select id="idVendedor" style="width:300px;" name="idVendedor"
-            from="${generalService.getVendedores()}"
-                optionKey="id"
-            value="${vencimientoInstance?.empleado?.id?:encVencimientoInstance?.empleado?.id}"
-            noSelection="['': 'Seleccione Vendedor']"  disabled="${xronly}" required="" />
-        </div>
-    </div>
+
     
     <g:if test="${vencimientoInstance?.id !=null}" >
     <div class="control-group">
@@ -372,6 +359,7 @@ input#refTipModNumContract,input#serial,input#descripcion,input#observaciones{
 
 <script src="${resource(dir: 'perfectum/js', file: 'bootstrap-datetimepicker.js')}"></script>
 <script src="${resource(dir: 'perfectum/js', file: 'bootstrap-datetimepicker.es.js')}"></script>
+
 <script type="text/javascript">
 
 function validarDatos()
@@ -467,7 +455,7 @@ function validarDatos()
 	}
 }	
 	
-var serialManual='${vencimientoInstance.serialManual}'
+var serialManual='${vencimientoInstance?.serialManual}'
 if(serialManual=='N')
 	$("#numSerie").hide()
 if(serialManual=='S')
@@ -597,5 +585,3 @@ $("#tipovenci").change(function()
 
 
 </script>
-
-

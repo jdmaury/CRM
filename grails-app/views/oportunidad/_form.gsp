@@ -111,15 +111,15 @@
         </label>
         <div class="controls" >
 
-            <div class="controls input-append date form_date" id="fechaa"
+            <div class="controls input-append date" id="fechaa"
             data-date-format="dd-mm-yyyy" style="margin-left:0px;">
-            <input type="text" name="fechaApertura" id="op_fechaa" readonly 
-            value="${g.formatDate(format:'dd-MM-yyyy',date:oportunidadInstance?.fechaApertura)?:generalService.getHoy()}" style="width:153px;" 
-            onchange="validarFechas(0,'op_fechaa','op_fechac')">
-            <g:if test="${xronly!='true'}"  >            
-                <span class="add-on"><i class="icon-th"></i></span>
-            </g:if>
-        </div>
+	            <input type="text" name="fechaApertura" id="op_fechaa" readonly 
+	            value="${g.formatDate(format:'dd-MM-yyyy',date:oportunidadInstance?.fechaApertura)?:generalService.getHoy()}" style="width:153px;" 
+	            onchange="validarFechas(0,'op_fechaa','op_fechac')">
+	            <%--<g:if test="${xronly!='true'}"  >            
+	                <span class="add-on"><i class="icon-th"></i></span>
+	            </g:if>--%>
+               </div>
     </div>
     <br>
     <div class="control-group">
@@ -362,8 +362,8 @@
         <ul class="nav  nav-tabs" id="myTab" style="font-weight: bold;margin-bottom:0px">
           
             <li class="active"><a href="#home" data-toggle="tab">Items</a></li>
-            <li><a href="#actividades"  data-toggle="tab"  ><g:message code="bitacora.tab.label"/></a></li>
-            <li><a href="#propuestas"  data-toggle="tab" ><g:message code="propuestas.label"/> </a></li>
+            <li><a href="#actividades"   data-toggle="tab"  ><g:message code="bitacora.tab.label"/></a></li>
+            <li><a href="#propuestas" onclick="recargarIframe('ifpropuesta');"  data-toggle="tab" ><g:message code="propuestas.label"/> </a></li>
             <li><a href="#regopor"  data-toggle="tab" ><g:message code="registro.oppty.label" default="Registro Oportunidad"/> </a></li>
             <li><a  href="#requerimiento"  data-toggle="tab" ><g:message code="requerimiento.oppty.label" default="Requerimiento"/>  </a></li>
             <li><a href="#historia"  data-toggle="tab"><g:message code="historial.tab.label" default="Historial"/> </a></li>

@@ -22,12 +22,21 @@ class OportunidadController extends BaseController {
 	def resultadosfiltro_export
 	def listadef
 		
-		
+	@Transactional		
 	def index(Integer max) {
 		
 		
-		Long[]jaja=[9,55]
-		def f=generalService.getCuotaVendedor(jaja)
+		//generalService.notificarArquitectos(['pedarqui13', 'pedarqui08'],"BOG-0075-17")
+		//Long[]jaja=[9,55]
+		///def f=generalService.getCuotaVendedor(jaja)
+		
+		//def a=generalService.oportunidadesSinItems()
+		//println "La lista de opptys sin items es......."+a
+		
+		//generalService.notificarProspectosSinAtender()
+		
+		//generalService.crearVencimientoDetPedido()
+		
 		
 		int itemxview=generalService.getItemsxView(0)
 		params.max = Math.min(max?:itemxview,100)
@@ -38,7 +47,7 @@ class OportunidadController extends BaseController {
 		params.filter.op.eliminado = "Equal"
 		params.filter.eliminado = '0'
 		
-		
+
 		if(params.filter.estrategiaId){
 			println "Params.filter.estrategiaId "+params.filter.estrategiaId			 
 			params.filter.estrategiaId=generalService.getIdEstrategia(params.filter.estrategiaId)
@@ -296,6 +305,7 @@ class OportunidadController extends BaseController {
 	
 	def exportarDatos=
 	{
+		println "PARAMETROS EXPORTAR DATOS "+params
 		
 		List lista_export=[]
 		//el nombre de los campos fields es como est�n definidos en la clase dominio
@@ -326,8 +336,16 @@ class OportunidadController extends BaseController {
 		}
 		else //exportar seleccionados
 		{
-			List ids=params.list('oportunidades')//ids de items seleccionados
-			lista_export=exportarService.obtenerItemsSeleccionados(Oportunidad,ids)//lista de checkbox seleccionados
+			if(params.tipo_export=='3')//exportar oportunidades sin items
+			{
+				lista_export=generalService.oportunidadesSinItems()
+			}
+			else
+			{
+				List ids=params.list('oportunidades')//ids de items seleccionados
+				lista_export=exportarService.obtenerItemsSeleccionados(Oportunidad,ids)//lista de checkbox seleccionados
+			}
+			
 			
 		}
 		exportarService.exportar(Oportunidad,lista_export,fields,labels,response,formatters,filename)
@@ -1471,7 +1489,7 @@ class OportunidadController extends BaseController {
 		Long[]cityIds		
 		def usuarioLogueado=generalService.getIdEmpleado(session['idUsuario'].toLong())
 		println "|||||||||||||||||||||||||||||PARAMS.Q||||||||||||||||||||| "+params.Q
-		String Ques=params.Q.toString()?:"Q3"
+		String Ques=params.Q.toString()?:"Q1"
 		
 		println "QUEEEEEEEEEEEEEEEEEEEEEEEEES ////////////////////////////"+Ques
 		def userName = Usuario.where {empleado.id==usuarioLogueado}.toList()[0]
@@ -1555,7 +1573,7 @@ class OportunidadController extends BaseController {
 		
 		def nombreUsuario=generalService.getNombreEmpleado(userId)
 		//println "PRUEBAAAAA PARAMS"+params
-		String[] Q=["Q3"]
+		String[] Q=["Q1"]
 		
 		println "USUARIO LOGUEADO ID "+usuarioLogueado
 		def sucursalActual=Empleado.executeQuery("select idSucursal from Empleado where id=${usuarioLogueado}")[0]
@@ -1564,7 +1582,7 @@ class OportunidadController extends BaseController {
 		Long[]cityIds=[sucursalActual]//id de la sucursal del usuario logueado
 		
 		println "sucursalActual "+sucursalActual
-		def infoEmpleadoQ=generalService.infoQEmpleado(ids, Q, "2017",cityIds)
+		def infoEmpleadoQ=generalService.infoQEmpleado(ids, Q, "2018",cityIds)
 		
 		if(generalService.getRolUsuario(userId).equals('GERENTE'))
 		{

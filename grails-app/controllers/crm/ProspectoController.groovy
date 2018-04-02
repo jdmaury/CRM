@@ -38,6 +38,8 @@ class ProspectoController extends BaseController{
 
         }
 		
+		//generalService.notificarProspectosSinAtender()
+		
 		
 		if (params.filter.idSucursal){
 			params.filter.idSucursal=generalService.getIdSucursal(params.filter.idSucursal)

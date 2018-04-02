@@ -13,7 +13,7 @@
             <h2>Editar Producto</h2>
             <hr style="margin-top:10px;margin-bottom:10px;">                                               
 
-            <g:form class="form-horizontal" url="[resource:detPedidoInstance, action:'update']" method="PUT" >
+            <g:form class="form-horizontal" url="[resource:detPedidoInstance, action:'update']" enctype="multipart/form-data" method="post" >
 
                 <fieldset class="form">
                     <g:render template="acciones" />
@@ -22,6 +22,7 @@
                     <g:render template="/general/mensajes" />
                     <g:set var="xpedido" value="${params.pedido}" scope="request"/>
                     <g:set var="xronly" value="false" scope="request"/>
+                    <g:set var="xronlycontrato" value="false" scope="request"/>
                     <g:render template="form"/>
                 </fieldset>
             </g:form>

@@ -1,4 +1,4 @@
-<%@ page import="crm.DetPedido" %>
+<%@ page import="crm.DetPedido" --%>
 <%@ page import="crm.Producto" %>
 <g:set var="generalService" bean="generalService"/>
 <g:set var="pedidoService" bean="pedidoService"/>
@@ -7,10 +7,6 @@
 
 <g:if test="${xronly=='true'}">
    <g:set var="zronly" value=" disabled " />
-</g:if>
-
-<g:if test="${detPedidoInstance?.tieneContrato}">
-	<g:set var="rbSelected" value=" disabled " />
 </g:if>
 
 <div class="tabbable">
@@ -233,31 +229,26 @@
                     </g:if>
                 </g:if>
                 
-                <%--aca va ES CONTRATO --%>
-				<%--<div class="control-group ${hasErrors(bean: detPedidoInstance, field: 'tieneContrato', 'error')} ">
+                <div class="control-group ${hasErrors(bean: detPedidoInstance, field: 'tieneContrato', 'error')} ">
 
                     <label class="control-label">Es contrato?</label>
                     <div class="controls">
                         <label class="radio">Si</label>
-                        <input type="radio" name="esContrato"  value="S" ${rbSelected}                           
-                               ${generalService.checked('S',detPedidoInstance?.tieneContrato)} required
+                        <input type="radio" name="esContrato"  value="S" ${zronly}                           
+                               ${generalService.checked('S',detPedidoInstance?.tieneContrato)} 
                                onclick="document.getElementById('infoContrato').style.display='block';">
     
                         <label class="radio" style="padding-top:5px;">No</label>
-                        <input type="radio" name="esContrato"  value="N"  ${rbSelected}
+                        <input type="radio" name="esContrato"  value="N"  ${zronly}
                                ${generalService.checked('N',detPedidoInstance?.tieneContrato)}
                                onclick="document.getElementById('infoContrato').style.display='none'">
                     </div>
-                </div>--%>
-                                
-                
-                <g:hiddenField  id ="eliminado" name="tieneContrato" value="${detPedidoInstance?.tieneContrato?:''}" />
-                <g:hiddenField  id ="eliminado" name="eliminado" value="${detPedidoInstance?.eliminado?:0}" />
+                </div>
                 
                 <% String mostrarInfoContrato
                 if (detPedidoInstance?.tieneContrato=='S')  mostrarInfoContrato='block' else mostrarInfoContrato='none' %>
                 
-                <div id="infoContrato" style="display:${mostrarInfoContrato}" >
+                <div id="infoContrato" style="display:none;" >
 				        <div class="control-group ${hasErrors(bean: detPedidoInstance, field: 'idEstadoDetPedido', 'error')} ">
 					        <label class="control-label" for="idEstadoDetPedido">
 					           <g:message code="detPedido.idEstadoDetPedido.label" default="Estado" />
@@ -269,7 +260,6 @@
 	 
 						<g:hiddenField  name="idEstadoDetPedido" value="${detPedidoInstance?.idEstadoDetPedido?:'peddetpd00'}" />
 						<g:hiddenField  name="idPedido" value="${params.pedido}" />
-						<g:hiddenField  name="idContrato" value="${detPedidoInstance?.contrato?.id}" />
 					                
 					     <% def mostrarTipoConvenio='';def mostrarSerie=''
 							if(detPedidoInstance?.contrato?.idTipoVencimiento!='venconsop')
@@ -316,7 +306,7 @@
 					     </div>
 					     
 					     <% def mostrarPlataforma=''
-	        				if(detPedidoInstance.contrato?.idTipoVencimiento=='venarrend' || detPedidoInstance.contrato?.idTipoVencimiento=='venarrter' )
+	        				if(vencimientoInstance?.idTipoVencimiento=='venarrend' || vencimientoInstance?.idTipoVencimiento=='venarrter' )
 	        					mostrarPlataforma='display:none;'
 	         			  %>
 
@@ -365,7 +355,7 @@
 					            <g:message code="vencimiento.refTipModNumContract.label" default="${textRefNumMod}" />            
 					        </label>
 					        <div class="controls">
-					            <g:textField name="refTipModNumContract" maxlength="50" value="${detPedidoInstance?.contrato?.refTipModNumContract}" disabled="${xronlycontrato}"/>
+					            <g:textField name="refTipModNumContract" maxlength="50" value="${detPedidoInstance?.contrato?.refTipModNumContract}" disabled="${xronly}"/>
 					        </div>
 					     </div>
 					     
@@ -398,7 +388,6 @@
 					    </div>            					    
 						
 						<g:hiddenField  id ="hayAnexo" name="hayAnexo" value="N" />
-						<g:hiddenField  name="empresaPedido" value="${detPedidoInstance?.pedido?.empresa?.id}" />
 						
 					     <div class="controls" id="subirArchivo" style="${mostrarSerie};margin-top:-24px;margin-bottom:10px;" >
 			                  <div style="display:none">                            
@@ -432,11 +421,11 @@
 				      <% String xcant 
 				         if (detPedidoInstance.contrato?.idTipoVencimiento?.contains('soft'))  xcant='block' else xcant='none' %>
 				      <% def mostrarCobertura=''
-				         if(detPedidoInstance.contrato?.idTipoVencimiento=='venadmter' || detPedidoInstance.contrato?.idTipoVencimiento=='venarrend' ||  detPedidoInstance.contrato?.idTipoVencimiento=='venarrter')
+				         if(vencimientoInstance?.idTipoVencimiento=='venadmter' || vencimientoInstance?.idTipoVencimiento=='venarrend' ||  vencimientoInstance?.idTipoVencimiento=='venarrter')
 					         mostrarCobertura='display:none;'
 				       %>
 				       
-					    <div id="tipoCobertura"  style="${mostrarCobertura}" class="control-group ${hasErrors(bean: detPedidoInstance, field: 'contrato.idTipoCobertura', 'error')} " >
+					    <div id="tipoCobertura" style="${mostrarCobertura}" class="control-group ${hasErrors(bean: detPedidoInstance, field: 'contrato.idTipoCobertura', 'error')} ">
 					        <label class="control-label" for="idTipoCobertura">
 					            <g:message code="vencimiento.idTipoCobertura.label" default="Tipo Cobertura" />
 					            <span class="required-indicator">*</span>
@@ -461,58 +450,13 @@
 					            <input type="text" name="fechaInicio" id="ve_fechaa" readonly 
 					            value="${g.formatDate(format:'dd-MM-yyyy',date:detPedidoInstance?.contrato?.fechaInicio)}" style="width:213px;" 
 					            onchange="validarFechas(0,'ve_fechaa','ve_fechac')" required>
-					            <g:if test="${xronlycontrato!='true'}"  >            
-					                <span class="add-on">
-					                	<i class="icon-th"></i>
-					                </span>
+					            <g:if test="${xronly!='true'}"  >            
+					                <span class="add-on"><i class="icon-th"></i></span>
 					            </g:if>       
 					        </div>  
-					    </div>	
-					    
-					    <div class="control-group ${hasErrors(bean: detPedidoInstance, field: 'contrato.fechaVencimiento', 'error')} ">
-					        <label class="control-label" for="fechaVencimiento">
-					            <g:message code="vencimiento.fechaVencimiento.label" default="Fecha Vencimiento" />
-					           <span class="required-indicator">*</span>
-					        </label>
-					        <div class="controls input-append date form_date" id="fechaVencimiento" data-date-format="dd-mm-yyyy" style="margin-left:20px;">
-					            <input type="text" name="fechaVencimiento" id="ve_fechac" readonly 
-					            value="${g.formatDate(format:'dd-MM-yyyy',date:detPedidoInstance?.contrato?.fechaVencimiento)}" style="width:213px;" 
-					            onchange="validarFechas(0,'ve_fechaa','ve_fechac')" required="">
-					            <g:if test="${xronlycontrato!='true'}"  >            
-					                <span class="add-on"><i class="icon-th"></i></span>
-					            </g:if> 
-					        </div>  
-					        <span id="errfec" style="display:none;"> <b style="color:red; padding-top:3px;"> Esta fecha debe ser posterior a la anterior </b>
-					            <a href="#" onclick="document.getElementById('errfec').style.display='none'" ><i class="icon-remove"></i></a>
-					        </span>
-					    </div>
-					    
-					    <div id="observaciones" class="control-group ${hasErrors(bean: detPedidoInstance, field: 'contrato.observaciones', 'error')} ">
-					        <label class="control-label" for="observaciones">
-					            <g:message code="vencimiento.observaciones.label" default="Observaciones" />
-					
-					        </label>
-					        <div class="controls">
-					            <g:textField name="observaciones" maxlength="100" value="${detPedidoInstance?.contrato?.observaciones}" disabled="${xronlycontrato}"/>
-					        </div>
-					    </div>					                  					    				     				       					    
+					    </div>					     				       					    
 					     
-					    <g:if test="${detPedidoInstance?.contrato?.id !=null}" >
-					    <div class="control-group">
-					        <label class="control-label" >
-					         Estado
-					        </label>
-					        <% def xres=generalService.getEstadoVencimiento(detPedidoInstance?.contrato?.fechaInicio,detPedidoInstance?.contrato?.fechaVencimiento) %>  
-					        <div class="controls" style="padding:4px; border:solid;border-color:#ccc;border-width:1px;border-radius:5px;width:239px;min-height:21px;${xres[1]}">
-					        <g:if test="${detPedidoInstance?.contrato?.idEstadoVencimiento=='vennorenov'}">                            
-					                                    <% xres[0]='vennorenov' //vencimiento no renovado empanada
-					                                       xres[1]='background:#F15850 !important' %>                                   
-					        </g:if>
-					         
-					         <b style="${xres[1]};font-weight:bold;text-align:center;color:#303030">${generalService.getValorParametro(xres[0])}</b> 
-					        </div>
-					    </div>
-					    </g:if>											    					       						  
+											    					       						  
 						  					     				     
 				     
 				     
@@ -520,10 +464,17 @@
                                                   
     			
     			
-    		
     			
     			
-    
+    			
+    			
+    			
+    			
+    			
+    			
+    			
+    			
+    			
     			
     			
     			
@@ -534,251 +485,6 @@
     			
     			
     		</div>
-    		
-    			
-
-    			
-    	</div>
-    	
-    	    			
-    			       <div class="tab-pane" id="historial">              
-
-            <a class="btn btn-mini" href="#" onclick="cargarHistorial(${detPedidoInstance?.id},'DetPedido')" > Ver Historial</a>  
-
-            <iframe id="ifhistoria" src="" style="border:0;width:100%;"  scrolling="yes"></iframe>
-        </div>    
+    	</div>    
     </div>
 </div>
-
-<script>   
-    //IFRAME_DETALLE9=document.getElementById('ifitems').contentWindow.document.getElementById('ifhistoria')
-
-      <!-- calcula el alto del bloque htm del detalle de encaberzado respectivo -->
-    var contenido= $("#detalleconten");
-    if (parent.IFRAME_DETALLE !=null)parent.IFRAME_DETALLE.height(contenido.height()+250);
-
-</script>
-<script src="${resource(dir: 'perfectum/js', file: 'bootstrap-datetimepicker.js')}"></script>
-<script src="${resource(dir: 'perfectum/js', file: 'bootstrap-datetimepicker.es.js')}"></script>
-<script type="text/javascript">
-    <g:if test="${xronlycontrato!='true'}"  >
-        $('.form_date').datetimepicker({
-        language:  'es',
-        weekStart: 1,
-        todayBtn:  1,
-        autoclose: 1,
-        todayHighlight: 1,
-        startView: 2,
-        minView: 2,
-        forceParse: 0
-        });
-    </g:if>
-
-    function validarDatos()
-    {
-        
-        var tipovencimiento=$("#tipovenci option:selected").val()//me muestra el valor seleccionado     
-        //var pedidoSelected=$("#pedido option:selected").val()//
-        var plataformaSelected=$("#plataformasdiv option:selected").val()
-        var rButtonSelected=$("input[name='serialManual']:checked").val()   
-        var textoReferencia=$("input[name='refTipModNumContract']").val()
-        var numeroDeSerie=$("input[name='serial']").val()
-        var coberturaSelected=$("#tipoCobertura option:selected").val()
-        var tipoConvenioSelected=$("#idTipoConvenio option:selected").val()
-        var tipoContratoSelected=$("#idTipoContrato option:selected").val()    
-        var archivoSeriales=$("input[name='archivoSeriales']").val()
-        var fechaInicio=$("#ve_fechaa").val()
-        var fechaFin=$("#ve_fechac").val()
-        var esContrato=$("input[name='esContrato']:checked").val()
-		if(esContrato=='S')
-		{
-	        if(textoReferencia=='' || fechaInicio=='' || fechaFin=='')
-	        {
-	            alert("Faltan datos. Por favor verifique")
-	            return false
-	        }
-	        else
-	        {
-	            if(coberturaSelected=='' && (tipovencimiento!='venarrter' && tipovencimiento!='venarrend' && tipovencimiento!='venadmter'))
-	            {
-	                alert("Falta tipo cobertura. Por favor verifique")
-	                return false
-	            }
-	            else
-	            {
-	                
-	                
-	                if(tipoConvenioSelected=='' && tipovencimiento=='venconsop')
-	                {
-	                    alert("Faltan datos. Por favor verifique")
-	                    return false
-	                }
-	                
-	                else
-	                {
-	                    if(tipoContratoSelected=='' && tipovencimiento=='venarrter')
-	                    {
-	                        alert("Faltan datos. Por favor verifique")
-	                        return false
-	                    }           
-	                    else
-	                    {
-	                        if((plataformaSelected=='') && (tipovencimiento!='venarrend' && tipovencimiento!='venarrter'))
-	                        {
-	                            alert("Faltan datos. Por favor verifique")
-	                            return false
-	                        }
-	                        
-	                        else
-	                        {
-	                              //if(((rButtonSelected==undefined||numeroDeSerie=='')||(rButtonSelected=='S' && numeroDeSerie=='') ||(rButtonSelected=='N' && archivoSeriales==''))   && ((tipovencimiento=='venhardw'|| tipovencimiento=='softhw'||tipovencimiento=='vensoftapl')))                                      
-	                                     if(tipovencimiento=='venhardw' || tipovencimiento=='softhw' || tipovencimiento=='vensoftapl')
-	                                     {
-	                                        
-	                                        if((rButtonSelected==undefined)||(rButtonSelected=='S' && numeroDeSerie=='')||(rButtonSelected=='N' && archivoSeriales==''))
-	                                        {
-	                                            //alert("entré acá ahora")                                      
-	                                            alert("Faltan datos. Por favor verifique")
-	                                            return false                                
-	                                        }
-	                                        else
-	                                            {                                        		
-	                                        		$('#btn_save_prod').prop("disabled",true);
-		                                        	return true
-	                                            }
-	                                             
-	                                                                
-	                                     }
-	                                               
-	                          }
-	                    }   
-	            
-	                }   
-	            }
-	            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-             
-
-        }
-	  }
-        desactivar('btn_save_prod');
-
-    }
-
-    var serialManual='${detPedidoInstance?.contrato?.serialManual}'
-        if(serialManual=='N')
-            $("#numSerie").hide()
-        if(serialManual=='S')
-            $("#subirArchivo").hide()       
-                
-
-        $("#radioButtonSeriales").change(function()
-        {
-            var radioSelected=$("input[name='serialManual']:checked").val()
-            
-            if(radioSelected=='S')
-            {       
-                $("#archivoSeriales").val('')       
-            }
-            else
-            {       
-                $("#serial").val('')
-            }   
-        })
-        
-    $("#tipovenci").change(function()
-    {
-
-            var tipovencimiento=$("#tipovenci option:selected").val()//me muestra el valor seleccionado
-            //alert(tipovencimiento)
-            
-            //validarDatos(tipovencimiento) 
-            
-            
-            if(tipovencimiento=="venarrend" || tipovencimiento=="venarrter")
-            {
-                    $("#tipoContrato").show()
-                    $("#plataformasdiv").hide()
-                    $("#tipoCobertura").hide()      
-                    $("#textoRef").text("Número de contrato")
-                    $("#tipoConvenio").hide()
-                    
-                    if(tipovencimiento=="venarrend")
-                        $("#tipoContrato").hide()   
-                    
-                    
-            }
-            else
-            {
-                    $("#tipoContrato").hide()
-                    $("#plataformasdiv").show()
-                    $("#divNumeroRef").show()
-                    
-                    if(tipovencimiento=="venadmter")
-                    {
-                            $("#tipoCobertura").hide()
-                            $("#tipoConvenio").hide()
-                    }
-
-
-        
-                    if(tipovencimiento=="venhardw" || tipovencimiento=="softhw")
-                    {
-                        $("#textoRef").text("Tipo modelo/referencia")
-                        $("#tipoCobertura").show()                      
-                    }
-                        
-                
-                    
-                        
-                        
-                    if(tipovencimiento=="vensoftapl")
-                    {
-                        $("#textoRef").text("Referencia/Número de contrato")
-                        $("#tipoConvenio").hide()
-                        $("#tipoCobertura").show()
-                    }
-
-                    if(tipovencimiento=="venadmin" ||tipovencimiento=="venadmter")                  
-                    {
-                        $("#textoRef").text("Número de contrato")
-                        $("#tipoConvenio").hide()
-                        $("#tipoCobertura").hide()
-
-                        if(tipovencimiento=="venadmin")
-                            $("#tipoCobertura").show()
-                    }
-
-                    if(tipovencimiento=="venconsop")
-                    {
-                        $("#tipoConvenio").show()
-                        $("#textoRef").text("Número de contrato")
-                    }
-                    else
-                        $("#tipoConvenio").hide()
-                    
-            }
-                    
-            if(tipovencimiento=="venhardw" || tipovencimiento=="softhw" || tipovencimiento=="vensoftapl")
-            {   
-            $("#numSerie").show()
-            $("#radioButtonSeriales").show()
-            $("#subirArchivo").show()
-            }
-            else
-            {
-                $("#numSerie").hide()
-                $("#radioButtonSeriales").hide()
-                $("#subirArchivo").hide()
-                
-            }
-    })    
-</script>

@@ -185,9 +185,10 @@ class GeneralService {
 			println "LISTA DE CORREOS CON SW=1 "+xto
         }
         if (xto != null) {
-            try {
-            sendMail {
-                to  xto.toArray()
+            try {            
+				sendMail {
+				async true
+				to  xto.toArray()
                 //from "${getValorParametro('fromgenera')}"
                 subject "${asunto}"
 				cc "auditorcorreocrm@redsis.com"
@@ -494,8 +495,28 @@ class GeneralService {
 			
 			Vencimiento.executeUpdate(query)
 		}
-		println "ActualicÈ"
+		println "ActualicÔøΩ"
     }
+
+    def actualizarEstadoContratos(){
+
+        def lista=Contrato.executeQuery("Select c from Contrato c where c.idEstadoVencimiento NOT IN ('vennorenov','vennoinici')  and c.eliminado=0")
+
+
+        println lista.size()
+        lista.each{
+
+            println "VENCIMIENTO "+it.id
+
+            def estado=getEstadoVencimiento(it.fechaInicio,it.fechaVencimiento)[0]
+
+            def query="Update Contrato set idEstadoVencimiento='${estado}' where id=${it.id}"
+            println "La query para actualizaci√≥n es.. "+query
+            Contrato.executeUpdate(query)
+        }
+        println "Actualic√©"
+    }
+
     
     def getCampos(clase){ 
         
@@ -1079,9 +1100,9 @@ class GeneralService {
    		def estadoPedido=Pedido.findById(idEstadoPedido).idEstadoPedido
 		switch(estadoPedido)
 		{
-			case 'pedenelab1': //En elaboraciÛn
+			case 'pedenelab1': //En elaboraciÔøΩn
 			return 'peddetpd00'
-			case 'pedenrevi2': //En revisiÛn
+			case 'pedenrevi2': //En revisiÔøΩn
 			return 'peddetpd00'
 			case 'pedpencom3': //Pendiente x compra
 			return 'peddetpd01'			
@@ -1253,8 +1274,8 @@ class GeneralService {
 
 	   
 	   def fechaCierreReal=getQQuery(Q, "o.fechaCierreReal")
-	   //def queryOpGanado="Select sum(o.valorOportunidad) from Oportunidad o Where o.eliminado=0 and o.fechaCierreReal between '${fechaQ[0]}' and '${fechaQ[1]}' and o.empleado.id IN (${userIds}) and idSucursal IN (${ciudadesIds})  and o.idEstadoOportunidad='xganada' "//fecha cierre real estÈ en el Q
-	   def queryOpGanado="Select sum(o.valorOportunidad) from Oportunidad o Where o.eliminado=0 and  (${fechaCierreReal}) and o.empleado.id IN (${userIds}) and idSucursal IN (${ciudadesIds})  and o.idEstadoOportunidad='xganada' "//fecha cierre real estÈ en el Q
+	   //def queryOpGanado="Select sum(o.valorOportunidad) from Oportunidad o Where o.eliminado=0 and o.fechaCierreReal between '${fechaQ[0]}' and '${fechaQ[1]}' and o.empleado.id IN (${userIds}) and idSucursal IN (${ciudadesIds})  and o.idEstadoOportunidad='xganada' "//fecha cierre real estÔøΩ en el Q
+	   def queryOpGanado="Select sum(o.valorOportunidad) from Oportunidad o Where o.eliminado=0 and  (${fechaCierreReal}) and o.empleado.id IN (${userIds}) and idSucursal IN (${ciudadesIds})  and o.idEstadoOportunidad='xganada' "//fecha cierre real estÔøΩ en el Q
 	   def ganado=Oportunidad.executeQuery(queryOpGanado)[0]
 	   if(ganado)
 	   	ganado=dff.format(ganado)
@@ -1296,8 +1317,8 @@ class GeneralService {
 	   
 	   
 	   
-	   //def queryOpPerdido="Select sum(o.valorOportunidad) from Oportunidad o Where o.eliminado=0 and o.fechaCierreReal between '${fechaQ[0]}' and '${fechaQ[1]}' and o.empleado.id IN (${userIds}) and o.idEstadoOportunidad='xperdida' "//fecha cierre real estÈ en el Q
-	   def queryOpPerdido="Select sum(o.valorOportunidad) from Oportunidad o Where o.eliminado=0 and (${fechaCierreReal}) and o.empleado.id IN (${userIds}) and o.idEstadoOportunidad='xperdida' and o.idMotivoPerdida='poscompete' "//fecha cierre real estÈ en el Q
+	   //def queryOpPerdido="Select sum(o.valorOportunidad) from Oportunidad o Where o.eliminado=0 and o.fechaCierreReal between '${fechaQ[0]}' and '${fechaQ[1]}' and o.empleado.id IN (${userIds}) and o.idEstadoOportunidad='xperdida' "//fecha cierre real estÔøΩ en el Q
+	   def queryOpPerdido="Select sum(o.valorOportunidad) from Oportunidad o Where o.eliminado=0 and (${fechaCierreReal}) and o.empleado.id IN (${userIds}) and o.idEstadoOportunidad='xperdida' and o.idMotivoPerdida='poscompete' "//fecha cierre real estÔøΩ en el Q
 	   def perdido=Oportunidad.executeQuery(queryOpPerdido)[0]
 	   if(perdido)
 	      perdido=dff.format(perdido)
@@ -1414,7 +1435,7 @@ class GeneralService {
 		infoQ.put("porcentajeForecast", porcentajeForecast)
 		
 		
-		def queryGanadoExpet="Select sum(o.valorOportunidad) from Oportunidad o Where o.eliminado=0 and  (${fechaCierreReal}) and o.empleado.id IN (${userIds}) and idSucursal IN (${ciudadesIds})"//fecha cierre real estÈ en el Q
+		def queryGanadoExpet="Select sum(o.valorOportunidad) from Oportunidad o Where o.eliminado=0 and  (${fechaCierreReal}) and o.empleado.id IN (${userIds}) and idSucursal IN (${ciudadesIds})"//fecha cierre real estÔøΩ en el Q
 		def ganadoExpet=Oportunidad.executeQuery(queryGanadoExpet)[0]
 		
 		if(ganadoExpet)
@@ -1509,16 +1530,19 @@ class GeneralService {
 
 	   
 	   
-	   def queryPerdido="Select sum(o.valorOportunidad) from Oportunidad o Where o.eliminado=0 and o.empleado.id IN (${userIds}) and idMotivoPerdida='poscompete'"//fecha cierre real estÈ en el Q"
+	   def queryPerdido="Select sum(o.valorOportunidad) from Oportunidad o Where o.eliminado=0 and o.empleado.id IN (${userIds}) and idMotivoPerdida='poscompete'"//fecha cierre real estÔøΩ en el Q"
 	   def perdidoExpet=Oportunidad.executeQuery(queryPerdido)[0]
 	   
 	   
-	   def queryOpptyPeriodo="Select sum(o.valorOportunidad) from Oportunidad o Where o.eliminado=0 and (${fechaApertura}) and o.empleado.id IN (${userIds})"//fecha cierre real estÈ en el Q"
+	   def queryOpptyPeriodo="Select sum(o.valorOportunidad) from Oportunidad o Where o.eliminado=0 and (${fechaApertura}) and o.empleado.id IN (${userIds})"//fecha cierre real estÔøΩ en el Q"
 	   def resultOpptyPeriodo=Oportunidad.executeQuery(queryOpptyPeriodo)[0]
+	   
+	   println queryOpptyPeriodo
+	   println "La suma de las oportunidades del periodo es "+resultOpptyPeriodo
 	   
 	   
 	   if(perdidoExpet)
-	   perdidoExpet=dff.format(perdidoExpet)
+	   perdidoExpet=perdido//dff.format(perdidoExpet)
 		   else
 	   perdidoExpet=0
 	   
@@ -1597,11 +1621,11 @@ class GeneralService {
 	   Q.eachWithIndex {Qu, i->
 		if((i+1)==Q.size())//es el ultimo elemento de la lista
 		{
-			query+=returnQQuery("2017",Qu,"${tipofecha}")
+			query+=returnQQuery("2018",Qu,"${tipofecha}")
 		}
 		else
 		{
-			query+=returnQQuery("2017",Qu,"${tipofecha}")+" or "
+			query+=returnQQuery("2018",Qu,"${tipofecha}")+" or "
 		}
 	   } 
 	   
@@ -1632,8 +1656,10 @@ class GeneralService {
 	   empleadosId.each {valor->
 		   
 		   def query="Select usuario FROM Usuario u Where u.empleado.id=${valor}"
-		   def userName=Usuario.executeQuery(query)[0]+"C"		   
+		   def userName=Usuario.executeQuery(query)[0]+"C"	
+		   println "USERNAME ES .."+userName	   
 		   String p=getValorParametro("${userName}")?:"0"
+		   println "Cuota Vendedor es .."+p
 		   cuotaPorVendedor=Long.parseLong(p)/2800
 		   println "La cuota para este VENDEDOR ES DE --------->"+cuotaPorVendedor
 		   Q.each{paramQ->
@@ -1645,7 +1671,7 @@ class GeneralService {
 			  cuotaTotal+=cuota
 			
 		   }   
-		    
+		    println "Cuota Total para este(os) vendedores es "+cuotaTotal
 	   }
 	   
 	   Map porcentajesCumplimiento = new HashMap()
@@ -1941,7 +1967,7 @@ class GeneralService {
    
  
    
- def formatDateSRR(String fecha)//metodo para formatear fecha de SRR, asÌ la hizo desarrollo agil
+ def formatDateSRR(String fecha)//metodo para formatear fecha de SRR, asÔøΩ la hizo desarrollo agil
  {
 	 	DateFormat df=new SimpleDateFormat("yyyy-MM-dd")
 		 
@@ -1970,8 +1996,9 @@ class GeneralService {
  def infoSRR(String numOportunidad)
  {
 	 def http = new HTTPBuilder('http://srr.redsis.com:8080/WSservices/')
+	 //def http = new HTTPBuilder('http://192.168.36.112:8080/WSservices/')
 		
-		
+	
 		//def prueba=generalService.infoSRR(numOppty)
 		
 		def listaReq
@@ -1983,7 +2010,7 @@ class GeneralService {
 			
 			response.success = { resp,json ->
 				println "Success! ${resp.status}"
-				listaReq=json.Respuesta			
+				listaReq=json.Respuesta
 				transaccion= json.Transaccion
 				//render body as JSON
 				
@@ -1995,11 +2022,11 @@ class GeneralService {
 			 
 		}
 		
-			def listaDocs=""
-				if(transaccion=="1")
-				{
-					listaDocs=listaReq
-				}
+		def listaDocs=""
+			if(transaccion=="1")
+			{
+				listaDocs=listaReq
+			}
 		
 		//println "Aja mi vale la transaccion es "+transaccion
 		//println "Toes mi pana los req son "+listaReq
@@ -2007,16 +2034,18 @@ class GeneralService {
 		
 		
 		return listaDocs
- }  
+ }
+	
+  
  
  
- def subirAnexoVencimientos(def request,def servletContext,def idVencimiento)
+ def subirAnexoContratos(def request,def servletContext,def idContrato)
  {
 	 Random rand=new Random()
 	 String zruta=getValorParametro('ruta01')
 	 println "Z R U T A "+zruta
 	 
-	 def vencimiento=Vencimiento.get(idVencimiento)
+	 def contrato=Contrato.get(idContrato)
 	 
 	 def file2 = request.getFile('file')
 	 
@@ -2024,7 +2053,7 @@ class GeneralService {
 	 def xruta2 = servletContext.getRealPath(zruta)
 	 
 	 String xnombre2=rand.nextInt(1000000).toString()+".xls"
-	 vencimiento.archivoSeriales=xnombre2
+	 contrato.archivoSeriales=xnombre2
 	 def  rutayFile=new File( xruta2,xnombre2)
 	 
 	 
@@ -2036,11 +2065,11 @@ class GeneralService {
 		 return rutayFile //ESTO ES PORQUE LA FUNCION DE IMPORTAR DE EXCEL LA PIDE Y NO TENGO FORMA DE ACCEDER A ELLA DESDE EL CONTROLLER
  }
  
- def importarSerialesExcel(def idVencimiento, def rutayFile)
+ def importarSerialesExcel(def idContrato, def rutayFile)
  {
-	 def vencimiento=Vencimiento.get(idVencimiento)
+	 def contrato=Contrato.get(idContrato)
 	 
-	 println "EL VENCIMIENTO ES       "+vencimiento
+	 println "EL VENCIMIENTO ES       "+contrato
 	 
 	 RecordExcelImporter importer=new RecordExcelImporter(rutayFile)
 	 importer.CONFIG_RECORD_COLUMN_MAP=[sheet:'Seriales', startRow: 1,
@@ -2054,7 +2083,7 @@ class GeneralService {
 			if (it.Seriales!=null){
 				//println vencimientoInstance.id
 				serialInstance=new Seriales()
-				serialInstance.vencimiento=vencimiento
+				serialInstance.contrato=contrato
 				serialInstance.numSerial=it.Seriales.toString()
 				serialInstance.eliminado=0
 				serialInstance.save()
@@ -2063,10 +2092,10 @@ class GeneralService {
 	 }
  }
  
- def actualizarSeriales(def idVencimiento)//Cuando se carga otro archivo de seriales se borran los que estaban y se reemplaza por el nuevo
+ def actualizarSeriales(def idContrato)//Cuando se carga otro archivo de seriales se borran los que estaban y se reemplaza por el nuevo
  {
 	 
-	 def query="Update Seriales set eliminado=1 where vencimiento=${idVencimiento}"
+	 def query="Update Seriales set eliminado=1 where contrato=${idContrato}"
 	 Seriales.executeUpdate(query)
  }
  
@@ -2164,7 +2193,7 @@ class GeneralService {
 	 
 	 
 	 def asignarVendedorDesdeOportunidad(def idOp)//Cuando el VENDEDOR no tiene cliente asociado, le asignamos el vendedor asignado en la Op.
-	 //De tal manera que cuando se vaya a registrar un requerimiento a la optty o al pedido, el campo vendedor nunca llegue vacÌo
+	 //De tal manera que cuando se vaya a registrar un requerimiento a la optty o al pedido, el campo vendedor nunca llegue vacÔøΩo
 	 {
 		def oportunidad=Oportunidad.get(idOp) 
 		def vendedorId=oportunidad.empleado.id
@@ -2189,7 +2218,7 @@ class GeneralService {
 	 def filtrarPedidosCableadoFacturados(params)
 	 {		 		
 		String procesarPara=""
-		params.max=2200
+		params.max=2700
 		//generalService.filtrarPedidosCableadoFacturados(params)
 		params.listDistinct=true
 		params.uniqueCountColumn='numPedido'
@@ -2198,9 +2227,15 @@ class GeneralService {
 		params['filter.op.detpedido.idProcesarPara']=params.filter.op.detpedido.idProcesarPara
 			
 					
-		if(params.filter.detpedido.idProcesarPara=='Cableado' || params.filter.detpedido.idProcesarPara=='pedprosp02')
+		if(params.filter.detpedido.idProcesarPara=='Interno Redsis' || params.filter.detpedido.idProcesarPara=='pedprosp03')
 		{					
-			procesarPara='pedfaccabl'			
+			procesarPara='pedintered'			
+			params['filter.detpedido.idProcesarPara']="pedprosp03"
+		}
+		
+		if(params.filter.detpedido.idProcesarPara=='Cableado' || params.filter.detpedido.idProcesarPara=='pedprosp02')
+		{
+			procesarPara='pedfaccabl'
 			params['filter.detpedido.idProcesarPara']="pedprosp02"
 		}
 		
@@ -2222,11 +2257,11 @@ class GeneralService {
 	 
 	 
 	 
-	 def traerInformacionAsociadaTactica(String nombreTactica)//Traer el numero de prospectos y de oportunidades surgidas a partir de una t·ctica
+	 def traerInformacionAsociadaTactica(String nombreTactica)//Traer el numero de prospectos y de oportunidades surgidas a partir de una tÔøΩctica
 	 {
 		 //def idTactica=Tactica.find{tactica==nombreTactica}.id
 		 def idTactica=Tactica.executeQuery("Select t.id From Tactica t where t.tactica='${nombreTactica}' and t.eliminado=0")[0]
-		 //println "El resultado es TAMA—O "+idTactica.size()
+		 //println "El resultado es TAMAÔøΩO "+idTactica.size()
 		 
 		 
 		 def queryProspectosAsignados="From Prospecto p Where p.idTactica=${idTactica} and p.eliminado=0"
@@ -2256,5 +2291,315 @@ class GeneralService {
 			 nitSinEspacios=nitSinEspacios.substring(0,9)
 		 return nitSinEspacios
 	 }
+	 
+	 
+	 def notificarProspectosSinAtender()
+	 {
+		 //Ajuste realizado el 25/01/2018
+		 
+		 def listaDestino=[]
+		 
+		 String urlRoot=getValorParametro('urlaplic')
+		 String enlace=""
+		 
+		 
+		 
+
+		 def query="From Prospecto where eliminado=0 and idEstadoProspecto='proasignad' and DATEDIFF(fechaApertura,current_date)<=-3 and id>515"
+		 //515 porque a partir de ese id son los prospectos de 2018
+		 //def query="Select DATEDIFF(fechaApertura,current_date) From Prospecto p where eliminado=0 and idEstadoProspecto='proasignad' and DATEDIFF(fechaApertura,current_date)<-400"
+		 def listaProspectos=Prospecto.executeQuery(query)
+		 listaProspectos.each {
+			 String xparam=getValorParametro('notiBitacora')
+			 listaDestino=convertirEnLista(xparam)
+			 
+			 def notasProspecto="From Nota where nombreEntidad='prospectoAdj' and eliminado=0 and idEntidad=${it.id} and idTipoNota='notagesven'"
+			 def numeroNotas=Nota.executeQuery(notasProspecto).size()
+			 println "Id prosp es ... "+it.id
+			 def emailEmpleado=Empleado.get(it.empleado?.id)?.email?:'auditorcorreocrm@redsis.com'
+			 println "EM A I  L  E S "+emailEmpleado
+			 listaDestino.add(emailEmpleado)
+			 if(numeroNotas==0)
+			 {
+				String asunto="Prospecto ${it.numProspecto} - ${it.nombreCliente} no ha sido atendido"
+				enlace="<br><br>Consulte los detalles del prospecto <a href='${urlRoot}/prospecto/show/${it.id}'> AQUI </a>"
+				String mensaje="Usted tiene un prospecto asignado que no ha sido atendido.<br><br><br><b>N&uacute;mero prospecto: </b>${it.numProspecto}.<br><b>Proyecto: </b>${it.nombreProspecto}<br><b>Detalles: </b>${it.descProspecto?:'No tiene'}"+enlace
+				enviarCorreo(1,listaDestino,asunto,mensaje)
+			 }
+				 
+			 println "Numero de notas para el prospectoId:${it.id} = "+numeroNotas
+			 listaDestino=[]
+		 }
+		 
+	 }
+	 
+	 def eliminarSublineasFromLinea(String lineaId)
+	 {		 		 
+		 def query="Update Sublinea set eliminado=1 Where linea.id=${lineaId}"
+		 Sublinea.executeUpdate(query)
+	 }
+	 
+	 
+	 def oportunidadesSinItems()
+	 {
+		 def query="Select O From Oportunidad O Where idEstadoOportunidad='opocotizad' and eliminado=0"
+		 def listaOportunidades=Oportunidad.executeQuery(query)
+		 
+		 List listaAExportar=[]
+		 
+		 listaOportunidades.each {oportunidad->			 
+			 def listaItems=[]
+			 def queryItems="Select count(ep) From ElementoPorOportunidad ep Where ep.oportunidad=${oportunidad.id} and ep.eliminado=0"
+			 //println "La consulta para los items es... "+queryItems
+			 def itemsOppty=ElementoPorOportunidad.executeQuery(queryItems)[0]
+			 //println "Items Oppty es... "+itemsOppty
+			 if(itemsOppty==0)//SI LA OPORTUNIDAD COTIZADA NO TIENE ITEMS
+			 {
+					 def optty=Oportunidad.findByNumOportunidad(oportunidad.numOportunidad).properties
+					 //def item=Pedido.findByNumPedido(numpe).properties
+					 //println "Oppty agregada .... "+optty
+					 listaAExportar.add(optty)
+			 }
+
+		 }
+		 
+		 return listaAExportar
+	 }
+	 
+	 def notificarArquitectos(List listaArquitectos, String numPedido)// PARA NOTIFICAR A LOS ARQUITECTOS QUE FIGURAN COMO RESPONSABLE DE UN PEDIDO
+	 {
+
+		 println "LISTA DE ARQUITECTOS "+listaArquitectos
+		 println "NUM PEDIDO RECIBIDO "+numPedido
+		 String urlbase=getValorParametro('urlaplic')
+		 listaArquitectos.each {			 
+			 println "ITERACION MM "+it
+			 String arquitecto=it
+			 Pedido pedido=Pedido.findByNumPedido(numPedido)
+			 String nombreCliente=pedido.nombreCliente
+			 String proyecto=pedido.oportunidad.nombreOportunidad
+			 def valorPedido
+			 String moneda
+			 
+			 if(pedido.idTipoPrecio.equals("pedtprec01")&& pedido.valorPedido!=null)
+			 {
+					valorPedido=pedido.valorPedido
+					moneda="COP"
+			 }
+			 else
+			 {
+				 if(pedido.idTipoPrecio.equals("pedtprec02")&& pedido.valorPedido!=null)
+				 {
+					 if(pedido.trm!=0)
+					 {
+					   valorPedido=pedido.valorPedido/pedido.trm
+					   moneda="USD"
+					 }
+					 else
+					   valorPedido=pedido.valorPedido
+				 }
+			 }
+			 
+			 def query=ValorParametro.where{idValorParametro==arquitecto}
+			 def correo=[query.find().descValParametro?:'auditorcorreocrm@redsis.com']
+			 
+			 String asunto="Usted ha sido agregado como arquitecto de soluciones al pedido numero ${numPedido} - ${nombreCliente}"
+			 String masInfo="Para visualizar el pedido o realizar seguimientos al mismo haga clic <a href='${urlbase}/pedido/show/${pedido.id}'> AQUI </a>"
+			 
+			 String cuerpo="<b>Cliente: </b>${nombreCliente}<br><b>Proyecto: </b>${proyecto}<br><b>Valor: </b>${valorPedido} ${moneda}<br><br>${masInfo}"
+			 
+			 
+			 
+			 println "El correo es "+correo
+			 enviarCorreo(1,correo,asunto,cuerpo)
+		 }
+	 }
+	 
+	 def crearVencimientoDetPedido()//CREAR VENCIMIENTO A PARTIR DE DET PEDIDO
+	 {
+		 Vencimiento venci=new Vencimiento()
+		 venci.idTipoVencimiento='venarrter'
+		 venci.eliminado=0
+		 venci.notificar=1
+		 venci.fechaInicio= new Date()
+		 venci.fechaVencimiento=new Date()
+		 venci.idEstadoVencimiento='venvencido'
+		 venci.refTipModNumContract='123423123'
+		 venci.serialManual='N'
+		 venci.pedido=Pedido.get(333)
+		 venci.empleado=Empleado.get(23)
+		 venci.encvencimiento=EncVencimiento.get(22)//--obligatorio
+		 venci.detpedidop=DetPedido.get(8)
+		 println "MI DUMP ES ..."+venci.dump()
+		 venci.validate()
+		 venci.save(flush:true)
+		 
+		 println "VENCIMIENTO CREADO EXITOSAMENTE... "
+		 
+	 }
+	 
+	 def crearOActualizarContrato(def request,def servletContext,Map params, DetPedido detPedidoInstance, String accion){
+		 //accion indica 0=Creacion,1=Actualizacion
+		 if(accion.equals("1"))
+	     {
+			if(params.tieneContrato=='S' && params.idContrato)
+			{
+				println "Entre a ACTUALIZAR EL CONTRATO......."
+				Contrato c=Contrato.get(params.long('idContrato'))
+				c.idTipoVencimiento=params.idTipoVencimiento //OBLIGATORIO
+				c.serial=params.serial
+				c.descripcion=params.descripcion
+				c.idTipoCobertura=params.idTipoCobertura
+				c.plataforma=params.plataforma
+				c.fechaInicio=stringToDate(params.fechaInicio)//OBLIGATORIO
+				c.fechaVencimiento=stringToDate(params.fechaVencimiento)//OBLIGATORIO
+				c.observaciones=params.observaciones
+				
+				def respuestaEstado=getEstadoVencimiento(c.fechaInicio, c.fechaVencimiento)
+				c.idEstadoVencimiento=respuestaEstado[0]//OBLIGATORIO
+				
+				c.idTipoContrato=params.idTipoContrato
+				c.idTipoConvenio=params.idTipoConvenio
+				c.refTipModNumContract=params.refTipModNumContract
+				c.serialManual=params.serialManual
+
+				c.eliminado=0
+				
+				c.save()
+				
+				
+				if (params.hayAnexo=='S'){
+					println "ENTRE AQUI Y NO EDITE ARCHIVO "+params
+					def rutayFile=subirAnexoContratos(request,servletContext,c.id)
+					actualizarSeriales(c.id)
+					importarSerialesExcel(c.id,rutayFile)
+				}
+				
+			}
+		 }
+		 else
+	     {
+		 
+		 
+				 if(params.esContrato)
+					 detPedidoInstance.tieneContrato=params.esContrato
+				 
+				 if (params.idPedido)
+					 detPedidoInstance.pedido=Pedido.get(params.long('idPedido'))		 
+				 
+				 if (params.idProveedor)
+					 detPedidoInstance.empresa=Empresa.get(params.long('idProveedor'))
+				 
+				 
+				 if(params.idProcesarPara=='pedprosp03')//Si el campo procesarPara = Interno Redsis
+					 detPedidoInstance.idEstadoDetPedido='peddetpd07'
+				 
+				 
+				 detPedidoInstance.cantidad=params.long('cantidad')
+				 detPedidoInstance.valor=params.double('valor')
+				 
+				 detPedidoInstance.validate()
+				
+				 if (detPedidoInstance.hasErrors()) {
+					 respond detPedidoInstance.errors, view: 'create'
+					 return
+				 }
+				 
+			
+				 //detPedidoInstance.save()
+				 
+				 
+				 if(params.esContrato=='S')
+                 {
+					 detPedidoInstance.tieneContrato=params.esContrato
+					 Contrato c=new Contrato()
+					 detPedidoInstance.contrato=c //OBLIGATORIO
+					 c.idTipoVencimiento=params.idTipoVencimiento //OBLIGATORIO
+					 
+					 c.idTipoConvenio=params.idTipoConvenio
+					 
+					 if(params.plataforma)		
+						 c.plataforma=params.plataforma			 
+						 
+					 if(params.idTipoContrato)
+						 c.idTipoContrato=params.idTipoContrato			 
+						 
+					 if(params.refTipModNumContract)
+						 c.refTipModNumContract=params.refTipModNumContract//OBLIGATORIO
+					 
+						 
+					 if(params.serialManual){
+						 println "EntrÔøΩ acÔøΩ hubo serial manual.."
+						 c.serialManual=params.serialManual//OBLIGATORIO
+						 c.serial=params.serial
+					 }
+					 else
+					 {
+						 println "No hubo serial manual."
+						 c.serialManual='N'
+					 }
+						 
+					 if(params.descripcion)
+						 c.descripcion=params.descripcion			 
+						 
+					 if(params.idTipoCobertura)
+						 c.idTipoCobertura=params.idTipoCobertura
+					 
+					 if(params.fechaInicio)
+						 c.fechaInicio=stringToDate(params.fechaInicio)//OBLIGATORIO
+					 
+					 if(params.fechaVencimiento)
+						 c.fechaVencimiento=stringToDate(params.fechaVencimiento)//OBLIGATORIO
+					 
+					 if(params.observaciones)			
+						c.observaciones=params.observaciones
+					 
+						 
+					 def respuestaEstado=getEstadoVencimiento(c.fechaInicio, c.fechaVencimiento)
+					 detPedidoInstance.contrato.idEstadoVencimiento=respuestaEstado[0]//OBLIGATORIO
+					 detPedidoInstance.save flush: true
+
+                     c.eliminado=0
+				     //println "MI DUMP ES ... "+c.dump()
+					 c.validate()
+					 c.save flush:true,failOnError:true
+
+
+
+                     //-----------------AC√Å TENEMOS QUE ENVIAR EL CORREO DE QUE SE CRE√ì EL VENCIMIENTO
+                     def idVendedor=c.detpedido.pedido.empleado.id
+                     def session = request.session
+                     def usuarioAccede = Empleado.findById(getIdEmpleado(session['idUsuario'].toLong())).id
+                     def tipoVen=getValorParametro(params.idTipoVencimiento)
+                     String fechaFin=params.fechaVencimiento
+                     String fechaIni=params.fechaInicio
+                     String urlbase=getValorParametro('urlaplic')
+                     def usuarioL=Empleado.findById(usuarioAccede)
+                     def numPedido=detPedidoInstance?.pedido?.numPedido
+
+
+                     String empresaVenc=Empresa.get(params.empresaPedido).razonSocial
+                     String asunto="NUEVO REGISTRO DE VENCIMIENTO - ${empresaVenc} - ${numPedido}"
+                     String cuerpo="Registro elaborado por: ${usuarioL}<br><br>Se ha registrado un nuevo vencimiento de tipo <b>${tipoVen}</b> para la empresa ${empresaVenc} y usted figura como responsable del mismo.<br><br><b>Fecha de inicio:</b> ${fechaIni}<br><b>Fecha de vencimiento:</b> ${fechaFin}<br><br><b>Referencia del producto: </b>${params.refProducto}<br><b>Descripci&oacute;n: </b>${params.descProducto}<br>Para m&aacute;s detalles haga clic <a href='${urlbase}/pedido/show/${params.idPedido}?&layout=main'> AQUI </a>"
+
+                     notificarVencimiento(params.idTipoVencimiento, idVendedor,asunto,cuerpo)
+                     println "Params vencimiento creado... "+params
+
+                     //-----------------AC√Å TENEMOS QUE ENVIAR EL CORREO DE QUE SE CRE√ì EL VENCIMIENTO
+				 }
+				 else
+					 detPedidoInstance.save flush: true
+				 
+				 
+					 //-------------TIENE QUE GUARDARSE PRIMERO EL DETPEDIDO, LUEGO EL CONTRATO PARA SUBIR EL ARCHIVO
+					 if(params.archivoSeriales && params.esContrato=='S')//SI EL CAMPO SERIAL ESTA VAC√çO..ES DECIR SI SE ESCOGE LEER EL ARCHIVO
+					 {
+						 def rutayFile=subirAnexoContratos(request,servletContext,detPedidoInstance.contrato.id)
+						 importarSerialesExcel(detPedidoInstance.contrato.id,rutayFile)
+					 }
+		 }//Cierre ELSE accion.equals(1)
+    }
 	 	 
-}
+}//Cierre GeneralService Class
+
+

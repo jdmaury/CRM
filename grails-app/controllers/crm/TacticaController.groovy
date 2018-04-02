@@ -20,13 +20,32 @@ class TacticaController extends BaseController {
         String  xoffset=params.offset?:0
         
         //def query="from Tactica where eliminado=0 order by tactica"
-        def query="from Tactica  where estrategia.id='${params.id}' and  eliminado=0"
-        def queryc="Select count(s) from Tactica s where s.estrategia.id='${params.id}' and  s.eliminado=0"
+        def query="from Tactica  where estrategia.id='${params.id}' and  eliminado=0 and idEstadoTactica!='tarchivada'"
+        def queryc="Select count(s) from Tactica s where s.estrategia.id='${params.id}' and  s.eliminado=0  and idEstadoTactica!='tarchivada'"
         
         def tacticaInstanceList=Tactica.findAll(query,[max:params.max,offset:xoffset.toLong()])        
         def xnum = Tactica.executeQuery(queryc)[0]        
         respond tacticaInstanceList, model:[tacticaInstanceCount: xnum]
     }
+	
+	def listarArchivadas(Integer max) {
+		
+		 int itemxview=generalService.getItemsxView(0)
+		 params.max = itemxview
+		 String  xoffset=params.offset?:0
+		 
+		 //def query="from Tactica where eliminado=0 order by tactica"
+		 def query="from Tactica  where estrategia.id='${params.estrategiaId}' and  eliminado=0 and idEstadoTactica='tarchivada'"
+		 
+		 def queryc="Select count(s) from Tactica s where s.estrategia.id='${params.estrategiaId}' and  s.eliminado=0  and idEstadoTactica='tarchivada'"
+		 
+		 def tacticaInstanceList=Tactica.findAll(query,[max:params.max,offset:xoffset.toLong()])
+		 
+		 println "Params es "+params
+		 println "Resultado ES "+tacticaInstanceList
+		 def xnum = Tactica.executeQuery(queryc)[0]
+		 respond tacticaInstanceList, model:[tacticaInstanceCount: xnum]
+	 }
 
     def show(Tactica tacticaInstance) {		
 		session["tactica_id"]=params.id
@@ -159,7 +178,7 @@ class TacticaController extends BaseController {
 		//render datos
 		render(template: "ProspectosOportunidadesPorTactica", model:[prospectoInstanceList:resultadoProspectos,
 			oportunidadInstanceList:resultadoOportunidades,resultadoOpptysAsignadasPorCliente:resultadoOpptysAsignadasPorCliente,
-			resultadoProspsGeneradosPorCliente:resultadoProspsGeneradosPorCliente,/*listaUrls:listaUrls*/,listaDePiezas:listaDePiezas])
+			resultadoProspsGeneradosPorCliente:resultadoProspsGeneradosPorCliente,/*listaUrls:listaUrls,*/listaDePiezas:listaDePiezas])
 	}
 	
 
@@ -245,7 +264,7 @@ class TacticaController extends BaseController {
     }
     
     def getTacticas(){
-        def query="from Tactica t where t.estrategia.id='${params.id}' and t.eliminado=0"
+        def query="from Tactica t where t.estrategia.id='${params.id}' and t.eliminado=0 and t.idEstadoTactica!='tarchivada'"
        
         def tacticaList=Tactica.findAll(query)
         

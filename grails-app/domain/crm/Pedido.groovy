@@ -42,13 +42,14 @@ class Pedido {
      String listaArquitectos
      String idEstadoPedido   
      Long idAutorizado
-    String trimestre
-    BigDecimal valorPedido
-    BigDecimal trm
-    Byte   eliminado
-    String observacionesPedido
-	String notificarCuentaCobro
-	Byte detenidoEnCompra
+     String trimestre
+     BigDecimal valorPedido
+     BigDecimal trm
+     Byte   eliminado
+     String observacionesPedido
+	 String notificarCuentaCobro
+	 Byte detenidoEnCompra
+	 String razonesSinArquitecto
     
      
     static auditable = [handlersOnly:true]
@@ -118,8 +119,9 @@ class Pedido {
         trm                  nullable: true, scale: 2 
         eliminado            nullable: true,defaultValue:0
         observacionesPedido  nullable: true, maxSize: 2000
-		notificarCuentaCobro nullable:true
+		notificarCuentaCobro nullable: true
 		detenidoEnCompra     nullable: true,defaultValue:0
+		razonesSinArquitecto nullable: true, maxSize: 500
     }
 
     String toString(){

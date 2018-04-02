@@ -96,7 +96,7 @@ grails {
     } **/
   
 	//String a="tzXFAyLD$7a"
-	mail {
+	/*mail {
 		  host="192.168.30.31"
 		  port=25
 		  username="notificador@redsis.com"
@@ -105,7 +105,17 @@ grails {
 		  props=["mail.smtp.starttls.enable" : "true",
 				  "mail.smtp.port"            : "587",
 				  "mail.smtp.debug"           : "true"]
-	  }
+	  }*/
+	
+	mail {
+		host="smtp.office365.com"
+		port=587
+		username="crm@redsis.com"
+		password='Redsis2018*'
+		grails.mail.default.from = "crm@redsis.com"
+		props=["mail.smtp.starttls.enable" : "true",
+				"mail.smtp.port"            : "587"]
+	}
 	
 	/*mail {
 		host = "smtp.gmail.com"

@@ -127,7 +127,7 @@ class NotaController extends BaseController{
     @Transactional //save
     def save(Nota notaInstance) {
         
-      println "PARAMETROS NOTA AUTOCOMPLETAR "+params
+      
        if (notaInstance == null) {
             notFound()
             return
@@ -138,13 +138,73 @@ class NotaController extends BaseController{
             respond notaInstance.errors, view: 'create'
             return
         }
+		
+		println "Nota creada... "+params
+
+		
+		def listaDestino=[]
+		String xparam=generalService.getValorParametro('notiBitacora')
+		listaDestino=generalService.convertirEnLista(xparam)
+		String asunto=""
+		String urlRoot=generalService.getValorParametro('urlaplic')
+		String enlace=""
+		String cuerpo=""
+		String comentarios=params.nota
+        String nombreVendedor=""
+		
+		def razonSocial
+		def numEntidad
+		def usuarioLogueado=Empleado.get(params.idAutor)
+		def proyecto
+		def detallesProyecto
+				
+		
+	
+		
+		
         
-        // println "EN EL SALVAR" +  params.nombreEntidad  +  "  "+ params.idTipoNota
+    
         notaInstance.save flush: true
+		//------------------------------------MODIFICACION PARA NOTIFICAR BITACORA-----------------------------------------
+		
+		if(params.nombreEntidad=='prospectoAdj')
+		{
+			def prospectoInstance=Prospecto.get(params.idEntidad)
+			razonSocial=prospectoInstance?.nombreCliente
+			numEntidad=prospectoInstance?.numProspecto			
+			proyecto=prospectoInstance?.nombreProspecto
+			detallesProyecto=prospectoInstance?.descProspecto?:'No tiene'
+			
+			
+			asunto="Nueva bitacora registrada para el prospecto ${numEntidad} ${razonSocial}"
+			enlace="<br><br>Consulte los detalles del prospecto <a href='${urlRoot}/prospecto/show/${prospectoInstance.id}'> AQUI </a>"
+			cuerpo="Registro creado por: ${usuarioLogueado}<br><br><b>Detalles de la bit&aacute;cora:</b><br><br><b>Cliente: </b>${razonSocial}<br><b>Numero Prospecto: </b>${numEntidad}<br><b>Proyecto: </b>${proyecto}<br><b>Detalles Proyecto: </b>${detallesProyecto}<br><b>Comentarios: </b>${comentarios}"+enlace
+			
+			generalService.enviarCorreo(1,listaDestino,asunto, cuerpo)
+			
+			log.info("${asunto}")
+		
+		}
+		//------------------------------------MODIFICACION PARA NOTIFICAR BITACORA-----------------------------------------
+		
          if(params.nombreEntidad=='oportunidad' && params.idTipoNota=='notagesven'){
            def oportunidadInstance=Oportunidad.get(params.idEntidad)
            oportunidadInstance.idUltimaNota=notaInstance.id
            oportunidadInstance.save()
+		   
+		   numEntidad=oportunidadInstance?.numOportunidad
+		   razonSocial=oportunidadInstance?.nombreCliente
+		   proyecto=oportunidadInstance?.nombreOportunidad
+		   detallesProyecto=oportunidadInstance?.descOportunidad?:'No tiene'
+           nombreVendedor=oportunidadInstance?.nombreVendedor?:''
+		   
+		   asunto="Nueva bitacora registrada para la oportunidad ${numEntidad} ${razonSocial}"
+		   enlace="<br><br>Consulte los detalles de la oportunidad <a href='${urlRoot}/oportunidad/show/${oportunidadInstance.id}'> AQUI </a>"
+		   cuerpo="Registro creado por: ${usuarioLogueado}<br><br><b>Detalles de la bit&aacute;cora:</b><br><br><b>Ejecutivo de cuenta: </b>${nombreVendedor}<br><b>Cliente: </b>${razonSocial}<br><b>Numero Oportunidad: </b>${numEntidad}<br><b>Proyecto: </b>${proyecto}<br><b>Detalles Proyecto: </b>${detallesProyecto}<br><b>Comentarios: </b>${comentarios}"+enlace
+		   
+		   generalService.enviarCorreo(1,listaDestino,asunto, cuerpo)
+		   log.info("${asunto}")
+		   
           } 
             
         if(params.nombreEntidad=='pedido'){
@@ -172,8 +232,8 @@ class NotaController extends BaseController{
 			log.info("Lista notificados despues de split......... ${xdest}")
 			log.info("\r\n----------------------------------------------------------\n\r")
 			
-			println "lista de usuarios notifiadoBLABLALAs..."+xdest
-			if(pedidoAsociado.toString().contains('BOG') && usuarioAccede.toString()!='Ibana Fabregas')//Para que los seguimientos de Ibana realizados a bogotá 
+			
+			if(pedidoAsociado.toString().contains('BOG') && usuarioAccede.toString()!='Ibana Fabregas')//Para que los seguimientos de Ibana realizados a bogotï¿½ 
 				//no le notifiquen a ella...
 			{
 				println "Este pedido contiene BOG"
@@ -181,16 +241,15 @@ class NotaController extends BaseController{
 				xdest.add("Ifabregas@redsis.com")
 				log.info("Ifabregas@redsis.com agregado al pedido ${pedidoAsociado}")
 				
-			}
-				else
-					println "Este pedido nooooooooo contiene BOG"
+			}				
           
 			def pedidoInstance=Pedido.get(params.idEntidad.toLong())    
             String xasunto="Seguimiento al pedido: " + pedidoInstance.numPedido +" - "+pedidoInstance?.empresa?.razonSocial
           		
 		    String urlbase=generalService.getValorParametro('urlaplic')
             
-            String xcuerpo="Nuevo documento de seguimiento creado por: "+ usuarioAccede +"<br><br>Observaciones de seguimiento:\n"+params.nota   + "<br><br>Para ir al pedido y verificar la informaci&oacute;n, haga click  <a href='${urlbase}/pedido/show/${params.idEntidad}'> AQUI </a>"
+            String xcuerpo="Nuevo documento de seguimiento creado por: "+ usuarioAccede +"<br><br><b>Observaciones de seguimiento</b>:\n"+params.nota   + "<br><br>Para ir al pedido y verificar la informaci&oacute;n, haga click  <a href='${urlbase}/pedido/show/${params.idEntidad}'> AQUI </a>"
+			
 			generalService.enviarCorreo(1,xdest,xasunto, xcuerpo)    
         } 
           

@@ -4,14 +4,14 @@
 <g:set var="generalService" bean="generalService" />
 
 <div  id="boxsublin">
+
     <g:if test="${sublineaInstance?.eliminado==1}" >
         <div id="men_eliminado" class="pull-right label label-important">
             Eliminado
         </div>
     </g:if>
     <g:hiddenField  id ="eliminado" name="eliminado" value="${sublineaInstance?.eliminado?:0}" />
-    <g:hiddenField name="idlinea" value="${params.id}"/> 
-
+    <g:hiddenField name="idlinea" value="${params.id}"/>
     <div class="control-group ${hasErrors(bean: sublineaInstance, field: 'descSublinea', 'error')} required">
         <label class="control-label" for="descSublinea">
             <g:message code="sublinea.descSublinea.label" default="Descripción" />

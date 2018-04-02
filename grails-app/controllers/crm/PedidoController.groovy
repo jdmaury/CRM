@@ -42,12 +42,11 @@ class PedidoController extends BaseController{
 	def filterList
 	   
 	@Transactional
-	def index(Integer max) {	
-		
+	def index(Integer max) {			
 		
 		
 		int itemxview=generalService.getItemsxView(0)
-		params.max =itemxview
+		params.max=itemxview
 		String  xoffset=params.offset?:0
 		String  xtitulo
 		
@@ -64,7 +63,6 @@ class PedidoController extends BaseController{
 		
 		//params['filter.op.empresa.razonSocial']="NotILike"
 		//params['filter.empresa.razonSocial']="vaina"
-
 		
 		 
 		def ztitulos=['','pedenelabo','pedidosfin','pedidoscom']
@@ -83,7 +81,7 @@ class PedidoController extends BaseController{
 
 		
 		//variable hace que se vean solo los pedidos menos 1000 dias a la fecha de hoy
-		def haceUnAnio=new Date()-700
+		def haceUnAnio=new Date()-450
 		
 		if (params.id)
 			 session.xid=params.id
@@ -114,7 +112,7 @@ class PedidoController extends BaseController{
 					if(params.filter?.detpedido?.idProcesarPara)
 					{
 						
-						params.max=3000
+						params.max=3500
 						params.listDistinct=true
 						params.uniqueCountColumn='numPedido'
 						params['filter.op.detpedido.eliminado']="Equal"
@@ -440,8 +438,8 @@ class PedidoController extends BaseController{
 	{
 		List lista_export=[]
 		//el nombre de los campos fields es como están definidos en la clase dominio
-		List fields = ["numPedido","nombreCliente","valorPedido","idMondedaFactura","fechaApertura","idEstadoPedido","empleado"]
-		Map labels = ["numPedido": "Codigo","nombreCliente":"Empresa","valorPedido":"Valor en dolares","idMondedaFactura":"Valor en pesos","fechaApertura": "Fecha","idEstadoPedido":"Estado","empleado":"Vendedor"]
+		List fields = ["numPedido","nombreCliente","oportunidad.nombreOportunidad","valorPedido","idMondedaFactura","facturacionParcial","fechaApertura","idEstadoPedido","empleado"]
+		Map labels = ["numPedido": "Codigo","nombreCliente":"Empresa","oportunidad.nombreOportunidad":"Descripcion Proyecto","valorPedido":"Valor en dolares","idMondedaFactura":"Valor en pesos","facturacionParcial":"Total Facturado","fechaApertura": "Fecha","idEstadoPedido":"Estado","empleado":"Vendedor"]
 		
 		def convertirMoneda={Pedido,value->
 			if(Pedido.idTipoPrecio.equals("pedtprec01")&& Pedido.valorPedido!=null)//pesos
@@ -453,7 +451,7 @@ class PedidoController extends BaseController{
 				else
 				{
 					def facturasPedido=pedidoService.valorFacturado(Pedido.id.toString())['subtotal']
-					return Pedido.valorPedido-facturasPedido
+					return Pedido.valorPedido//-facturasPedido
 				}
 			}		
 		}
@@ -471,7 +469,7 @@ class PedidoController extends BaseController{
 					else
 					{
 						def facturasPedido=pedidoService.valorFacturado(Pedido.id.toString())['subtotal']
-						return (Pedido.valorPedido/Pedido.trm)-facturasPedido
+						return (Pedido.valorPedido/Pedido.trm)//-facturasPedido
 					}
 				}
 				else
@@ -507,11 +505,21 @@ class PedidoController extends BaseController{
 		}
 		
 		
+		def sumaFacturas={Pedido,value->			
+			if(Pedido.idEstadoPedido=='pedfacpar2' || Pedido.idEstadoPedido=='pedfacturx' ||Pedido.idEstadoPedido=='pedpenfp23' )
+			{
+				def facturasPedido=pedidoService.valorFacturado(Pedido.id.toString())['subtotal']
+				return facturasPedido
+			}
+			else
+				return '-'
+		}
+		
 //		def date_solo_fecha = {Pedido, value ->
 	//		return Pedido.fechaApertura.format("dd-MM-yyyy")
 		//}
 		
-		Map formatters = [valorPedido:convertirMoneda2,idMondedaFactura:convertirMoneda,idEstadoPedido:getPedidoValue]
+		Map formatters = [valorPedido:convertirMoneda2,idMondedaFactura:convertirMoneda,idEstadoPedido:getPedidoValue,facturacionParcial:sumaFacturas]
 		String filename=exportarService.setfilename(params.titulo)
 		if(params.tipo_export=='1')//exportar todos
 		{
@@ -837,6 +845,8 @@ class PedidoController extends BaseController{
 		
 		generalService.asignarVendedorDesdeOportunidad(params.idOportunidad)//Para asignar un ejecutivo de cuenta al cliente en caso de no tenerlo..
 		
+		
+		
 				 
 	   
 		def listaAnexos
@@ -852,6 +862,9 @@ class PedidoController extends BaseController{
 		println "trm convertida a float="
 		println pedidoInstance.trm
 		pedidoInstance.oportunidad=Oportunidad.get(params.idOportunidad)
+		
+		
+
 		
 		pedidoInstance.empresa=Empresa.get(params.idempresa)
 	   
@@ -879,6 +892,10 @@ class PedidoController extends BaseController{
 			pedidoInstance.nombreVendedor=pedidoInstance.empleado.nombreCompleto()
 		}
 		
+		if(params.arquitectoSol=='N'){
+			pedidoInstance.razonesSinArquitecto=params.comentariosSinArquitecto
+		}
+		
 		
 		
 		pedidoInstance.validate()
@@ -895,6 +912,7 @@ class PedidoController extends BaseController{
 		
 		if (params.swgenerar=='S' ){
 			// Pedido  creado por generacion de  Oportunidad
+			println "Entre aca generar pedido "
 			pedidoInstance.oportunidad.idEstadoOportunidad='xganada'
 			pedidoInstance.oportunidad.idEtapa='posventa75'//LO CAMBIE DE 100 A 75 EL 31/10/2016
 			pedidoInstance.oportunidad.fechaCierreReal=new Date()
@@ -971,6 +989,9 @@ class PedidoController extends BaseController{
 				
 		
 		pedidoInstance.save(flush:true ,failOnError: true)
+		
+
+		
 //JDMAURY 12/08/16
 //------------------CAMPOS PARA REGISTRAR LA CREACION DE PEDIDO EN LOG
 		auditoriaService.logIn('Pedido',pedidoInstance?.id)
@@ -1396,14 +1417,72 @@ class PedidoController extends BaseController{
 	
 		pedidoInstance.idEstadoPedido='pedenrevi2'
 		pedidoInstance.save()
+		
+		log.info("Valor anterior de oportunidad para el pedido ${pedidoInstance?.numPedido}: ${pedidoInstance?.oportunidad?.valorOportunidad}")
+		//-------------------------------ACA PARA ACTUALIZAR EL VALOR DE LA OPORTUNIDAD SEGUN EL PEDIDO
+		
+		def valorActualizado=pedidoInstance?.valorPedido/pedidoInstance?.trm
+		pedidoInstance?.oportunidad?.valorOportunidad=valorActualizado
+		log.info("Nuevo valor de oportunidad para el pedido ${pedidoInstance?.numPedido}: ${valorActualizado}")
+		
+		
+		
+		//-------------------------------ACA PARA ACTUALIZAR EL VALOR DE LA OPORTUNIDAD SEGUN EL PEDIDO
+		
+		println "PARAMS ENVIADO A REVISION "+params
+		
+		println "ID DEL CLIENTE ES... "+pedidoInstance.empresa.id
+		
+
+		
+		
+		
+		
+		
+		
+		
+
+		
 		def xdest=[]
 		String xparam=generalService.getValorParametro('enccompras')
 		xdest=generalService.convertirEnLista(xparam)
 		String urlbase=generalService.getValorParametro('urlaplic')
 		def usuarioAccede = Empleado.findById(generalService.getIdEmpleado(session['idUsuario'].toLong()))
 		String xasunto="Notificación: Pedido No."+pedidoInstance.numPedido+" para  su Revisión"
-		String xcuerpo="Enviado por: "+usuarioAccede+"<br><br>Favor Procesar Pedido <a href='${urlbase}/pedido/show/${pedidoInstance.id}'> AQUI </a>"
+		String xcuerpo="<b>Enviado por: </b>"+usuarioAccede+"<br><br>Favor Procesar Pedido <a href='${urlbase}/pedido/show/${pedidoInstance.id}'> AQUI </a>"
+		
+		//-------------------------------CAMBIO PARA INDICAR Y NOTIFICAR QUE EL PEDIDO ES DE MARIOHABIB
+		
+		
+		def listaIdEmpresas=generalService.getValorParametro('idMHabib').toString().split(",")//IDs de empresas asociadas a Mario Habib
+		def empresaMHabib=Arrays.asList(listaIdEmpresas).contains(pedidoInstance.empresa.id.toString())
+		
+		if(empresaMHabib)//SI EL CLIENTE ASOCIADO AL PEDIDO PERTENECE A LOS IDS DE LOS CLIENTES DE MARIO HABIB..
+		{	
+		   def cliente=pedidoInstance.empresa.razonSocial
+		   def proyecto=pedidoInstance?.oportunidad?.nombreOportunidad?:'No tiene'
+		   def descProyecto=pedidoInstance?.oportunidad?.descOportunidad?:'No tiene'
+		   xasunto="IMPORTANTE - Notificación: Pedido MARIO HABIB No. "+pedidoInstance.numPedido+" para  su Revisión"			
+		   xcuerpo="<b>Enviado por: </b>"+usuarioAccede+"<br><b>Cliente: </b>${cliente}<br><b>Proyecto: </b>${proyecto}<br><b>Detalles proyecto: </b>${descProyecto}<br><br>Favor procesar pedido <a href='${urlbase}/pedido/show/${pedidoInstance.id}'> AQUI </a>"
+		}
+		
+		//-------------------------------CAMBIO PARA INDICAR Y NOTIFICAR QUE EL PEDIDO ES DE MARIOHABIB
+		
 		generalService.enviarCorreo(1,xdest,xasunto, xcuerpo)
+		
+		
+		
+//----------------NOTIFICAR ARQUITECTO DE SOLUCIONES-------------------------
+		if(pedidoInstance.arquitectoSol=='S')
+		{
+			List listaArqui=new ArrayList<String>(Arrays.asList(pedidoInstance.listaArquitectos.split(",")));//						
+			generalService.notificarArquitectos(listaArqui,pedidoInstance.numPedido)			
+			log.info("Lista de arquitectos ${listaArqui} notificados para el pedido ${pedidoInstance.numPedido}")
+		}		
+//----------------NOTIFICAR ARQUITECTO DE SOLUCIONES-------------------------
+		
+
+		
 		flash.message="Pedido enviado y notificado al área financiera"
 		redirect url:"/pedido/index?sort=fechaApertura&order=desc"
 	}
@@ -1478,8 +1557,8 @@ class PedidoController extends BaseController{
 		xdest=generalService.convertirEnLista(xparam)
 		String urlbase=generalService.getValorParametro('urlaplic')
 		def usuarioAccede = Empleado.findById(generalService.getIdEmpleado(session['idUsuario'].toLong()))
-		String xasunto="Notificación: Iniciar compra de productos del Pedido No."+pedidoInstance.numPedido
-		String xcuerpo="Enviado por: "+usuarioAccede+"<br><br>Favor realizar las compras de productos asociados al pedido de la referencia <a href='${urlbase}/pedido/show/${pedidoInstance.id}'> AQUI </a>"
+		String xasunto="Notificación: Iniciar compra de productos del Pedido No."+pedidoInstance.numPedido+" - ${pedidoInstance.nombreCliente}"
+		String xcuerpo="<b>Enviado por:</b> "+usuarioAccede+"<br><b>Detalles:</b> ${pedidoInstance?.oportunidad?.nombreOportunidad}<br><br>Favor realizar las compras de productos asociados al pedido de la referencia <a href='${urlbase}/pedido/show/${pedidoInstance.id}'> AQUI </a>"
 		generalService.enviarCorreo(1,xdest,xasunto, xcuerpo)
 		flash.message="Pedido asignado  y notificado a compras"
 		redirect url:"/pedido/index?sort=fechaApertura&order=desc&estado=2"
@@ -1547,7 +1626,7 @@ class PedidoController extends BaseController{
 		def pedidoInstance=Pedido.get(params.long('id'))
 		pedidoInstance.idAutorizado=null
 		pedidoInstance.save()
-		flash.message="AutorizaciÃ³n de cambio ha sido reseteada exitosamente"
+		flash.message="Autorizacion de cambio ha sido reseteada exitosamente"
 		redirect url:"/pedido/index?sort=fechaApertura&order=desc"
 	}
 	
@@ -1689,39 +1768,26 @@ class PedidoController extends BaseController{
 		
 		//-------------------------------------CORRECCION TOTAL-------------------------------
 		
-		if(pedidoInstance.numPedido.toString().split("-")[2]=="17")
+		def anioPedido=pedidoInstance.numPedido.toString().split("-")[2]
+		if(anioPedido=="17"||anioPedido=="18")
 			xiva=0.19*(xsubtotal-xdescuento)		
 			
 		def listaPed16Iva19=generalService.getValorParametro('ped16iva19').toString().split(",")			
 		def listaPed17Iva16=generalService.getValorParametro('ped17iva16').toString().split(",")
+		def listaPed18Iva16=generalService.getValorParametro('ped18iva16').toString().split(",")
+		
+		if(listaPed18Iva16.contains(pedidoInstance.numPedido))//Si el pedido actual se encuentra en la lista de casos especiales de 2018 con iva 16%
+			xiva=0.16*(xsubtotal-xdescuento)
 						
 		if(listaPed17Iva16.contains(pedidoInstance.numPedido))//Si el pedido actual se encuentra en la lista de casos especiales de 2017 con iva 16%
 			xiva=0.16*(xsubtotal-xdescuento)
 				
 		if(listaPed16Iva19.contains(pedidoInstance.numPedido))//Si el pedido actual se encuentra en la lista de casos especiales de 2016 con iva 19%
 			xiva=0.19*(xsubtotal-xdescuento)
+
+
 				
 		//-------------------------------------CORRECCION TOTAL-------------------------------
-		
-		
-		
-		/*if(pedidoInstance.numPedido.toString().split("-")[2]=="17") || pedidoInstance.numPedido=='BAQ-0557-16' ||
-			pedidoInstance.numPedido=='BAQ-0488-16' || pedidoInstance.numPedido=='BAQ-0489-16' 
-			|| pedidoInstance.numPedido=='BOG-0190-16' || pedidoInstance.numPedido=='BAQ-0554-16' || pedidoInstance.numPedido=='BAQ-0556-16'
-			|| pedidoInstance.numPedido=='BUC-0033-16' || pedidoInstance.numPedido=='BAQ-0338-16' || pedidoInstance.numPedido=='BAQ-0553-16')
-			xiva=0.19*(xsubtotal-xdescuento)*/
-			
-		//A continuacion un caso especial donde el pedido es del 2017 pero se realizó con un iva del 16%
-			/*if(pedidoInstance.numPedido=='BAQ-0156-17' || pedidoInstance.numPedido=='BAQ-0271-17' || pedidoInstance.numPedido=='BAQ-0270-17'
-				||pedidoInstance.numPedido=='BAQ-0294-17'||pedidoInstance.numPedido=='BAQ-0293-17'||pedidoInstance.numPedido=='BAQ-0295-17'
-				||pedidoInstance.numPedido=='BAQ-0296-17'||pedidoInstance.numPedido=='BAQ-0356-17'||pedidoInstance.numPedido=='BAQ-0358-17'
-				||pedidoInstance.numPedido=='BAQ-0426-17'||pedidoInstance.numPedido=='BAQ-0458-17'||pedidoInstance.numPedido=='BAQ-0469-17'
-				||pedidoInstance.numPedido=='BAQ-0473-17'||pedidoInstance.numPedido=='BAQ-0474-17'||pedidoInstance.numPedido=='BAQ-0495-17')
-				xiva=0.16*(xsubtotal-xdescuento)*/
-		//-----------------------------------------------------------------------------------
-			
-			
-			
 			
 			
 				

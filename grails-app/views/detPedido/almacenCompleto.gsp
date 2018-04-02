@@ -32,15 +32,21 @@
         <div id="edit-detPedido" class="content scaffold-edit" role="main">
 
             <h2>Recibo Completo de  Productos en Almacén</h2>
-            <hr style="margin-top:10px;margin-bottom:10px;">                                               
-
+            <hr style="margin-top:10px;margin-bottom:10px;">
             <g:form class="form-horizontal" url="[resource:detPedidoInstance, action:'reciboCompletoDef']" method="PUT" >
 
                 <fieldset class="form">
                   <button type="submit" class="btn btn-mini btn-primary"><i class="icon-download-alt icon-white "></i>&nbsp;Procesar </button>
                 <% def xvista="indexg" 
-                  if (params.layout=="detail")   xvista="index"
+                  	if (params.layout=="detail")   xvista="index"
+				  
+				  def vista
+				  if(params.layout=="main")
+				  	vista="main"
+				  else
+				  	vista="detalle"					  	
                 %>
+                <g:hiddenField name="layout" value="${vista}"/>
                   <a  class="btn btn-mini" href="/crm/detPedido/${xvista}"><i class="icon-remove"></i>&nbsp;Cancelar</a>
                     <br><br>
                  

@@ -292,10 +292,13 @@ class EmpresaController extends BaseController{
              if (empresaInstance.idTipoEmpresa=='empcliente' && empresaInstance.idTipoSede=='empprincip')
 			 {
                 
-				log.info("Nit antes de aplicar el formatNit"+params.nit)
+				log.info("Nit antes de aplicar el formatNit "+params.nit)
+				println "Entre aca para formatear el guion"+params
 				String nitNoGuion=generalService.formatearNitPedido(params.nit.toString())
+				empresaInstance.nit=nitNoGuion				
 				
-				log.info("Se guardo el cliente con nit luego de format "+nitNoGuion)				
+				//println "\n ***** Se guardo el cliente ${empresaInstance.razonSocial} con el nit ${empresaInstance.nit} luego de format ***** \n"
+				log.info("\n ***** Se guardo el cliente ${empresaInstance.razonSocial} con el nit ${empresaInstance.nit} luego de format ***** \n")								
 				 
 
 				num=Empresa.executeQuery("select count(e) from Empresa e where e.nit = '${nitNoGuion}'")		   
@@ -379,11 +382,13 @@ class EmpresaController extends BaseController{
         def num
         if (empresaInstance.idTipoEmpresa=='empcliente' && empresaInstance.idTipoSede=='empprincip'){
            num=Empresa.executeQuery("select count(e) from Empresa e where e.nit='${params.nit}' and e.idTipoEmpresa='empcliente' and e.eliminado=0")
-           println "=num[0] en nit =";println  num[0]
+		   def lista="from Empresa e where e.nit='${params.nit}' and e.idTipoEmpresa='empcliente' and e.eliminado=0"		   		   
+           println "=num[0] en nit =";println  num[0]		   
           if (num[0]>0) {
             render(status:"403",text:"Nit ya existe para una sede principal")               
              return            
-          }
+          }		  
+		  
 
           num=Empresa.executeQuery("Select count(e) from Empresa e where razonSocial='${params.razonSocial}' and idTipoEmpresa='empcliente' and eliminado=0")
           println "num en razon social=";println num[0]
@@ -392,7 +397,10 @@ class EmpresaController extends BaseController{
              return            
           }
       }     
-       
+
+        String nitNoGuion=generalService.formatearNitPedido(params.nit.toString())
+        empresaInstance.nit=nitNoGuion
+
         empresaInstance.save flush:true
 
         render(contentType: "text/json") {
@@ -420,7 +428,7 @@ class EmpresaController extends BaseController{
          
             if (empresaInstance.idTipoEmpresa=='empcliente' && empresaInstance.idTipoSede=='empprincip'){               
                      num=Empresa.executeQuery("select count(e) from Empresa e where e.nit='${params.nit}' and id <> ${params.idempresa}  and e.idTipoEmpresa='empcliente' and e.eliminado=0")
-                             
+                        println "El numero es "+num     
                         if (num[0] > 0) {                          
                                status.setRollbackOnly()
                                flash.warning="Nit ya existe  para una sede principal"
@@ -471,7 +479,7 @@ class EmpresaController extends BaseController{
     } // Fin update 
     
   //update Asinc   transaccionalidad manejada manualmente
-  def updateAsync() {
+  def updateAsync() {	
     
      Empresa.withTransaction{ status ->
         Empresa empresaInstance = Empresa.get(params.id)
@@ -511,8 +519,20 @@ class EmpresaController extends BaseController{
                     }
                
       } 
+	  
+	  	log.info("************ Nit creado desde EmpresaController/Update Async ***************")
+		log.info("Nit Antes de FORMAT "+empresaInstance.nit)  
+	  	
      
-        empresaInstance.save flush:true,failOnError:true   // ojo funciona asi con esto comentado
+        
+		String nitNoGuion=generalService.formatearNitPedido(params.nit.toString())
+		empresaInstance.nit=nitNoGuion
+		
+		
+		log.info("Nit Luego de FORMAT "+empresaInstance.nit)
+	  	empresaInstance.save flush:true,failOnError:true   // ojo funciona asi con esto comentado
+		  
+		  
 
         render(contentType: "text/json") {
             ['success':  true, key:empresaInstance.id, value:empresaInstance.razonSocial]

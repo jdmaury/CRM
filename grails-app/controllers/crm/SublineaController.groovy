@@ -22,6 +22,8 @@ class SublineaController extends BaseController{
         respond sublineaInstanceList, model:[sublineaInstanceCount:xnum[0],
                                              xtitulo:generalService?.getValorParametro('sublinet01')]
     }
+	
+
 
     def listarBorrados(Integer max) {
 
@@ -38,30 +40,76 @@ class SublineaController extends BaseController{
     }
 
     def show(Sublinea sublineaInstance) {
+		println "PARAMS "+params		
         respond sublineaInstance
     }
 
     @Transactional
     def borrar(Sublinea sublineaInstance) {
-
-        if (params.id == null) {
+		
+        /*if (params.id == null) {
             notFound()
             return
-        }
+        }*/
+		
+		
+		
+		
+		//-----------------MODIFICACION PARA ELIMINAR SUBLINEA DESDE AFUERA 01/02/2018---------------------------
+		println "Entre aca para la modificacion de eliminar desde adentro"		
+		
+		
+		def listaSublineas=new ArrayList()
+		if(params?.sublineas!=null)//SI SE DECIDIO BORRAR DESDE AFUERA
+		{			
+			listaSublineas.addAll(params?.sublineas)
+			listaSublineas.each {				
+				Sublinea sublinea=Sublinea.get(it)
+				sublinea.eliminado=1
+				sublinea.save(flush:true)
+			}			
+		}
+		else  
+		{
+			if(params.id)//SI SE DECIDIO BORRAR DESDE ADENTRO
+			{
+				
+				sublineaInstance= Sublinea.get(params.long('id'))				
+				sublineaInstance.eliminado=1				
+				sublineaInstance.save flush:true				
+				flash.message="Sublinea eliminada exitosamente"
+				redirect url:"/sublinea/index/"+sublineaInstance.linea.id
+				return
+			}
+			else
+			{	
+				flash.warning = message(code: 'default.select.one')
+				redirect url:"/sublinea/index/"+params.idLinea
+				return
+			}
+							
+		}
+			
+		println "Lista de sublineas es........ "+listaSublineas
+		
+		//-----------------MODIFICACION PARA ELIMINAR SUBLINEA DESDE AFUERA 01/02/2018---------------------------
 
-        sublineaInstance= Sublinea.get(params.long('id'))
+        /*sublineaInstance= Sublinea.get(params.long('id'))
 
         sublineaInstance.eliminado=1
 
         sublineaInstance.save flush:true
-
+*/
         request.withFormat {
             form {
                 //flash.message = message(code: 'default.updated.message', args: [message(code: 'Sublinea.label', default: 'Sublinea'), sublineaInstance.id])
-                 redirect url:"/sublinea/index/"+sublineaInstance.linea.id
+				flash.message="Sublinea(s) eliminadas exitosamente"
+                 redirect url:"/sublinea/index/"+params.idLinea
             }
             '*'{ respond sublineaInstance, [status: OK] }
         }
+		
+		//redirect(action:"index", id:4)
     }
     def create() {
         respond new Sublinea(params)
@@ -87,7 +135,8 @@ class SublineaController extends BaseController{
         request.withFormat {
             form {
                // flash.message = message(code: 'default.created.message', args: [message(code: 'sublineaInstance.label', default: 'Sublinea'), sublineaInstance.id])
-                redirect url:"/sublinea/index/"+sublineaInstance.linea.id
+                //flash.message("Hola Mundo")
+				redirect url:"/sublinea/index/"+sublineaInstance.linea.id
             }
             '*' { respond sublineaInstance, [status: CREATED] }
         }

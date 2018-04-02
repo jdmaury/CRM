@@ -88,15 +88,15 @@
                                              />
                                         </li>
                                     </g:if>
-                                    <g:if test="${'RECIBO_COMPLETO' in session['operaciones']}">
+                                    <g:if test="${'RECIBO_COMPLETO' in derechos}">
                                         <%  swacc=1 %>
-                                            <li><g:actionSubmit onMouseOut="this.style.backgroundColor='#fff'" 
-                                                    onMouseOver="this.style.backgroundColor='#eee'" 
-                                                    style="border:none;background-color:#fff;" 
+                                            <li><g:actionSubmit 
+                                                    onMouseOver="${mover}"
+                                                    onMouseOut="${mout}"   
+                                                    style="${estilo}" 
                                                     value="Recibo Varios Completo" action="reciboCompleto" />
                                             </li>
-                                          <g:hiddenField  name ="layout"  value="detail" />
-                                          
+                                          <g:hiddenField  name ="layout"  value="detail" />                                          
                                      </g:if>
                                     <g:if test="${'IMPORTAR_PRODUCTOS_PEDIDO' in derechos }">    
                                         <%  swacc=1 %>

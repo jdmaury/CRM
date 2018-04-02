@@ -10,9 +10,9 @@
 <script src="${resource(dir: 'js', file:'crm_helper.js')}"></script> 
 <script src="${resource(dir: 'js/jquery', file:'jquery.numeric.js')}"></script>
 <script src="${resource(dir: 'js/jquery', file:'jquery-1.10.2.min.js')}"></script> 
-<script> redimIFRAME(); SW_IFPROD=0;SW_IFANEXOS=0;SW_IFPROPUESTA=0;SW_IFACTIVIDAD=0;SW_IFFACTURAS=0 </script>
+<script>redimIFRAME();</script>
 <script>
-    //$(".tip").tooltip();
+
     function subir(){
     $(window).scrollTop(0);
     }
@@ -159,12 +159,12 @@
     <g:set var="xidempresa"  value="${pedidoInstance?.empresa?.id}"  scope="request" /> 
     <g:set var="zidcontacto"  value="idContacto"  scope="request" />
     <g:set var="xidcontacto"  value="${pedidoInstance?.persona?.id}"  scope="request" /> 
-    <g:set var="autoSw"  value="2"  scope="request" /> <!-- para filtrar  solo clientes -->
+    <g:set var="autoSw"  value="2"  scope="request" /> <%---- para filtrar  solo clientes --> --%>
     <g:if test="${swgenerar=='N'}"> 
-       <g:set var="swemp"  value="0"  scope="request" /> <!-- permite a usuario modificar empresa -->
+       <g:set var="swemp"  value="0"  scope="request" /> <%---- permite a usuario modificar empresa --> --%>
     </g:if>
     <g:else>
-      <g:set var="swemp"  value="1"  scope="request" /> <!-- sw  control empresa solo lectura -->
+      <g:set var="swemp"  value="1"  scope="request" /> <%---- sw  control empresa solo lectura--%>
     </g:else>
     <g:render template="/general/empresaContacto" /> 
 
@@ -207,7 +207,7 @@
             <button type="button" class="btn  btn-mini"
                 onclick="cargar_modal('crm_modal','modal_body','/crm/general/cliente')">
             <i class="icon-plus" ></i>&nbsp;Otra</button>
-           <!--<button type="button" class="btn  btn-mini"
+           <button type="button" class="btn  btn-mini"
                             onclick="cargar_modal('crm_modal','modal_body','/crm/empresa/create?layout=detail&tipo=1&t=empresat06&swmodal=1','refresh_combo')">
                         <i class="icon-briefcase" ></i>&nbsp;Nuevo</button>-->
             <img  class="iconoAyudaEtiqueta"  src="${resource(dir: 'images', file:'ayuda.png')}" title="Si desea crear un nuevo cliente haga clic en Clientes en el menú de navegación">
@@ -226,7 +226,7 @@
     
     <div id="infoClientex" style="display:none;">
       
-      </div><!-- fin div infocliente -->
+      </div><%---- fin div infocliente --> --%>
 </div>      
     
     <div class="control-group ${hasErrors(bean: pedidoInstance, field: 'fechaEntrega', 'error')} ">
@@ -271,8 +271,8 @@
 </div> 
 <g:hiddenField  name="idEstadoPedido" value="${pedidoInstance?.idEstadoPedido?:'pedenelab1'}" />
 
-<!--   Comentario de Mquintero nuevo campo observaciones  
-para la fecha de mayo12-->
+<%----   Comentario de Mquintero nuevo campo observaciones  
+para la fecha de mayo12--> --%>
 
 <div class="control-group ${hasErrors(bean: pedidoInstance, field: 'observacionesPedido', 'error')} ">
     <label class="control-label" for="observacionesPedido">
@@ -304,11 +304,11 @@ para la fecha de mayo12-->
 <ul class="nav nav-tabs" id="myTab">
 
     <li class="active"><a href="#home" id="tab-princ" data-toggle="tab">Condiciones</a></li>
-    <li ><a href="#product" data-toggle="tab" >Productos</a></li>
-    <li><a href="#propuesta"  data-toggle="tab" >Propuesta Final</a></li>
-    <li><a href="#anexos" data-toggle="tab" >Anexos</a></li>
-    <li><a href="#facturacion" data-toggle="tab" >Facturación</a></li>
-    <li><a href="#actividades" data-toggle="tab" >Seguimiento</a></li>
+    <li ><a href="#product" onclick="recargarIframe('ifproduct');" data-toggle="tab" >Productos</a></li>
+    <li><a href="#propuesta" onclick="recargarIframe('ifpropuesta');"  data-toggle="tab" >Propuesta Final</a></li>
+    <li><a href="#anexos" onclick="recargarIframe('ifanexos');" data-toggle="tab" >Anexos</a></li>
+    <li><a href="#facturacion" onclick="recargarIframe('iffacturas');" data-toggle="tab" >Facturación</a></li>
+    <li><a href="#actividades" onclick="recargarIframe('ifactividad');" data-toggle="tab" >Seguimiento</a></li>
     <li><a  href="#requerimiento"  data-toggle="tab">Requerimiento </a></li>
     <li><a href="#historia"  data-toggle="tab">Historial </a></li>   
 </ul>
@@ -316,11 +316,15 @@ para la fecha de mayo12-->
     <div class="tab-pane" id="product">  
         <div class="pull-right" style="margin-top:-4px;margin-bottom:0px; "><a href="#" onclick="recargarIframe('ifitems')"><i class="icon-refresh"></i></a></div>
                 <g:if test="${pedidoInstance?.id != null}">
-            <iframe id="ifprod" src="/crm/detPedido/index/${pedidoInstance?.id}?sw=${sw}&p=${params.p}" style="border:0;width:100%;"  scrolling="no"></iframe>
+                	<iframe id="ifproduct" src="/crm/detPedido/index/${pedidoInstance?.id}?sw=${sw}&p=${params.p}"  style="border:0;width:100%;"  scrolling="no"></iframe>
+                  <%--<object type="text/html" width="100%" height="1330px" data="/crm/detPedido/index/${pedidoInstance?.id}?sw=${sw}&p=${params.p}"></object>--%>
+                </g:if>                
+            
+            
             <%--<script language="javascript">
                 IFRAME_DETALLE = $("#ifprod");
             </script>--%>
-        </g:if>
+        
     </div><!-- fin tab item -->
 
     <div class="tab-pane active"  id="home">
@@ -491,8 +495,8 @@ para la fecha de mayo12-->
                 </div>
             </div>
             <% String xcamp
-if (pedidoInstance?.campaniaRedsis=='S')  xcamp='block' else xcamp='none'
-%>
+                if (pedidoInstance?.campaniaRedsis=='S')  xcamp='block' else xcamp='none'
+            %>
             <div id="camp" style="display:${xcamp}" class="control-group ${hasErrors(bean: pedidoInstance, field: 'descCampania', 'error')} ">
                 <label class="control-label" for="descCampania">
                     <g:message code="pedido.descCampania.label" default="Desc Campaña" />
@@ -629,20 +633,32 @@ if (pedidoInstance?.campaniaRedsis=='S')  xcamp='block' else xcamp='none'
                 <div class="controls">
                     <label class="radio">Si   </label>
                     <input type="radio" name="arquitectoSol"  value="S"  ${zronly}"
-                           onclick="document.getElementById('arqui').style.display='block'"
+                           onclick="document.getElementById('arqui').style.display='block';document.getElementById('sinArquitecto').style.display='none';"
                            ${generalService.checked('S',pedidoInstance?.arquitectoSol)} >
 
                     <label class="radio" style="padding-top:5px;">No</label>
                     <input type="radio" name="arquitectoSol"  value="N"    ${zronly}"
-                           onclick="document.getElementById('arqui').style.display='none';document.getElementById('idlarqui').value=''"
+                           onclick="document.getElementById('arqui').style.display='none';document.getElementById('idlarqui').value='';document.getElementById('sinArquitecto').style.display='block';"
                            ${generalService.checked('N',pedidoInstance?.arquitectoSol)}>
 
                 </div>
 
             </div>
-            <% String xarqui
-            if (pedidoInstance?.arquitectoSol=='S')  xarqui='block' else xarqui='none'
-            %>            
+            <% String motivosNoArqui=''
+            	if (pedidoInstance?.arquitectoSol=='N')  motivosNoArqui='block' else motivosNoArqui='none'
+			%>      
+			
+			<% String xarqui
+            	if (pedidoInstance?.arquitectoSol=='S')  xarqui='block' else xarqui='none'
+			%>
+            
+    
+            
+            
+            
+            
+            
+            
             <div id="arqui" style="display:${xarqui}" class="control-group ${hasErrors(bean: pedidoInstance, field: 'listaArquitectos', 'error')} ">
                 <label class="control-label" for="listaArquitectos">
                     <g:message code="pedido.listaArquitectos.label" default="Lista Arquitectos" />
@@ -657,10 +673,19 @@ if (pedidoInstance?.campaniaRedsis=='S')  xcamp='block' else xcamp='none'
                     
                 </div>
             </div>
+            
+            <div id="sinArquitecto" style="display:${motivosNoArqui}" class="control-group ${hasErrors(bean: pedidoInstance, field: 'razonesSinArquitecto', 'error')}">
+                <label class="control-label">Motivos:</label>
+                <div class="controls">                
+                	<g:textArea id="comentariosSinArquitecto"  name="comentariosSinArquitecto"  value="${pedidoInstance?.razonesSinArquitecto}"  
+              			cols="40" rows="3"  class="input-xlarge" disabled="${xronly}"/>
+                </div>
 
-        </div> <!-- fin box conten -->
+            </div>     
 
-    </div><!-- fin tab condiciones -->
+        </div> <%-- fin box conten --%>
+
+    </div><%-- fin tab condiciones --%>
       <%  def  xidpropuesta=null
           if(pedidoInstance) xidpropuesta=pedidoInstance?.oportunidad?.idPropuesta  
          
@@ -670,33 +695,26 @@ if (pedidoInstance?.campaniaRedsis=='S')  xcamp='block' else xcamp='none'
             <g:if test="${xidpropuesta !=null}">
             <div class="pull-right" style="margin-top:-4px;margin-bottom:0px; "><a href="#" onclick="recargarIframe('ifanexos')"><i class="icon-refresh"></i></a></div>
             <iframe id="ifpropuesta" src="/crm/propuesta/show/${xidpropuesta}?idpos=${pedidoInstance?.oportunidad?.id}&idemp=${pedidoInstance?.empresa?.id}&swc=1" style="border:0;width:100%;"  scrolling="no"></iframe>
-            <%--<script language="javascript">
-               // IFRAME_PROPUESTA = $("#ifpropuesta");
-            </script> --%>
+            
             </g:if>
         </g:if>
-    </div><!-- fin tab propuesta final -->
+    </div><%-- fin tab propuesta final --%>
     
-    <div class="tab-pane" id="anexos">
+    <div class="tab-pane" id="anexos" >
         <g:if test="${pedidoInstance?.id != null}">
             <div class="pull-right" style="margin-top:-4px;margin-bottom:0px; "><a href="#" onclick="recargarIframe('ifanexos')"><i class="icon-refresh"></i></a></div>
-            <iframe id="ifanexos" src="/crm/anexo/index/${pedidoInstance?.id}?entidad=pedido&sw=${sw}" style="border:0;width:100%;"  scrolling="no"></iframe>
-            <%--<script language="javascript">
-                /* IFRAME_DETALLE1 = $("#ifanexos");*/
-                   IFRAME_ANEXO=$("#ifanexos");
-            </script>--%>
+            <iframe id="ifanexos" src="/crm/anexo/index/${pedidoInstance?.id}?entidad=pedido&sw=${sw}" style="border:0;width:100%;"  scrolling="no"></iframe>            
+                        
         </g:if>
-    </div><!-- fin tab anexos -->
+    </div><%-- fin tab anexos --%>
 
     <div class="tab-pane" id="facturacion">
         <g:if test="${pedidoInstance?.id != null}">
             <div class="pull-right" style="margin-top:-4px;margin-bottom:0px; "><a href="#" onclick="recargarIframe('iffacturas')"><i class="icon-refresh"></i></a></div>
-            <iframe id="iffacturas" src="/crm/factura/index/${pedidoInstance?.id}?sw=${sw}" style="border:0;width:100%;"  scrolling="no"></iframe>
-            <%--<script language="javascript">
-                IFRAME_FACTURA = $("#iffacturas");
-            </script>--%>
+            <iframe id="iffacturas" src="/crm/factura/index/${pedidoInstance?.id}?sw=${sw}" class="auto-height" style="border:0;width:100%;"  scrolling="no"></iframe>
+                        
         </g:if>
-    </div><!-- fin tab facturacion -->
+    </div><%-- fin tab facturacion --%>
     
      <div class="tab-pane" id="actividades">
                 <div class="box-content">
@@ -708,24 +726,20 @@ if (pedidoInstance?.campaniaRedsis=='S')  xcamp='block' else xcamp='none'
                       
                     %>
                     <iframe id="ifactividad" src="/crm/nota/index/${pedidoInstance?.id}?entidad=pedido&tnota=${xtiponota}&zw=1" style="border:0;width:100%;"  scrolling="no"></iframe>
-                   <%-- <script language="javascript">
-                        IFRAME_DETALLE2 = $("#ifactividad");
-                    </script>--%>
+                   
                 </div>
             </div>        
             
-     <!-- adicion para el iframe de requerimiento    -->
+     <%-- adicion para el iframe de requerimiento    --%>
              <div class="tab-pane" id="requerimiento">
                 <div class="box-content">                   
               
-                    <%-- <iframe id="ifrequerimiento" src="/crm/reqLotusSw/index/?pedido=Si&numOptty=${pedidoInstance?.numPedido}" style="border:0;width:100%;"  scrolling="no" onclick="recargarIframe('ifrequerimiento')"></iframe>--%>
+                   
                     <iframe id="ifrequerimiento" src="/crm/reqLotusSw/index/?pedido=Si&numOptty=${pedidoInstance?.numPedido}" style="border:0;width:100%;"  scrolling="no" onclick="recargarIframe('ifrequerimiento')"></iframe>
-                     <script language="javascript">
-                        IFRAME_REQUERIMIENTO = $("#ifrequerimiento");
-                     </script>
+                     
                 </div>
             </div>
-            <!--  fin de las modificacines mq   -->
+            <%--  fin de las modificacines mq   --%>
             
     <div class="tab-pane" id="historia">
         <div class="box-content">                   
@@ -735,9 +749,9 @@ if (pedidoInstance?.campaniaRedsis=='S')  xcamp='block' else xcamp='none'
 
         </div>
     </div>
-
-</div><!-- fin tabs -->
 <script>
+
+
     
     $(".decimal").numeric();
  $('#dirDespacho').focus(function()

@@ -4,7 +4,7 @@
 		<span class="required-indicator">*</span>
 	</label>
 	<div class="controls">
-    	<g:select id="pedido" name="idPedido" from="${pedidoList}" optionKey="id" required="" 
+    	<g:select id="pedido" name="idPedido" from="${pedidoList}" optionKey="id" required=''
                  value="${xidpedido}" noSelection="['': 'Seleccione Pedido']"  disabled="${xronly}" />
 	</div>
 </div>

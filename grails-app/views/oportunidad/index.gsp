@@ -50,8 +50,7 @@ import="crm.Estrategia"
         fullAssociationPathFieldNames="false"
         />
         <%
-             def  derechos=seguridadService.operacionesPorOpcion(session['idUsuario'],'/oportunidad/index') 
-             /*println "derechos=${derechos}"*/
+             def  derechos=seguridadService.operacionesPorOpcion(session['idUsuario'],'/oportunidad/index')             
         %>
         <%
            def mover=generalService.getMenuV(1)
@@ -145,9 +144,13 @@ import="crm.Estrategia"
                                     value="${message(code: 'exportarSeleccionados.label')}" 
                                     action="exportarDatos"
                                     params="[tipo_export:'2']" /></li>
-                                                               
+                                    <li>
+                               			<% xtitulo="Oportunidades sin items" %>
+                               			<g:link action="exportarDatos" params="[tipo_export:'3',xaccionx:xaccion,titulo:xtitulo]">Oportunidades sin ítems</g:link>
+                            		</li>                                                               
                                 </ul>
-                            </li> 
+                            </li>
+                                                                                     
                        </g:if>
                             
                         <g:if test="${'ABRIR_OPORTUNIDAD' in derechos}">   
@@ -189,9 +192,11 @@ import="crm.Estrategia"
                     <g:sortableColumn property="numOportunidadFabricante" title="${message(code: 'oportunidad.numOportunidadFabricante.label', default: 'Op. Fabricante')}" params="${filterParams}"/>
                     <g:sortableColumn property="valorOportunidad" title="${message(code: 'valorOportunidad.label', default: 'Valor')}" params="${filterParams}"/>
                     <g:sortableColumn property="nombreVendedor" title="${message(code: 'nombreVendedor.label', default: 'Vendedor')}" params="${filterParams}"/>
+                    <g:sortableColumn property="fechaApertura" title="${message(code: 'oportunidad.fechaApertura.label', default: 'Fecha Apertura.')}" params="${filterParams}"/>
                     <g:sortableColumn property="fechaCierreEstimada" title="${message(code: 'fechaCierreEstimada.label', default: 'Fecha E. Cierre')}" params="${filterParams}"/>
                     <g:sortableColumn property="trimestre" title="${message(code: 'oportunidad.trimestre.label', default: 'Q')}" params="${filterParams}"/>
-                     <g:sortableColumn property="idEtapa" title="${message(code: 'oportunidad.idEtapa.label', default: 'Prob.')}" params="${filterParams}"/>
+                    <g:sortableColumn property="idEtapa" title="${message(code: 'oportunidad.idEtapa.label', default: 'Prob.')}" params="${filterParams}"/>
+                     
                 </tr>
             </thead>
             <tbody>
@@ -215,12 +220,16 @@ import="crm.Estrategia"
                         <td style="text-align:right">${fieldValue(bean:oportunidadInstance,field:"valorOportunidad")}</td>
 
                         <td>${oportunidadInstance?.nombreVendedor}</td>
+                        
+                        <td><g:formatDate format="dd-MM-yyyy" date="${oportunidadInstance?.fechaApertura}" /></td>
 
                         <td><g:formatDate format="dd-MM-yyyy" date="${oportunidadInstance?.fechaCierreEstimada}" /></td>                                         
 
                         <td>${fieldValue(bean:oportunidadInstance,field:"trimestre")} </td> 
                         
-                        <td>${generalService.getValorParametro(oportunidadInstance?.idEtapa)}</td> 
+                        <td>${generalService.getValorParametro(oportunidadInstance?.idEtapa)}</td>
+                        
+                         
                     </tr>
                 </g:each>
             </tbody>

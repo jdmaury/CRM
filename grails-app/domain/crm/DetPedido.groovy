@@ -13,9 +13,12 @@ class DetPedido {
     Date fechaLlegada
     String observaciones
     String idEstadoDetPedido
+	String tieneContrato	
     Byte   eliminado
     
     static auditable = [handlersOnly:true]
+	
+	static hasOne=[contrato:Contrato]
     
     static belongsTo=[pedido:Pedido,producto:Producto,empresa:Empresa]
     
@@ -29,7 +32,8 @@ class DetPedido {
     }
     static constraints = {
         producto            nullable:true   
-        empresa             nullable:true 
+        empresa             nullable:true
+		contrato			nullable:true 
         refProducto         nullable: false, maxSize: 50
         descProducto        nullable: false, maxSize: 1000
         ordenCompra         nullable: true, maxSize: 15 
@@ -41,6 +45,7 @@ class DetPedido {
         idProcesarPara      nullable: false, maxSize: 10
         observaciones       nullable: true, maxSize: 200
         idEstadoDetPedido   nullable: true, maxSize: 10
+		tieneContrato       nullable: true, maxSize: 1
         eliminado           defaultValue:0
 
     }

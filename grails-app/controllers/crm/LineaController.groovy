@@ -48,8 +48,10 @@ class LineaController extends BaseController{
     
     @Transactional
     def borrar(Linea lineaInstance) {
+		
+		
 
-        if (params.id == null) {
+        /*if (params.id == null) {
             notFound()
             return
         }
@@ -58,11 +60,49 @@ class LineaController extends BaseController{
 
         lineaInstance.eliminado=1
 
-        lineaInstance.save flush:true
+        lineaInstance.save flush:true*/
+		
+		
+		def listaLineas=new ArrayList()
+		if(params?.lineas!=null)//SI SE DECIDIO BORRAR DESDE AFUERA
+		{
+			listaLineas.addAll(params?.lineas)
+			listaLineas.each {
+				Linea linea=Linea.get(it)
+				println linea
+				linea.eliminado=1				
+				linea.save(flush:true)
+				
+				generalService.eliminarSublineasFromLinea("${it}")
+				
+				//def query="Update Sublinea set eliminado=1 Where linea.id=${it}"
+				//Sublinea.executeUpdate(query)				
+			}
+		}
+		else //SI NO SE MARCÓ NINGUNA PARA BORRAR DESDE AFUERA		
+		{			
+			
+			if(params.id)//SI SE DECIDIO ELIMINAR LINEA DESDE ADENTRO
+			{
+				lineaInstance= Linea.get(params.long('id'))
+				lineaInstance.eliminado=1
+				lineaInstance.save flush:true
+				generalService.eliminarSublineasFromLinea(params.id)
+			}
+			else
+			{
+				flash.warning = message(code: 'default.select.one')
+				redirect url:"/linea/index/"
+				return
+			}
+			
+			
+		}
 
         request.withFormat {
             form {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'Empresa.label', default: 'Empresa'), lineaInstance.id])
+                //flash.message = message(code: 'default.updated.message', args: [message(code: 'Empresa.label', default: 'Empresa'), lineaInstance.id])
+				flash.message="Linea(s) eliminadas exitosamente"
                 redirect url:"/linea/index/"
             }
             '*'{ respond lineaInstance, [status: OK] }

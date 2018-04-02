@@ -23,7 +23,8 @@ class Vencimiento {
 
     static belongsTo=[pedido:Pedido,
 					  empleado:Empleado,                      
-                      encvencimiento:EncVencimiento]
+                      encvencimiento:EncVencimiento,
+					  detpedidop:DetPedido]
 	
 	static hasMany=[seriales:Seriales]
 	

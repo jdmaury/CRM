@@ -14,7 +14,7 @@
                
               %>
         <g:set var="generalService" bean="generalService" />
-         <h3>Lista de Tácticas de Mercadeo</h3>                           
+         <h3>Lista de Tácticas de Mercadeo archivadas</h3>                  
          <hr style="margin-top:10px;margin-bottom:10px;">
           <div class="row-fluid sortable">
              <div class="pull-left">
@@ -33,13 +33,11 @@
                      <a href="#" class="btn btn-mini">Acciones</a>
                     <button class="btn btn-mini dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
                    <%  def swacc=0 %>
-                   
                     <ul class="dropdown-menu">                       
                             <g:if test="${'BORRAR' in derechos}">
                                   <%  swacc=1 %>
                             <li><a href="${createLink(action:'listarBorrados')}" >Ver Borrados</a></li>
                             </g:if>
-                            <li><a href="${createLink(action:'listarArchivadas',params:[estrategiaId:params.id])}" >Ver Archivadas</a></li>
                          <g:if test="${swacc==0}" >
                          <li align="center">Ninguna </li>
                        </g:if>

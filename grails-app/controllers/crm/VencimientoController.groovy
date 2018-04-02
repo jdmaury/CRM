@@ -394,18 +394,21 @@ class VencimientoController extends BaseController{
 			return
 		}
 		
-		
+		vencimientoInstance.detpedidop=DetPedido.get(576)
    
 		println "VENCIMIENTO PARAMS ARCHIVO "+params
 		
-
+		
+		def longIdPedido=params.long('idPedido')		
+		def idVendedor=Pedido.get(longIdPedido).empleado.id		
+		vencimientoInstance.empleado=Empleado.get(idVendedor)
+		
 		
 		
 		if(params.serial)
 		{
 			println "Entre aqui"
-			vencimientoInstance.serial=params.serial
-			
+			vencimientoInstance.serial=params.serial			
 		}
 
 		
@@ -472,12 +475,10 @@ class VencimientoController extends BaseController{
 		vencimientoInstance.idEstadoVencimiento=respuestaEstado[0]
 		vencimientoInstance.save flush: true,failOnError: true
 //---------------------------------------------------------CARGAR SERIALES DESDE EXCEL------------------------
-		if(params.archivoSeriales)//SI EL CAMPO SERIAL ESTA VACÍO..ES DECIR SI SE ESCOGE LEER EL ARCHIVO
-		{
-			
-			def rutayFile=generalService.subirAnexoVencimientos(request,servletContext,vencimientoInstance.id)
-			generalService.importarSerialesExcel(vencimientoInstance.id,rutayFile)
-			
+		if(params.archivoSeriales)//SI EL CAMPO SERIAL ESTA VACï¿½O..ES DECIR SI SE ESCOGE LEER EL ARCHIVO
+		{			
+		  def rutayFile=generalService.subirAnexoVencimientos(request,servletContext,vencimientoInstance.id)
+		  generalService.importarSerialesExcel(vencimientoInstance.id,rutayFile)			
 		}
 //-----------------------------------------------------------CARGAR SERIALES DESDE EXCEL------------------------
 		
@@ -493,7 +494,7 @@ class VencimientoController extends BaseController{
 		String fechaFin=params.fechaVencimiento
 		String fechaIni=params.fechaInicio
 		String cuerpo="Registro elaborado por: ${usuarioL}<br><br>Se ha registrado un nuevo vencimiento de tipo <b>${tipoVen}</b> para la empresa ${empresaVenc} y usted figura como responsable del mismo.<br><br><b>Fecha de inicio:</b> ${fechaIni}<br><b>Fecha de vencimiento:</b> ${fechaFin}<br><br><b>Descripci&oacute;n:</b><br>${params.descripcion}<br><br>Para m&aacute;s detalles haga clic <a href='${urlbase}/vencimiento/show/${vencimientoInstance?.id}?&layout=main'> AQUI </a>"
-		generalService.notificarVencimiento(params.idTipoVencimiento, params.long('idVendedor'),asunto,cuerpo)
+		generalService.notificarVencimiento(params.idTipoVencimiento, idVendedor,asunto,cuerpo)
 		println "envie esa joda"
 //-----------------------------------enviar correo cuando el vencimiento ha sido guardado
 		

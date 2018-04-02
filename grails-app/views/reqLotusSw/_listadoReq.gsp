@@ -8,7 +8,8 @@
                    <td><b><g:message code="reg.numero.label"/> </b></td>  
                    <td><b><g:message code="reqLotusSwInstance.tema.label"/></b></td> 
                    <td><b><g:message code="reqLotusSwInstance.tipo.label"/></b></td> 
-                   <td><b><g:message code="reqLotusSwIntance.requeridoPor.label"/> </b></td>  
+                   <td><b><g:message code="reqLotusSwIntance.requeridoPor.label"/> </b></td>
+                   <td><b><g:message code="reqLotusSwIntance.fechaCreacion.label"/></b></td>   
                 </tr>
                
             </thead>
@@ -23,7 +24,8 @@
                         </td>
                         <td  Style="width:250px">${requerimientoInstance?.tema}</td>
                          <td>${requerimientoInstance?.tipoRequerimiento}</td>
-                        <td>${requerimientoInstance?.creadoPor}</td>
+                        <td>${requerimientoInstance?.creadoPor}</td>                        
+                        <td>${requerimientoInstance?.fechaCreacion?:'NA'}</td>
                     </tr>
                </g:each>
                
@@ -40,6 +42,7 @@
                         <td  Style="width:250px">${requerimientoInstanceSrr?.DescripcionTema}</td>
                          <td>${requerimientoInstanceSrr?.tipoRequerimiento}</td>
                         <td>${requerimientoInstanceSrr?.nombreUsrSolicitante}</td>
+                        <td>${requerimientoInstanceSrr?.fechaCreacion}</td>
                     </tr>
                </g:each>
             </tbody>

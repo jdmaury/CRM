@@ -9,7 +9,7 @@
  </g:if>
  <g:if test="${flash.warning}">
     <div id="divwar"  style="display:inline" class="alert alert-error" role="status"><strong> ${raw(flash.warning)} </strong>
-    <a href="#" onclick="$('#divwar').fadeOut('slow')" ><i class="icon-remove"></i></a></div>
+    <a href="#" onclick="$('#divwar').fadeOut('slow')"><i class="icon-remove"></i></a></div>
  </g:if>
 <g:hasErrors bean="${beanInstance}">
     <ul  style="font-weight:bold;color:#CC0000;margin:15px;" role="alert">

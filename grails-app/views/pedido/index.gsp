@@ -1,14 +1,53 @@
 <%@ page import="crm.Pedido" %>
 <%@ page import="crm.Nota" %>
 <%@ page import="crm.Empresa" %>
+
 <g:set var="generalService" bean="generalService" />
 
 <!DOCTYPE html>
 <html>
     <head>
-        <meta name="layout" content="perfectum">
+        <meta name="layout" content="perfectum">        
         <g:set var="entityName" value="${message(code: 'pedido.label', default: 'Pedido')}" />
         <title><g:message code="default.list.label" args="[entityName]" /></title>
+        <link rel="stylesheet" href="${resource(dir: 'css/css-personalizados', file: 'campanasYEventos.css')}" type="text/css">
+        <g:javascript src="crm_helper.js" />               
+        
+        <style>
+        .pagination a:hover {
+		    background-color: #a7a399;    
+		    outline: none;
+		    border-radius: 5%;
+		} 
+		
+		a.paginate_button.current{
+			background-color:#a7a399;
+		}
+        
+        div#tablaPedidos_paginate
+        {
+        	margin-top:20px;
+        	padding-bottom:15px;
+        }
+        div.dataTables_length select
+        {
+        	margin-left:4px;
+        }
+        input[type="search"], select{
+        	border-radius:1px;
+        }
+        div.dataTables_filter label{
+        	float: right;
+    		margin-top: -20px;
+    		margin-right:5px;
+        }
+        div.dataTables_length label{
+        	float: right;
+    		margin-top: -20px;
+        }       
+        </style>        
+
+
     <r:require module="filterpane" />
 </head>
 <body>
@@ -234,13 +273,15 @@
 			<g:render template="/general/mensajes" />
             <div id="list-pedido" class="content scaffold-list" role="main">
                 <g:set var="beanInstance"  value="${pedidoInstance}" />     
-                <table  class="table table-bordered">
+                <table id="tablaPedidos" class="table table-bordered">
                     <thead>
-                        <tr>
+                        <tr style="background-color:#f3f3f3">
                             <td style="width:10px"></td>
                             <g:sortableColumn width="70px" property="numPedido" title="${message(code: 'pedido.numPedido.label', default: 'Código')}"  params="${filterParams}"/>
 
                             <g:sortableColumn property="nombreCliente" title="${message(code: 'pedido.nombreCliente.label', default: 'Empresa')}" params="${filterParams}" />
+                            
+                            <td style="display:none;">Orden Compra</td>
                             
                             <g:sortableColumn property="oportunidad.nombreOportunidad" title="${message(code: 'oportunidad.nombreOportunidad.label', default: 'Proyecto')}" params="${filterParams}" />
 
@@ -261,7 +302,6 @@
                             <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 
                                 <td><g:checkBox name="pedidos" value="${pedidoInstance.id}" checked="false" /></td>
-
                                 <td>
                                 	<a style="text-decoration:underline;" href="/crm/pedido/show/${pedidoInstance?.id}?estado=${params.id}">
                                         ${fieldValue(bean: pedidoInstance, field: "numPedido")}
@@ -269,10 +309,12 @@
                                 	<g:if test="${generalService.esPedidoDetenido(pedidoInstance)==true}">&nbsp;
                                             <i class="fa-icon-ban-circle" title="Detenido en compras" style="font-size:1.4em;color:red"></i>
                                     </g:if>
-                                </td>
+                                </td>                                
                                 
-
                                 <td style="overflow: hidden;text-overflow: ellipsis; white-space: nowrap;max-width:300px;">${pedidoInstance.nombreCliente}</td>
+                                
+                                <td style="display:none;">${pedidoInstance?.ordenCompra?:'' }</td>
+                                
                                 <td>${pedidoInstance.oportunidad?.nombreOportunidad}</td>
                              	<g:if test="${params.id=='0'}">
                              		<% totalFacturas=pedidoService.valorFacturado(pedidoInstance?.id.toString())['subtotal'] %>                             		
@@ -295,7 +337,7 @@
 										<g:if test="${totalFacturas>0}">                                         
                                          	 <p style="color:red;font-size:10px;margin:0;">-<g:formatNumber name="facturado" number="${totalFacturas}" format="###,###,###.00" locale="co"/></p>
                                         </g:if>                    
-                                                 
+                                               
                                 </td> 
                                 </g:if>
                                 <g:else>
@@ -330,7 +372,7 @@
                       <td></td>
                       <td colspan="3" style="text-align:right"><b>TOTAL</b></td> 
                        
-                      <td bgcolor="#EEE" ${estilo1}><b>USD$</b>
+                      <td id="totalUSD" bgcolor="#EEE" ${estilo1}><b>USD$</b>
                        ${totalDolares}
                        <g:if test="${facturaDolares>0}">                                         
                                 <p style="color:red;font-size:10px;margin:0;">-<g:formatNumber name="subtotal" number="${facturaDolares}" format="###,###,###.00" locale="co"/></p>
@@ -357,6 +399,7 @@
                     <filterpane:paginate total="${pedidoInstanceCount?: 0}" domainBean="Pedido" id="${params.id}" />
 		        </div>
         </g:form>
-   </div>    
+   </div>
+        <%--<script type="text/javascript">dataTablePedidos();</script>--%>
 </body>
 </html>

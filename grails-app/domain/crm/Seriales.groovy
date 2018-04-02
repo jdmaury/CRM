@@ -5,7 +5,7 @@ class Seriales {
 	String numSerial
 	Byte   eliminado
 	
-	static belongsTo=[vencimiento:Vencimiento]
+	static belongsTo=[contrato:Contrato]
 	
 	
 	

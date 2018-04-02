@@ -29,6 +29,7 @@
                     <br><br>
                     <g:set var="xpedido" value="${params.pedido}" scope="request"/>
                     <g:set var="xronly" value="true" scope="request"/>
+                    <g:set var="xronlycontrato" value="true" scope="request"/>                    
                     <g:render template="form"/>
                 </fieldset>
             </g:form>

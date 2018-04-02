@@ -138,9 +138,9 @@
 	                  		<div>
 	                  			<!-- Q's -->   
 	                  			<div class="infoQ">                                                	
-									Q1<input type="checkbox" name="QinfoQ" value="Q1" style="float:right;"><br>
+									Q1<input type="checkbox" name="QinfoQ" value="Q1" style="float:right;" checked><br>
 									Q2<input type="checkbox" name="QinfoQ" value="Q2" style="float:right;"><br>
-									Q3<input type="checkbox" name="QinfoQ" value="Q3" style="float:right;" checked><br>
+									Q3<input type="checkbox" name="QinfoQ" value="Q3" style="float:right;"><br>
 									Q4<input type="checkbox" name="QinfoQ" value="Q4" style="float:right;"><br>
 								</div>
 								<!-- Q's -->

@@ -390,10 +390,10 @@ class ReqLotusSwController {
 		def listaReq=generalService.infoSRR(numOptty)
 		
 		
-		println "El resultado es "+listaReq
+		//println "El resultado es "+listaReq
 		//--------------------------ESTA PARTE ES PARA TRAER LOS REQUERIMIENTOS DE LA NUEVA HERRAMIENTA DE REQUERIMIENTOS-------------------
 		
-		
+		//println "LA LISTA DE DOCUMENTOS ES ..."+listaDocumentos
 		
 		if (params.pedido=='Si'){
 		render(view:"index",  model:[requerimientoList : listaDocumentos , numOportunidad:numOportunidad,pedido:"Si", requerimientosListSrr:listaReq])
@@ -402,7 +402,7 @@ class ReqLotusSwController {
 		}
 	}
 	
-	def index2()
+	/*def index2()
 	{
 		String numOptyPed=params.numOptty
 		def listaReq=generalService.infoSRR(numOptyPed)
@@ -410,7 +410,7 @@ class ReqLotusSwController {
 		//render "..."+listaReq
 		render(view:"index",  model:[requerimientoList : listaReq , numOportunidad:numOptyPed,pedido:"Si"])
 		
-	}
+	}*/
 
 	/**
 	def show(ReqLotusSw reqLotusSwInstance) {
@@ -731,6 +731,8 @@ class ReqLotusSwController {
 		
 		//def http = new HTTPBuilder('http://192.168.30.136:8080/WSservices/')
 		def http = new HTTPBuilder('http://srr.redsis.com:8080/WSservices/')
+		//def http = new HTTPBuilder('http://192.168.36.112:8080/WSservices/')
+		
 		http.request(POST) {
 			uri.path = 'webresources/crearRequerimiento'
 			// Note: Set ConentType before body or risk null pointer.
