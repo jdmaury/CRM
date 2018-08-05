@@ -186,6 +186,13 @@ class PedidoController extends BaseController{
 		   params['filter.op.empleado.id']="Equal"
 		   params.filter.empleado.id=generalService.getIdEmpleado(session['idUsuario'].toLong())				
 		}
+
+		/*Prueba para autorizar segundo usuario a un pedido
+		if ('VENDEDOR'  in generalService.getRolUsuario(session['idUsuario'].toLong())){
+			params.filter+=[empleado:[:]]
+			params['filter.op.']="Equal"
+			params.filter.empleado.id=generalService.getIdEmpleado(session['idUsuario'].toLong())
+		}*/
 		
 		if (!('GERENTE' in generalService.getRolUsuario(session['idUsuario'].toLong()))){
 			println "Usted no es GERENTE"
@@ -440,7 +447,7 @@ class PedidoController extends BaseController{
 		//el nombre de los campos fields es como están definidos en la clase dominio
 		List fields = ["numPedido","nombreCliente","oportunidad.nombreOportunidad","valorPedido","idMondedaFactura","facturacionParcial","fechaApertura","idEstadoPedido","empleado"]
 		Map labels = ["numPedido": "Codigo","nombreCliente":"Empresa","oportunidad.nombreOportunidad":"Descripcion Proyecto","valorPedido":"Valor en dolares","idMondedaFactura":"Valor en pesos","facturacionParcial":"Total Facturado","fechaApertura": "Fecha","idEstadoPedido":"Estado","empleado":"Vendedor"]
-		
+
 		def convertirMoneda={Pedido,value->
 			if(Pedido.idTipoPrecio.equals("pedtprec01")&& Pedido.valorPedido!=null)//pesos
 			{				
@@ -455,7 +462,8 @@ class PedidoController extends BaseController{
 				}
 			}		
 		}
-		
+
+
 		def convertirMoneda2={Pedido,value->
 			if(Pedido.idTipoPrecio.equals("pedtprec02")&& Pedido.valorPedido!=null)//pesos
 			{
@@ -503,8 +511,8 @@ class PedidoController extends BaseController{
 			
 			return ValorParametro.findByIdValorParametro(Pedido.idEstadoPedido)
 		}
-		
-		
+
+		println("Suma de facturas...")
 		def sumaFacturas={Pedido,value->			
 			if(Pedido.idEstadoPedido=='pedfacpar2' || Pedido.idEstadoPedido=='pedfacturx' ||Pedido.idEstadoPedido=='pedpenfp23' )
 			{
@@ -514,7 +522,7 @@ class PedidoController extends BaseController{
 			else
 				return '-'
 		}
-		
+		println("Fin Suma de facturas...")
 //		def date_solo_fecha = {Pedido, value ->
 	//		return Pedido.fechaApertura.format("dd-MM-yyyy")
 		//}
@@ -523,11 +531,13 @@ class PedidoController extends BaseController{
 		String filename=exportarService.setfilename(params.titulo)
 		if(params.tipo_export=='1')//exportar todos
 		{
+			println("Exportar todos")
 			List idss=listaFiltro.id
 			lista_export=exportarService.obtenerItemsSeleccionados(Pedido,idss)
 		}
 		else if(params.tipo_export=='2')//exportar seleccionados
 		{
+			println("Exportar seleccionados...")
 			fields = ["arqui","numPedido","nombreCliente","valorPedido","idMondedaFactura","fechaApertura","idEstadoPedido"]
 			labels = ["arqui":"ArquitectoAsociado","numPedido": "Codigo","nombreCliente":"Empresa","valorPedido":"Valor en dolares","idMondedaFactura":"Valor en pesos","fechaApertura": "Fecha","idEstadoPedido":"Estado"]
 			lista_export=generalService.traerPedidosxArquitecto()
@@ -546,9 +556,11 @@ class PedidoController extends BaseController{
 		}
 		else
 		{
+			println("Exp ids items...")
 			List ids=params.list('pedidos')//ids de items seleccionados
 			lista_export=exportarService.obtenerItemsSeleccionados(Pedido,ids)//lista de checkbox seleccionados
 		}
+		println("exportando")
 		exportarService.exportar(Pedido,lista_export,fields,labels,response,formatters,filename)
 		
 	}
@@ -1434,15 +1446,6 @@ class PedidoController extends BaseController{
 		println "ID DEL CLIENTE ES... "+pedidoInstance.empresa.id
 		
 
-		
-		
-		
-		
-		
-		
-		
-
-		
 		def xdest=[]
 		String xparam=generalService.getValorParametro('enccompras')
 		xdest=generalService.convertirEnLista(xparam)
@@ -1469,14 +1472,13 @@ class PedidoController extends BaseController{
 		//-------------------------------CAMBIO PARA INDICAR Y NOTIFICAR QUE EL PEDIDO ES DE MARIOHABIB
 		
 		generalService.enviarCorreo(1,xdest,xasunto, xcuerpo)
-		
-		
+
 		
 //----------------NOTIFICAR ARQUITECTO DE SOLUCIONES-------------------------
 		if(pedidoInstance.arquitectoSol=='S')
 		{
-			List listaArqui=new ArrayList<String>(Arrays.asList(pedidoInstance.listaArquitectos.split(",")));//						
-			generalService.notificarArquitectos(listaArqui,pedidoInstance.numPedido)			
+			List listaArqui=new ArrayList<String>(Arrays.asList(pedidoInstance.listaArquitectos.split(",")));//
+			generalService.notificarArquitectos(listaArqui,pedidoInstance.numPedido)
 			log.info("Lista de arquitectos ${listaArqui} notificados para el pedido ${pedidoInstance.numPedido}")
 		}		
 //----------------NOTIFICAR ARQUITECTO DE SOLUCIONES-------------------------
@@ -1770,6 +1772,7 @@ class PedidoController extends BaseController{
 		
 		def anioPedido=pedidoInstance.numPedido.toString().split("-")[2]
 		if(anioPedido=="17"||anioPedido=="18")
+
 			xiva=0.19*(xsubtotal-xdescuento)		
 			
 		def listaPed16Iva19=generalService.getValorParametro('ped16iva19').toString().split(",")			
@@ -1788,9 +1791,9 @@ class PedidoController extends BaseController{
 
 				
 		//-------------------------------------CORRECCION TOTAL-------------------------------
-			
-			
-				
+
+
+
 		def xtotal=xsubtotal-xdescuento+xiva
 		
 		render view:"vistaPedido", model:[pedidoInstance:pedidoInstance,xsucursal:xsucursal,

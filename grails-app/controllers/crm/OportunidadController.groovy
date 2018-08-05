@@ -25,18 +25,7 @@ class OportunidadController extends BaseController {
 	@Transactional		
 	def index(Integer max) {
 		
-		
-		//generalService.notificarArquitectos(['pedarqui13', 'pedarqui08'],"BOG-0075-17")
-		//Long[]jaja=[9,55]
-		///def f=generalService.getCuotaVendedor(jaja)
-		
-		//def a=generalService.oportunidadesSinItems()
-		//println "La lista de opptys sin items es......."+a
-		
-		//generalService.notificarProspectosSinAtender()
-		
-		//generalService.crearVencimientoDetPedido()
-		
+
 		
 		int itemxview=generalService.getItemsxView(0)
 		params.max = Math.min(max?:itemxview,100)

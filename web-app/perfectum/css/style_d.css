@@ -1,5 +1,5 @@
 /*
-* Author: Łukasz Holeczek
+* Author: Å�ukasz Holeczek
 * Template: Perfectum Dashboard Bootstrap Theme
 * Version: 1.0.3
 * Bootstrap version: 2.2.2
@@ -1508,13 +1508,13 @@ ul.chat li .message .text {
 .alert.alert-success {
     background-color: #edf6e5 !important;
     color: #7a9659 !important;
-    border: 1px solid #9fc76f !important;
+    border:0px solid #9fc76f !important;
 }
 
 .alert.alert-error {
 	background-color: #fdeaea !important;
 	color: #ca6f74 !important;
-	border: 1px solid #f27b81 !important;
+	border:0px solid #f27b81c4 !important;
 	
 }
 
@@ -1523,7 +1523,7 @@ ul.chat li .message .text {
 .alert.alert-info {
 	background-color: #e9f8ff !important;
 	color: #5d9fa9 !important;
-	border: 1px solid #75c7d3 !important;
+	border:0px solid #75c7d3 !important;
 }
 
 /* Tabs

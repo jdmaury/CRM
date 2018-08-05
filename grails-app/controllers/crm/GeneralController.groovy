@@ -3,7 +3,11 @@ import wslite.soap.*
 import grails.converters.*	
 import grails.converters.JSON
 import grails.converters.XML
-import java.util.Random 
+import java.util.Random
+import groovy.transform.CompileDynamic
+import groovy.transform.CompileStatic
+import wslite.soap.SOAPClient
+import wslite.soap.SOAPResponse
 
 
 class GeneralController extends BaseController{
@@ -165,8 +169,16 @@ class GeneralController extends BaseController{
       render(view:"/general/cliente")    
         
    }
-   
 
-   
+
+    def serviceliscli(){
+        //def cli = new SOAPClient('localhost:8080/crm/empresa/serviceLisCli')
+        def consul = "select nit, razonSocial from Empresa"
+        def con = Empresa.executeQuery(consul)
+        //def jsonCon = JSON.parse(con)
+        //def resp = cli.send(con)
+        render con
+        println(con)
+    }
    
 }

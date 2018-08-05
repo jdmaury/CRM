@@ -113,7 +113,7 @@
             <g:else>
                 <g:set var="xcss" value="cleditor" />
             </g:else>
-            <g:textArea class="" name="descProspecto" cols="40" rows="5"  class="input-xlarge"
+            <g:textArea name="descProspecto" cols="40" rows="5"  class="input-xlarge"
             value="${prospectoInstance?.descProspecto}" disabled="${xronly}" required="" />
         </div>
     </div>

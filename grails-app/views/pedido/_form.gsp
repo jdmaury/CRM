@@ -728,7 +728,7 @@ para la fecha de mayo12--> --%>
                     <iframe id="ifactividad" src="/crm/nota/index/${pedidoInstance?.id}?entidad=pedido&tnota=${xtiponota}&zw=1" style="border:0;width:100%;"  scrolling="no"></iframe>
                    
                 </div>
-            </div>        
+     </div>
             
      <%-- adicion para el iframe de requerimiento    --%>
              <div class="tab-pane" id="requerimiento">

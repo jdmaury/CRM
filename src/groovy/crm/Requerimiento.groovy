@@ -32,12 +32,12 @@ public class Requerimiento {
 				</soapenv:Envelope>
 				""")
 		} catch (SOAPFaultException sfe) {
-			println 'SOAPFaultException.message: ' + sfe.message 
-			println 'SOAPFaultException.text: ' + sfe.text
-			println 'SOAPFaultException.statusCode: ' + sfe.httpResponse.statusCode
+			//println 'SOAPFaultException.message: ' + sfe.message 
+			//println 'SOAPFaultException.text: ' + sfe.text
+			//println 'SOAPFaultException.statusCode: ' + sfe.httpResponse.statusCode
 			throw new Exception(sfe.message)
 		} catch (SOAPClientException sce) {
-			println 'SOAPClientException.message: ' + sce.message
+			//println 'SOAPClientException.message: ' + sce.message
 			throw new Exception(sce.message)
 		}
 		return respuesta.MOSTRARINFOREQResponse.MOSTRARINFOREQReturn.text()
@@ -75,9 +75,9 @@ public class Requerimiento {
 				</soapenv:Envelope>
 				""")
 		} catch (SOAPFaultException sfe) {
-			println 'SOAPFaultException.message: ' + sfe.message 
-			println 'SOAPFaultException.text: ' + sfe.text   
-			println 'SOAPFaultException.statusCode: ' + sfe.httpResponse.statusCode
+			//println 'SOAPFaultException.message: ' + sfe.message 
+			//println 'SOAPFaultException.text: ' + sfe.text   
+			//println 'SOAPFaultException.statusCode: ' + sfe.httpResponse.statusCode
                         
                         log.error InetAddress.getLocalHost().getHostAddress()+" - " + "Error generado la procesar el servicio "+  sfe.message
                         log.error InetAddress.getLocalHost().getHostAddress()+" - " + "Codigo de Error "+  sfe.httpResponse.statusCode

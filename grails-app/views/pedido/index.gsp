@@ -192,16 +192,7 @@
 		             <!-- JOSE DANIEL 26/07/2016 -->
 		             
 		             
-		             
-		             
-		             
-		             
-		             
-		             
-		             
-                    
-                    
-                    
+
                     <g:if test="${'VER' in derechos}">
                           <%  swacc=1 %>
                         <li><a  class="gris" href="/crm/pedido/index/pedfacturx?sort=fechaApertura&order=desc">Ver Facturados</a></li> 

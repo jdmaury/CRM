@@ -9,7 +9,7 @@ class SeguridadService {
                        '/detPedido/procesarProductoCompraDef','/general/index','/territorio/traerDptos','/general/setDireccion','/oportunidad/buscarListadoRegistros','/pedido/buscarListadoRegistros','/oportunidad/traerDatosGraficaCuotaVsCump',
                        '/oportunidad/traerNodo1','/pedido/traerNodo','/general/webServiceRequerimiento',
                        '/general/email','/general/cliente','/pedido/vistaPedido','/empresa/convertirACliente','/pedido/devolverAVendedorDef','/empresa/validarUnicidad','/vencimiento/getMarcas','/vencimiento/actuVenci','/reqLotusSw/jsonPrueba','/reqLotusSw/crearRequerimientoSRR','/vencimiento/listarSeriales',
-					   '/nota/empleadosNoti','/tactica/listarArchivadas'/*,'/tactica/campanasYEventos','/tactica/tacticasDisponibles','/tactica/traerInformacionAsociadaTactica'*/]
+					   '/nota/empleadosNoti','/tactica/listarArchivadas','/empresa/servicelis', '/general/serviceliscli'/*,'/tactica/campanasYEventos','/tactica/tacticasDisponibles','/tactica/traerInformacionAsociadaTactica'*/]
     
 
     def menuPorUsuario(long idUsuario) {

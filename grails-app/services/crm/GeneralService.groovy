@@ -1,10 +1,16 @@
 package crm
+
 import grails.transaction.Transactional
+import net.sf.json.JSONArray
+import grails.converters.JSON
+import org.codehaus.groovy.grails.web.json.JSONArray
+import org.codehaus.groovy.grails.web.json.JSONObject
+import wslite.soap.*
+import wslite.http.auth.*
 import groovyx.net.http.HTTPBuilder
 import java.text.DateFormat
 import java.text.DecimalFormat
 import java.text.SimpleDateFormat
-
 import javax.validation.constraints.Size
 
 import grails.converters.*
@@ -350,6 +356,10 @@ class GeneralService {
         def xid = Usuario.executeQuery("select empleado.id from Usuario where id=${xidUsuario}")    
         return xid[0] 
     }
+    def getIdVendedorAnte(Long xidUsuario){
+        def xid = Pedido.executeQuery("select pedido.idVendedorAnterior from pedido where idVendedorAnterior=${xidUsuario}")
+        return xid[0]
+    }
   
     def traerEmpleado(Long xidUsuario){
         Long xid=getIdEmpleado(xidUsuario)
@@ -423,7 +433,7 @@ class GeneralService {
 		else		
 			notificarA=getValorParametro(parametroCorreo)?:(getValorParametro('detencom')?:getValorParametro('useraudito'))
 		
-		
+
 		
 		
 		def listaDestino=convertirEnLista(notificarA)
@@ -1992,13 +2002,31 @@ class GeneralService {
 	 def query=Empresa.executeQuery(consulta)
 	 println query as JSON
  }
- 
+
+
+ def infoSiesa(){
+     def siesaText=new URL ("http://siesalab01:8080/siesaadmin/siesa/modelo/API/rest/items").text
+     JSONArray jsonArray=new  JSONArray(siesaText)
+     jsonArray.each{
+         JSONObject jsonObject=new JSONObject(it)
+         def orden = it.orden
+         def fecha = it.fecha
+         def desc = it.descripcion
+         def periodo = it.periodo
+         def entrada = it.entrada
+         def seriales = it.seriales
+         def referencia = it.referencia
+         println jsonObject
+     }
+     render jsonArray as JSON
+ }
+
  def infoSRR(String numOportunidad)
  {
 	 def http = new HTTPBuilder('http://srr.redsis.com:8080/WSservices/')
 	 //def http = new HTTPBuilder('http://192.168.36.112:8080/WSservices/')
-		
-	
+
+
 		//def prueba=generalService.infoSRR(numOppty)
 		
 		def listaReq
@@ -2342,7 +2370,7 @@ class GeneralService {
 	 
 	 def oportunidadesSinItems()
 	 {
-		 def query="Select O From Oportunidad O Where idEstadoOportunidad='opocotizad' and eliminado=0"
+		 def query="Select O From Oportunidad O Where (idEstadoOportunidad='opocotizad' or idEstadoOportunidad= 'oporactiva')and eliminado=0"
 		 def listaOportunidades=Oportunidad.executeQuery(query)
 		 
 		 List listaAExportar=[]
@@ -2409,8 +2437,9 @@ class GeneralService {
 			 String cuerpo="<b>Cliente: </b>${nombreCliente}<br><b>Proyecto: </b>${proyecto}<br><b>Valor: </b>${valorPedido} ${moneda}<br><br>${masInfo}"
 			 
 			 
-			 
-			 println "El correo es "+correo
+			 //correo = correo + "adimare@redsis.com;jdcastro@redsis.com"
+             // todo falta agregar las notificaciones al señor alessio cuando se le asigne un pedido alguno de sus arquitectos
+			 println "El correo es "+correo+";adimare@redsis.com;jdcastro@redsis.com"
 			 enviarCorreo(1,correo,asunto,cuerpo)
 		 }
 	 }
@@ -2598,8 +2627,18 @@ class GeneralService {
 						 importarSerialesExcel(detPedidoInstance.contrato.id,rutayFile)
 					 }
 		 }//Cierre ELSE accion.equals(1)
+     }
+    def serviceLisCli(){//para montar webservice para listado de empresas
+        //def cli = new SOAPClient('https://192.168.30.149/crm/empresa/serviceLisCli')
+        def cli = new SOAPClient('http://localhost:8080/crm/empresa/serviceLisCli')
+        cli.authorization = new HTTPBasicAuthorization('jdmaury','opqa94')
+        cli.httpClient.sslTrustAllCerts = true
+        def resp = cli.send(Empresa.servicelis)
+        println(resp)
+
     }
-	 	 
+
+
 }//Cierre GeneralService Class
 
 

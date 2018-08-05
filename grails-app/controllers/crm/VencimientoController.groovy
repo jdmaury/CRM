@@ -411,33 +411,7 @@ class VencimientoController extends BaseController{
 			vencimientoInstance.serial=params.serial			
 		}
 
-		
-		
-		
-		
 
-
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		vencimientoInstance.encvencimiento=EncVencimiento.get(params.idencvenc)
 		
 		if(params.serialManual)

@@ -426,8 +426,20 @@ function toggle(source,nombre) {
           minHeight: 180,
         });
       });
-    
-     }
+    }
+  
+  
+  function hola(){
+	  alert("Pestana cambiada");
+  }
+  
+  function REDIMIFRAMEJD(){
+	  jQuery(function(){
+	        $('iframe').iframeAutoHeight({
+	          minHeight: 380,
+	        });
+	      });
+  }
      
     function autoResize(id){
         debugger;
@@ -439,13 +451,15 @@ function toggle(source,nombre) {
         newwidth=document.getElementById(id).contentWindow.document.body.scrollWidth;
     }
 
-    document.getElementById(id).height= (newheight) + "px";
+    document.getElementById(id).height= (newheight) + "px";    
     document.getElementById(id).width= (newwidth) + "px";
 }
 
 function desactivar(id){
     document.getElementById(id).disabled=true;    
 }
+
+
 
 function obligar(id,nombre){
     debugger;
@@ -533,8 +547,17 @@ function validarLongitudRazonSocial()
 
 //GENERARPEDIDO.GSP
 $('input[name="arquitectoSol"]').change(function(){
+	if ($(this).val()=='N')
+	{
+		
+		 
+		 $('#comentariosSinArquitecto').prop('required',true);		
+		 $("#botonPed").prop('disabled',false);
+	}
 	if ($(this).val()=='S')
 	{
+		
+		$('#comentariosSinArquitecto').prop('required',false);		
 		$("#botonPed").prop('disabled',true);
 		$("#idlarqui").change(function()
 
@@ -670,4 +693,40 @@ function actualizarInfoQ()
 	
 	
 
+}
+
+
+function dataTablePedidos()
+{
+	//alert("hola mundo");
+	
+	$(document).ready(function () {
+		
+		$("#tablaPedidos").DataTable();
+		$('#tablaPedidos_first').remove();		
+		$('#tablaPedidos_last').remove();
+		$('#tablaPedidos_info').remove();
+		$('#tablaPedidos_paginate').attr("class", "dataTables_paginate paging_simple_numbers pagination");		 
+		
+	});
+	
+}
+
+
+function recorrerColumnaPesos()
+{
+	var pesosTemp=0;
+	var totalPesos=0
+	$("table tr td:nth-child(5)").each(function () {
+		
+		if($(this).text()!="")
+		{
+			var sinComa=$(this).text().replace(',','');			
+			pesosTemp+=parseFloat(sinComa);
+			totalPesos=(pesosTemp/1000).toFixed(3);
+		}
+		
+	});
+	//alert("TOTAL DÓLARES ES... "+totalPesos);
+	//$("#totalUSD").html("<b>USD$</b> "+totalPesos);
 }

@@ -42,6 +42,7 @@
 <body > 
 
 <g:set var="generalService" bean="generalService" />
+
 <h2 style=margin-left:45px;"> Pedido : ${pedidoInstance?.numPedido} (${pedidoInstance?.nombreCliente}) </h2>
 <table class="table table-bordered " >
     <tr>
@@ -133,7 +134,7 @@
     </table>
 </table>
  <h2 style="margin-left:50px;"> Productos </h2>
- <table class="table table-bordered">         
+ <table class="table table-bordered">
     <tr style="background:#eee">
         <th style="width:12px">#</th>
         <th>Referencia</th>

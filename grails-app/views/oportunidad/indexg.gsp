@@ -53,8 +53,26 @@ def  derechos=seguridadService.operacionesPorOpcion(session['idUsuario'],'/oport
                 <ul class="dropdown-menu">                    
                     <g:if test="${'EXPORTAR' in derechos}">                              
                         <li><a href="/crm/oportunidad/exportar1/excel">Exportar a Excel</a></li> 
-                        </g:if>                    
-                </ul>
+                        </g:if>
+                        <g:if test="${'EXPORTAR' in derechos}">
+                            <%  swacc=1 %>
+                            <li class="dropdown-submenu">
+                                <a  class="gris" href="#">Exportar</a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <g:link action="exportarDatos" params="[tipo_export:'1',xaccionx:xaccion,titulo:xtitulo]">Todos</g:link>
+                                    </li>
+                                    <li><g:actionSubmit
+                                            onMouseOver="${mover}"
+                                            onMouseOut="${mout}"
+                                            style="${estilo}"
+                                            value="Seleccionados"
+                                            action="exportarDatos" /></li>
+                                </ul>
+                            </li>
+                            </li>
+                        </g:if>
+                        </ul>
             </div>
 
     <!-- inicio filter  buttons -->                           

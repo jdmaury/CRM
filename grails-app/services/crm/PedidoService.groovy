@@ -66,23 +66,44 @@ class PedidoService {
 		
 	}
  
-    def valorFacturado (String id){        
+    def valorFacturado (String id){//todo: revisar bien el iva que si se edita no permite ver los informes por arquitecto.
+        //println("Calculando el valor facturado")
+
         def query = Factura.executeQuery("select sum(f.valorFactura) from Factura f where f.pedido.id = ${id} and f.eliminado=0")
               
         def query1 =Pedido.executeQuery("select descuentoPedido from Pedido where id = ${id}")
-       
-       
+
+        /*def query2= Pedido.executeQuery("select numPedido from Pedido where id = ${id}")
+        println("Numero pedido "+query2)*/
+
         // Calculos
+
         def descuento = (query1[0] == null)?0:query1[0].toDouble()
-        
+
         def subtotal = (query[0] == null)?0:query[0].toDouble()
-        
+
         def subtotal1=subtotal-descuento
-                
-        def iva = subtotal1 * 0.16
-        
+
+        /*def anioPedido=query2.toString().split("-")[2].substring(0,2)
+        println("año "+anioPedido)
+
+        def iva=0
+        if (anioPedido == "16"){
+            println("El iva a facturar es del 16%")
+            iva = subtotal1 * 0.16
+        }
+        if (anioPedido != "16"){
+            println("El iva a facturar es del 19%")
+            iva = subtotal1 * 0.19
+        }
+
+
+        */
+        def iva = subtotal * 0.16
         def total = subtotal1 + iva
-        
+        /*println("Subtotal1= "+subtotal1)
+        println("IVA= "+iva)
+        println("Total="+total)*/
         return [subtotal:subtotal,descuento:descuento, iva:iva, total:total,subtotalSinIva:subtotal1]
     }
     
@@ -207,7 +228,8 @@ class PedidoService {
         if (xidpedido !=0){
             def pedidoInstance=Pedido.get(xidpedido)   
        
-            if (pedidoInstance?.idAutorizado==generalService.getIdEmpleado(xidusuario)) return true       
+            if (pedidoInstance?.idAutorizado==generalService.getIdEmpleado(xidusuario)) return true
+            if (pedidoInstance?.idVendedorAnterior==generalService.getIdEmpleado(xidusuario)) return true
             xestado=pedidoInstance?.idEstadoPedido
         } else return true
 
@@ -226,10 +248,13 @@ class PedidoService {
         if (xestado=='pedenrevi2' && xtipo in ['anexo'] && xrol!='ASISTENTE_FINANCIERO') return false
         
         if (xestado=='pedenrevi2' && xtipo in ['producto','factura']) return false
-        
+
         // Pedido Compras y almacen
-      
-        
+
+        //if (xtipo in ['pedido'] && xrol!='COMPRADOR') return true//para que compras visualice opciones
+
+        //if ((xestado=='pedpencom3' || xestado=='pedpenrec4') && (xtipo in ['pedido'] && xrol!='COMPRADOR')) return true//para que compras visualice opciones
+
         if ((xestado=='pedpencom3' || xestado=='pedpenrec4') && (xtipo in ['pedido'] && xrol!='COMPRADOR' && xrol!='ALMACENISTA')) return false
         
         if ((xestado=='pedpencom3' || xestado=='pedpenrec4') && (xtipo in ['producto','anexo'] && xrol!='COMPRADOR' && xrol!='ALMACENISTA')) return false
@@ -661,7 +686,8 @@ class PedidoService {
                 swnoti=1
             }
         }
-        if (swnoti==1){ // notificar a financiera que facture
+        if (swnoti==1){ //
+            // a financiera que facture
             String xparam=generalService.getValorParametro('financiera')
             def xdest=generalService.convertirEnLista(xparam)
 			def session = RequestContextHolder.currentRequestAttributes().getSession()

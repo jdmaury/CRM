@@ -21,7 +21,7 @@ class LoginController {
     
     def autenticacion() {         
         
-        println "hola soy yo desde base Controller jejejejje salu2 pArAmS "+params
+        println "hola soy yo desde base Controller... pArAmS "+params
 		
 		def clave = params.password + ""
         clave = clave.encodeAsMD5()
