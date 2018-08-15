@@ -205,7 +205,7 @@ class GeneralService {
             }
         }
     }
-    
+
     def  autoCompletar(String term,String swAuto){
         def query=''
         if (swAuto=='1'){//AUTOCOMPLETAR PROSPECTOS 
@@ -299,7 +299,7 @@ class GeneralService {
             entidadMap.put("value", xnombre)
              entidadMap.put("contacto",  it[4] == 0? "NO" : "SI")
             entidadList.add(entidadMap) 
-        }   
+        }
            
 
         return entidadList          
@@ -2396,8 +2396,8 @@ class GeneralService {
 	 
 	 def notificarArquitectos(List listaArquitectos, String numPedido)// PARA NOTIFICAR A LOS ARQUITECTOS QUE FIGURAN COMO RESPONSABLE DE UN PEDIDO
 	 {
-
-		 println "LISTA DE ARQUITECTOS "+listaArquitectos
+         // todo falta agregar las notificaciones al señor alessio cuando se le asigne un pedido alguno de sus arquitectos
+         println "LISTA DE ARQUITECTOS "+listaArquitectos
 		 println "NUM PEDIDO RECIBIDO "+numPedido
 		 String urlbase=getValorParametro('urlaplic')
 		 listaArquitectos.each {			 
@@ -2438,9 +2438,8 @@ class GeneralService {
 			 
 			 
 			 //correo = correo + "adimare@redsis.com;jdcastro@redsis.com"
-             // todo falta agregar las notificaciones al señor alessio cuando se le asigne un pedido alguno de sus arquitectos
-			 println "El correo es "+correo+";adimare@redsis.com;jdcastro@redsis.com"
-			 enviarCorreo(1,correo,asunto,cuerpo)
+			 println "El correo es "+correo //;adimare@redsis.com;jdcastro@redsis.com"
+			 enviarCorreoArq(1,correo,asunto,cuerpo)
 		 }
 	 }
 	 

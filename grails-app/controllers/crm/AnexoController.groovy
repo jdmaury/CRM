@@ -24,6 +24,21 @@ class AnexoController extends BaseController{
 				//generalService?.getValorParametro('anexot00'),
                 xidentidad:params.id,xentidad:params.entidad]
     }
+    def indexo(Integer max) {
+        int itemxview=generalService.getItemsxView(0)
+        params.max =itemxview
+        String  xoffset=params.offset?:0
+
+        def query="from Anexo  where idEntidad=${params.id} and nombreEntidad='${params.entidad}' and eliminado=0  order by idTipoAnexo asc,id desc"
+        def anexoInstanceList=Anexo.findAll(query,[max:params.max,offset:xoffset.toLong()])
+        def queryc="select count(a) from Anexo a where a.idEntidad=${params.id} and a.nombreEntidad='${params.entidad}' and a.eliminado=0"
+        def num=Anexo.executeQuery(queryc)
+        respond anexoInstanceList, model:[anexoInstanceCount: num[0],
+                                          xtitulo:message(code:"listaDeAnexos.label", default:"Lista de Anexos"),
+
+                                          //generalService?.getValorParametro('anexot00'),
+                                          xidentidad:params.id,xentidad:params.entidad]
+    }
     
     def indexh(Integer max) {
         int itemxview=generalService.getItemsxView(0)

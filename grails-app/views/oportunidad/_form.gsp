@@ -364,6 +364,7 @@
             <li class="active"><a href="#home" data-toggle="tab">Items</a></li>
             <li><a href="#actividades"   data-toggle="tab"  ><g:message code="bitacora.tab.label"/></a></li>
             <li><a href="#propuestas" onclick="recargarIframe('ifpropuesta');"  data-toggle="tab" ><g:message code="propuestas.label"/> </a></li>
+            <li><a href="#anexos" onclick="recargarIframe('ifanexos');" data-toggle="tab" >Anexos</a></li>
             <li><a href="#regopor"  data-toggle="tab" ><g:message code="registro.oppty.label" default="Registro Oportunidad"/> </a></li>
             <li><a  href="#requerimiento"  data-toggle="tab" ><g:message code="requerimiento.oppty.label" default="Requerimiento"/>  </a></li>
             <li><a href="#historia"  data-toggle="tab"><g:message code="historial.tab.label" default="Historial"/> </a></li>
@@ -404,6 +405,14 @@
                     </script>
                 </div>
             </div>
+            <div class="tab-pane" id="anexos" >
+                <g:if test="${oportunidadInstance?.id != null}">
+                    <div class="pull-right" style="margin-top:-4px;margin-bottom:0px; "><a href="#" onclick="recargarIframe('ifanexos')"><i class="icon-refresh"></i></a></div>
+                    <iframe id="ifanexos" src="/crm/anexo/indexo/${oportunidadInstance?.id}?entidad=oportunidad&sw=${sw}" style="border:0;width:100%;"  scrolling="no"></iframe>
+
+                </g:if><%--todo revisar esta seccion para que los anexos funcionen para las oportunidades--%>
+            </div><%-- fin tab anexos --%>
+
             <div class="tab-pane" id="regopor">
                 <div class="box-content">
                     <div class="pull-right" style="margin-top:-4px;margin-bottom:0px; "><a href="#" onclick="recargarIframe('ifregopor')"><i class="icon-refresh"></i></a></div>

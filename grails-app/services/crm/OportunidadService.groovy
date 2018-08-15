@@ -4,7 +4,29 @@ import grails.transaction.Transactional
 class OportunidadService {
     def pedidoService
     def generalService
-    
+
+    def crearAnexosOp(lista,id) {
+
+        lista.each{
+            def num=Anexo.executeQuery("""select count(a)from Anexo a where 
+                                      idEntidad=${id} and 
+                                      nombreEntidad='oportunidad' and
+                                      idTipoAnexo='${it}' and
+                                      eliminado=0""")
+
+            if (num[0]==0){
+                def anexoInstance=new Anexo()
+                anexoInstance.idEntidad=id
+                anexoInstance.nombreEntidad="oportunidad"
+                anexoInstance.idTipoAnexo="${it}"
+                anexoInstance.idEstadoAnexo="genactivo"
+                anexoInstance.eliminado=0
+                anexoInstance.save()
+            }
+        }
+        return true
+    }
+
     def oportunidadCerrada(String id){  
         if (id != "") {
         def oportunidadInstance=Oportunidad.get(id.toLong())
