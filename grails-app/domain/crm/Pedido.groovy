@@ -50,7 +50,10 @@ class Pedido {
 	 String notificarCuentaCobro
 	 Byte detenidoEnCompra
 	 String razonesSinArquitecto
-    
+     String uniSinco
+     String gerenteProye
+     String listaGerenteProye
+
      
     static auditable = [handlersOnly:true]
     
@@ -122,6 +125,10 @@ class Pedido {
 		notificarCuentaCobro nullable: true
 		detenidoEnCompra     nullable: true,defaultValue:0
 		razonesSinArquitecto nullable: true, maxSize: 500
+        uniSinco             nullable: true, maxSize: 1
+        gerenteProye         nullable: true, maxSize: 1
+        listaGerenteProye    nullable: true, maxSize: 200
+
     }
 
     String toString(){

@@ -100,8 +100,10 @@
             <g:message code="oportunidad.numOportunidadFabricante.label" default="Num Oportunidad Fabricante" />
 
         </label>
-        <div class="controls" style="padding:4px; border:solid;border-color:#ccc;border-width:1px;border-radius:5px;width:300px;min-height:21px;background-color:#EEE;" > 
-            <% println "${oportunidadService.getNumRegistros(oportunidadInstance.id)}" %>              
+        <div class="controls"  >
+
+            <%--<g:textField name="numOportunidadFabricante" value="${fieldValue(bean: oportunidadInstance, field: 'numOportunidadFabricante')}" disabled="${xronly}" required="" />--%>
+             <% println "${oportunidadService.getNumRegistros(oportunidadInstance.id)}" %>
         </div>
     </div>
     <div class="control-group">

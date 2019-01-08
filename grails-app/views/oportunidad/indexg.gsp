@@ -67,11 +67,11 @@ def  derechos=seguridadService.operacionesPorOpcion(session['idUsuario'],'/oport
                                             onMouseOut="${mout}"
                                             style="${estilo}"
                                             value="Seleccionados"
-                                            action="exportarDatos" /></li>
+                                            action="exportarDatos" />
+                                    </li>
                                 </ul>
                             </li>
-                            </li>
-                        </g:if>
+                         </g:if>
                         </ul>
             </div>
 

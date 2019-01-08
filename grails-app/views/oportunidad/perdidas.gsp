@@ -104,7 +104,7 @@ import="crm.Persona"
                             <li><a  class="gris" href="/crm/oportunidad/delete">Destruir Oportunidad</a></li> 
                             </g:if>
                             <g:if test="${'EXPORTAR' in derechos}"> 
-                                <%  swacc=1 %>
+
                             <li class="dropdown-submenu">
                                 <a  href="#">Exportar</a>
                                 <ul class="dropdown-menu">
@@ -134,6 +134,26 @@ import="crm.Persona"
                         <g:if test="${'VER' in derechos}">                              
                             <li><a  class="gris" href="/crm/oportunidad/indexh"><g:message code="archivadas.oportunidad.label"/></a></li> 
                         </g:if>
+            <g:if test="${'EXPORTAR' in derechos}">
+
+                <li class="dropdown-submenu">
+                    <a  href="#">Exportar</a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <g:link action="exportarDatos"  params="[tipo_export:'1',xaccionx:xaccion,titulo:xtitulo]">Todos</g:link>
+                        </li>
+                        <li><g:actionSubmit
+                                onMouseOver="${mover}"
+                                onMouseOut="${mout}"
+                                style="${estilo}"
+                                value="Seleccionados"
+                                action="exportarDatos"
+                                params="[tipo_export:'2']" />
+                        </li>
+
+                    </ul>
+                </li>
+            </g:if>
                     
             </ul>
         </div>

@@ -83,7 +83,7 @@
 
                                  </label>
                                  <div class="controls" > 
-                                     <g:textField name="funcionariosNotificados1" style="width:500px;"  value="${notaInstance?.funcionariosNotificados}" disabled="true" />
+                                     <g:textField name="funcionariosNotificados1" style="width:500px;"  value="${notaInstance?.funcionariosNotificados}" />
                                  </div>
                             </div>
 

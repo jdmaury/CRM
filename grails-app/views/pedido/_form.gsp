@@ -90,7 +90,7 @@
 
         </label>
         <div class="controls" >
-            <g:textField name="numPedido" maxlength="50" value="${pedidoInstance?.numPedido}" disabled="false" readonly="true"/>
+            <g:textField name="numPedido" maxlength="50" value="${pedidoInstance?.numPedido}" disabled="false" id="numPedido" readonly="true"/>
         </div>
     </div>
      <%
@@ -627,6 +627,39 @@ para la fecha de mayo12--> --%>
 
             </div>
 
+            <div class="control-group ${hasErrors(bean: pedidoInstance, field: 'uniSinco', 'error')}  ">
+                <!-- todo control ára unidad SINCO-->
+                <label class="control-label">Unidad SINCO</label>
+                <div class="controls">
+                    <label class="radio">Si   </label>
+                    <input type="radio" name="uniSinco"  value="S"  ${zronly}
+                       ${generalService.checked('S',pedidoInstance?.uniSinco)} >
+
+                    <label class="radio" style="padding-top:5px;">No</label>
+                    <input type="radio" name="uniSinco"  value="N"    ${zronly}
+                    ${generalService.checked('N',pedidoInstance?.uniSinco)}>
+
+                </div>
+
+            </div>
+
+            <div class="control-group ${hasErrors(bean: pedidoInstance, field: 'gerenteProye', 'error')}  ">
+                <!-- todo control para gerente de proyecto -->
+                <label class="control-label">Gerente de proyecto</label>
+                <div class="controls">
+                    <label class="radio">Si   </label>
+                    <input type="radio" name="gerenteProye"  value="S"  ${zronly}
+                        ${generalService.checked('S',pedidoInstance?.gerenteProye)} >
+
+                    <label class="radio" style="padding-top:5px;">No</label>
+                    <input type="radio" name="gerenteProye"  value="N"    ${zronly}
+                        ${generalService.checked('N',pedidoInstance?.gerenteProye)}>
+
+                </div>
+
+            </div>
+
+
             <div class="control-group ${hasErrors(bean: pedidoInstance, field: 'arquitectoSol', 'error')} ">
 
                 <label class="control-label">Arquitecto(s)</label>
@@ -651,13 +684,7 @@ para la fecha de mayo12--> --%>
 			<% String xarqui
             	if (pedidoInstance?.arquitectoSol=='S')  xarqui='block' else xarqui='none'
 			%>
-            
-    
-            
-            
-            
-            
-            
+
             
             <div id="arqui" style="display:${xarqui}" class="control-group ${hasErrors(bean: pedidoInstance, field: 'listaArquitectos', 'error')} ">
                 <label class="control-label" for="listaArquitectos">
@@ -681,7 +708,9 @@ para la fecha de mayo12--> --%>
               			cols="40" rows="3"  class="input-xlarge" disabled="${xronly}"/>
                 </div>
 
-            </div>     
+            </div>
+
+
 
         </div> <%-- fin box conten --%>
 

@@ -1,0 +1,62 @@
+cambio en bd CRM-tabla oportunidades
+nombre del vendedor de Octavio Bustos a Marcela Duque cuando el cliente es 347 (UNE EMP). 
+en total 12 elementos.{id=(4808,5322,5349,6090,6445,6511,6552,6628,6766,6824,7167,7199) toca cambiar el id empleado de 16 a 140.
+--ahora--
+SELECT * FROM crmdev.oportunidades
+WHERE empresa_id = '347' AND 
+nombre_vendedor = 'Marcela Duque';
+--antes--
+SELECT * FROM crmdev.oportunidades
+WHERE empresa_id = '347' AND 
+ombre_vendedor = 'Octavio Bustos';
+
+Cambio de empleado en los pedidos del cliente fondo nacional del ahorro (id=337)
+pedido id= 17,18,19 empleadoid = 32 ---> empleado = 8
+pedido id= 506,1402  empleado=61    ---> empleado = 8
+
+------------------------------------------------------------------------------
+
+Cambio de empleado en los pedidos del cliente RBM (id=455)
+pedido_id= 1091, 1143, 1144, 1289, 1294, 1299, 1313, 1420, 1432, 1440, 1452,
+1453, 1494, 1525, 1538, 1561, 1618, 1692, 1868, 1883, 1900, 1913, 1931, 1963,
+1972, 2012, 2022  empleadoid = 16 ---> empleado_id = 215
+
+------------------------------------------------------------------------------
+Anexo Eliminado
+SELECT * FROM crmdev.anexos
+where id= 36827;
+------------------------------------------------------------------------------
+29/05/2018
+Cambio de estado de pedido id= 2217
+estado anterior: pendiente x facturar= pedpenfac2
+nuevo estado: pendiente x compra= pedpencom3
+-------------------------------------------------------------------------------
+20/06/2018
+Elimados poliza y seguimientos agregados al pedido BOG-0099-18, solicitado por Sandra Bernal.
+Nota Id:13523 
+Anexo Id:38164
+________________________________________________________________________________
+13/07/2018
+Cambio en la OC de producto id=35729
+OC antrrior: SRR-12069;
+OC nueva: OCBO 1020;
+_______________________________________________________________________________
+18/07/2018
+Cambio valor oportunidad id= 7768
+valor USD ant: 1.180.094.8
+valor USD nuevo: 410
+________________________________________________________________________________
+
+
+
+
+
+
+
+
+
+
+
+
+
+

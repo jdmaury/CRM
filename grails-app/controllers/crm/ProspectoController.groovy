@@ -199,7 +199,7 @@ class ProspectoController extends BaseController{
     {	
 		
 		List lista_export=[]
-		//el nombre de los campos fields es como est醤 definidos en la clase dominio
+		//el nombre de los campos fields es como est锟絥 definidos en la clase dominio
         List fields = ["numProspecto","empresa","nombreProspecto","empleado","nombreContacto","valorProspecto","fechaApertura","idEstadoProspecto"]
         Map labels = ["numProspecto": "Codigo", "empresa":"Empresa","nombreProspecto":"Proyecto","empleado":"Vendedor","nombreContacto": "Contacto","valorProspecto":"Valor","fechaApertura":"Fecha Apertura","idEstadoProspecto":"Estado"]
 		
@@ -439,7 +439,7 @@ class ProspectoController extends BaseController{
                     }else sw=1                                
                 })
             if (sw==0)
-            flash.message=message(code:'descalificar.exito.label',default:'Descalificaci髇 ha sido exitosa') //"Descalificaci贸n ha sido exitosa "
+            flash.message=message(code:'descalificar.exito.label',default:'Descalificaci锟絥 ha sido exitosa') //"Descalificaci贸n ha sido exitosa "
             else 
             flash.warning=message(code:'descalificar.error.label',default:'Alguno(s) prospectos no se descalificaron porque no aplica')                     
         }
@@ -465,7 +465,7 @@ class ProspectoController extends BaseController{
                     }else sw=1  
                 })
             if (sw==0)
-            flash.message=message(code:'calificar.exito.label',default:'Calificaci髇 ha sido exitosa')//"Calificaci贸n ha sido exitosa "
+            flash.message=message(code:'calificar.exito.label',default:'Calificaci锟絥 ha sido exitosa')//"Calificaci贸n ha sido exitosa "
             else 
             flash.warning=message(code:'calificar.error.label',default:'Alguno(s) no se calificaron por no estar descalificados')  
         }
@@ -554,6 +554,7 @@ class ProspectoController extends BaseController{
         oportunidadInstance.fechaApertura=new Date()
         oportunidadInstance.idEstadoOportunidad='oporactiva'
         oportunidadInstance.eliminado=0
+        oportunidadInstance.numOportunidadFabricante=prospectoInstance.numOportunidadFabricante
        
         render view:'generarOportunidad', model:[oportunidadInstance:oportunidadInstance,xidprospecto:prospectoInstance?.id, swconvertir:'S']
     }

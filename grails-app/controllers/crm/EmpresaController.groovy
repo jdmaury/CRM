@@ -407,7 +407,8 @@ class EmpresaController extends BaseController{
 
         String nitNoGuion=generalService.formatearNitPedido(params.nit.toString())
         empresaInstance.nit=nitNoGuion
-        if(empresaInstance.nit=="null"){//Modificación agregada el 20/04/2018 Por José Castro para eliminar error al momento de agregar prospectos nuevos
+        //Modificación agregada el 20/04/2018 Por José Castro para eliminar error al momento de agregar prospectos nuevos
+        if(empresaInstance.nit=="null"){
             empresaInstance.nit=null
         }
         empresaInstance.save flush:true

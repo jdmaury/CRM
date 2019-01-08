@@ -1007,7 +1007,7 @@ class PedidoController extends BaseController{
 //JDMAURY 12/08/16
 //------------------CAMPOS PARA REGISTRAR LA CREACION DE PEDIDO EN LOG
 		auditoriaService.logIn('Pedido',pedidoInstance?.id)
-		println "asdjklsakldjlk"
+		println "creado pedido Log"
 //------------------CAMPOS PARA REGISTRAR LA CREACION DE PEDIDO EN LOG
 		
 		
@@ -1410,7 +1410,7 @@ class PedidoController extends BaseController{
 			}
 		}
 
-		
+		f
 		if (falla !=0 ){
 			if (falla==1) flash.warning="Antes de enviar a Revisión debe ingresar al menos un Producto"
 			if (falla==2) flash.warning="Antes de enviar a Revisión debe anexar  inf. cliente nuevo Verifique"
@@ -1482,9 +1482,33 @@ class PedidoController extends BaseController{
 			log.info("Lista de arquitectos ${listaArqui} notificados para el pedido ${pedidoInstance.numPedido}")
 		}		
 //----------------NOTIFICAR ARQUITECTO DE SOLUCIONES-------------------------
-		
 
-		
+// ----------------NOTIFICAR GERENTE DE PROYECTOS----------------------------
+		//TODO LUEGO EVALUAR EL COMO ASIGNAR POR EL GERENTE DE PROYECTOS
+		//def gproy= []
+		if(pedidoInstance.gerenteProye=='S')
+		{
+			println "Check gerente proyecto activado"
+			String proyecto=pedidoInstance.oportunidad.nombreOportunidad
+			def query=ValorParametro.where{idValorParametro=="gerproye01"}
+			def correo=[query.find().descValParametro?:'auditorcorreocrm@redsis.com']
+
+			println "preparando correo al Gerente " + correo
+			//gproy.add(correo)
+
+			String asunto="Asignar Gerente de Proyecto al pedido ${pedidoInstance.numPedido} - ${pedidoInstance.nombreCliente}"
+			String masInfo="Para visualizar el pedido o realizar seguimientos al mismo haga clic <a href='${urlbase}/pedido/show/${pedidoInstance.id}'> AQUI </a>"
+			String cuerpo="<b>Cliente: </b>${pedidoInstance.nombreCliente}<br><b>Proyecto: </b>${proyecto}<br><b>Valor: </b>${pedidoInstance.valorPedido} <br><br>${masInfo}" +
+					"<br><br>Asignar Gerente <a href='${urlbase}/pedido/modificaGerenteProye/${pedidoInstance.id}'>AQUI</a>"
+			generalService.enviarCorreo(1,correo,asunto,cuerpo)
+			println "Correo enviado al Gerente Proyecto!"
+
+			//List listaGProye=new ArrayList<String>(Arrays.asList(pedidoInstance.listaGerenteProye.split(",")));//
+			//generalService.notificarArquitectos(listaGProye,pedidoInstance.numPedido)
+			log.info("Lista de Gproyectos ${correo} notificados para el pedido ${pedidoInstance.numPedido}")
+		}
+//----------------NOTIFICAR GERENTE DE PROYECTO-------------------------
+
 		flash.message="Pedido enviado y notificado al área financiera"
 		redirect url:"/pedido/index?sort=fechaApertura&order=desc"
 	}
@@ -1501,7 +1525,7 @@ class PedidoController extends BaseController{
 		
 		
 		
-		def creadorPedidoLogId=EncLog.executeQuery("Select el.usuario.empleado.id from EncLog as el where el.idEntidad=${pedidoInstance.id} and el.idTipoLog='enclogcrea'")
+		def creadorPedidoLogId=EncLog.executeQuery("Select el.usuario.empleado.id from EncLog as el where el.idEntidad=${pedidoInstance.id} and el.idTipoLog='enclogcrea' and el.nomEntidad='Pedido'")
 		def correoCreador=generalService.traerCorreoEmpleado(creadorPedidoLogId[0])
 		def correoVendedor=generalService.traerCorreoEmpleado(pedidoInstance.empleado.id.toLong())
 		
@@ -1614,6 +1638,18 @@ class PedidoController extends BaseController{
 		def pedidoInstance=Pedido.get(params.id)
 		render view:"autorizarPedido", model:[pedidoInstance:pedidoInstance]
 	}
+	def modificaGerenteProye(){
+		def pedidoInstance=Pedido.get(params.id)
+		render view:"modificaGProyecto", model:[pedidoInstance:pedidoInstance]
+	}
+	@Transactional  //modificaGerenteProyeDef
+	def modificaGerenteProyeDef(Pedido pedidoInstance){
+		pedidoInstance.listaGerenteProye=params.gproyec
+		//println "Gerente Proyecto asignado " +  pedidoInstance.listaGerenteProye
+		pedidoInstance.save()
+		flash.message="el gerente de proyecto fue agregado correctamente al pedido"
+		redirect url:"/pedido/index?sort=fechaApertura&order=desc"
+	}
 	
 	@Transactional  //autorizarCambioPedidoDef
 	def autorizarCambioPedidoDef(Pedido pedidoInstance){
@@ -1714,7 +1750,7 @@ class PedidoController extends BaseController{
 		def xdireccionEmpresa
 		def xnitEmpresa
 		def xnitEmpresaFacturar                                                         //AGREGADO JD
-		
+
 		if (pedidoInstance?.empresaId){
 		   xdireccionEmpresa=Empresa.get(pedidoInstance?.empresaId).direccion
 		   xnitEmpresa = Empresa.get(pedidoInstance?.empresaId).nit
@@ -1771,8 +1807,8 @@ class PedidoController extends BaseController{
 		//-------------------------------------CORRECCION TOTAL-------------------------------
 		
 		def anioPedido=pedidoInstance.numPedido.toString().split("-")[2]
-		if(anioPedido=="17"||anioPedido=="18")
-
+		println "Anio pedido:________________________________________________"+ anioPedido
+		if(anioPedido=="17"||anioPedido=="18"||anioPedido=="19")
 			xiva=0.19*(xsubtotal-xdescuento)		
 			
 		def listaPed16Iva19=generalService.getValorParametro('ped16iva19').toString().split(",")			

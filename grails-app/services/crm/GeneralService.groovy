@@ -191,7 +191,7 @@ class GeneralService {
 			println "LISTA DE CORREOS CON SW=1 "+xto
         }
         if (xto != null) {
-            try {            
+            try {
 				sendMail {
 				async true
 				to  xto.toArray()
@@ -477,6 +477,12 @@ class GeneralService {
                                and u.eliminado=0
                                order by e.primerNombre,e.primerApellido"""
         def res=Empleado.executeQuery(query)
+        return res
+    }
+    def getGProyectos(){
+        String query="""select v from ValorParametro v
+                        where idParametro = 'gproyecto'"""
+        def res=ValorParametro.executeQuery(query)
         return res
     }
     
@@ -2396,51 +2402,74 @@ class GeneralService {
 	 
 	 def notificarArquitectos(List listaArquitectos, String numPedido)// PARA NOTIFICAR A LOS ARQUITECTOS QUE FIGURAN COMO RESPONSABLE DE UN PEDIDO
 	 {
-         // todo falta agregar las notificaciones al señor alessio cuando se le asigne un pedido alguno de sus arquitectos
+         listaArquitectos.each {
+             println "ITERACION MM "+it
+             String arquitecto=it
+             Pedido pedido=Pedido.findByNumPedido(numPedido)
+             String nombreCliente=pedido.nombreCliente
+             String proyecto=pedido.oportunidad.nombreOportunidad
+             def valorPedido
+             String moneda
+             String urlbase=getValorParametro('urlaplic')
+
+             if(pedido.idTipoPrecio.equals("pedtprec01")&& pedido.valorPedido!=null)
+             {
+                 valorPedido=pedido.valorPedido
+                 moneda="COP"
+             }
+             else
+             {
+                 if(pedido.idTipoPrecio.equals("pedtprec02")&& pedido.valorPedido!=null)
+                 {
+                     if(pedido.trm!=0)
+                     {
+                         valorPedido=pedido.valorPedido/pedido.trm
+                         moneda="USD"
+                     }
+                     else
+                         valorPedido=pedido.valorPedido
+                 }
+             }
+             println "Envio de correo arquitecto"
+             def query=ValorParametro.where{idValorParametro==arquitecto}
+             def correo=[query.find().descValParametro?:'auditorcorreocrm@redsis.com']
+             println "Correo del arquitecto seleccionado: ${correo}"
+             //todo perfeccionado para tomar los arquitectos por paramatros
+             /*def query2 = ValorParametro.where {valor==arquitecto}
+             if (query2[0] != null) { // Se valida que exista concordancia en la otra lista y se agrega el correo al que se le va a copiar el correo
+                 def arqAle = [query2.find().valor ?: arquitecto]
+                 println "Consulta de Arquitecto en valor parametro: ${arqAle}"
+                 println "El Arquitecto es: ${arquitecto}"
+                 if (arquitecto == arqAle[0]) {
+                     println("Si concuerdan los arquitectos, agrego a Alessio para copia adimare@redsis.com")
+                     //def email= [query2.find().descValParametro?:'auditorcorreocrm@redsis.com']
+                     String c = query2.find().descValParametro ?: 'auditorcorreocrm@redsis.com'
+                     println "Consulta de Correo Valor: ${c}"
+                     correo.add(c)
+
+
+                 }
+             }*/
+             if (arquitecto == "pedarqui14" || arquitecto == "pedarqui25" || arquitecto == "pedarqui10" || arquitecto == "pedarqui28"
+                     || arquitecto == "pedarqui16" || arquitecto == "pedarqui94" || arquitecto == "pedarqui07" || arquitecto == "pedarqui09"
+                     || arquitecto == "pedarqui95" || arquitecto == "pedarqui93" || arquitecto == "pedarqui08" || arquitecto == "pedarqui20"){
+                 //Empanada para notificar al señor Alessio de los proyectos que tengan sus coequiperos. (José Castro)
+                 correo.add("adimare@redsis.com")
+                 }
+             //Empanada para notificar a Jazmin de los proyectos que tenga ingenieria junto con el seño Marlon. (José Castro)
+
+             if (arquitecto == "pedarqui22") correo.add("jrebolledo@redsis.com")
+
+             String asunto="Usted ha sido agregado como arquitecto de soluciones al pedido numero ${numPedido} - ${nombreCliente}"
+             String masInfo="Para visualizar el pedido o realizar seguimientos al mismo haga clic <a href='${urlbase}/pedido/show/${pedido.id}'> AQUI </a>"
+
+             String cuerpo="<b>Cliente: </b>${nombreCliente}<br><b>Proyecto: </b>${proyecto}<br><b>Valor: </b>${valorPedido} ${moneda}<br><br>${masInfo}"
+
+             println "El correo Arquitecto es "+ correo
+             enviarCorreo(1,correo,asunto,cuerpo)
+         }
          println "LISTA DE ARQUITECTOS "+listaArquitectos
-		 println "NUM PEDIDO RECIBIDO "+numPedido
-		 String urlbase=getValorParametro('urlaplic')
-		 listaArquitectos.each {			 
-			 println "ITERACION MM "+it
-			 String arquitecto=it
-			 Pedido pedido=Pedido.findByNumPedido(numPedido)
-			 String nombreCliente=pedido.nombreCliente
-			 String proyecto=pedido.oportunidad.nombreOportunidad
-			 def valorPedido
-			 String moneda
-			 
-			 if(pedido.idTipoPrecio.equals("pedtprec01")&& pedido.valorPedido!=null)
-			 {
-					valorPedido=pedido.valorPedido
-					moneda="COP"
-			 }
-			 else
-			 {
-				 if(pedido.idTipoPrecio.equals("pedtprec02")&& pedido.valorPedido!=null)
-				 {
-					 if(pedido.trm!=0)
-					 {
-					   valorPedido=pedido.valorPedido/pedido.trm
-					   moneda="USD"
-					 }
-					 else
-					   valorPedido=pedido.valorPedido
-				 }
-			 }
-			 
-			 def query=ValorParametro.where{idValorParametro==arquitecto}
-			 def correo=[query.find().descValParametro?:'auditorcorreocrm@redsis.com']
-			 
-			 String asunto="Usted ha sido agregado como arquitecto de soluciones al pedido numero ${numPedido} - ${nombreCliente}"
-			 String masInfo="Para visualizar el pedido o realizar seguimientos al mismo haga clic <a href='${urlbase}/pedido/show/${pedido.id}'> AQUI </a>"
-			 
-			 String cuerpo="<b>Cliente: </b>${nombreCliente}<br><b>Proyecto: </b>${proyecto}<br><b>Valor: </b>${valorPedido} ${moneda}<br><br>${masInfo}"
-			 
-			 
-			 //correo = correo + "adimare@redsis.com;jdcastro@redsis.com"
-			 println "El correo es "+correo //;adimare@redsis.com;jdcastro@redsis.com"
-			 enviarCorreoArq(1,correo,asunto,cuerpo)
-		 }
+         println "NUM PEDIDO RECIBIDO "+numPedido
 	 }
 	 
 	 def crearVencimientoDetPedido()//CREAR VENCIMIENTO A PARTIR DE DET PEDIDO

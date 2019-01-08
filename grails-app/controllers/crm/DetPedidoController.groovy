@@ -62,7 +62,7 @@ class DetPedidoController extends BaseController{
 		//-------------------------------------CORRECCION TOTAL-------------------------------
 		def anioPedido=pedidoInstance.numPedido.toString().split("-")[2]
 		
-		if(anioPedido=="17"||anioPedido=="18")			
+		if(anioPedido=="17"||anioPedido=="18"||anioPedido=="19")
 			xpiva=Double.parseDouble(generalService.getValorParametro('iva2017').toString())
 			
 		def listaPed16Iva19=generalService.getValorParametro('ped16iva19').toString().split(",")

@@ -87,8 +87,7 @@
         </label>
         <div class="controls" > 
             <g:textField name="numOportunidadFabricante" maxlength="50" 
-            value="${oportunidadInstance?.numOportunidadFabricante}" 
-                readonly="" />
+            value="${oportunidadInstance?.numOportunidadFabricante}"/>
         </div>
     </div>
     <div class="control-group">
@@ -117,7 +116,6 @@
         <div class="controls" >
 
             <div class="controls input-append date form_date" id="fecha"       
-            <div class="controls input-append date form_date" id="fecha"
             data-date-format="dd-mm-yyyy" style="margin-left:0px;">
             <input type="text" name="fechaCierreEstimada" id="op_fechac"
             value="${g.formatDate(format:'dd-MM-yyyy',date:oportunidadInstance?.fechaCierreEstimada)}"

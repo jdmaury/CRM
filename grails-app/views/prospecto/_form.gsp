@@ -81,10 +81,12 @@
 	    <label class="control-label">
 		    <g:message code="oportunidad.numOportunidadFabricante.label" default="Num Oportunidad Fabricante" />		
 	    </label>	    
-	    <div class="controls" style="padding:4px; border:solid;border-color:#ccc;border-width:1px;border-radius:5px;width:275px;min-height:21px;background-color:#EEE;" >
-	    	<g:if test="${prospectoInstance.oportunidad!=null}">
-	    		<% println "${oportunidadService?.getNumRegistros(prospectoInstance.oportunidad.id[0])}" %>
-	    	</g:if>
+	    <div class="controls" >
+            <g:textField name="numOportunidadFabricante" value="${fieldValue(bean: prospectoInstance, field: 'numOportunidadFabricante')}" disabled="${xronly}" maxlength="50" class="input-xlarge" />
+
+           <%-- <g:if test="${prospectoInstance.oportunidad!=null}"  disabled="${xronly}">
+                <% println "${oportunidadService?.getNumRegistros(prospectoInstance.oportunidad.id[0])}"%>
+	    	</g:if> --%>
 	    	
 	    </div>    
     </div>

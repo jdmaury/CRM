@@ -21,6 +21,7 @@ class Prospecto {
     Byte eliminado    
     String trimestre
     Long  estrategiaId
+    String numOportunidadFabricante
     
     static auditable = [handlersOnly:true]
     
@@ -59,6 +60,7 @@ class Prospecto {
         trimestre              nullable: true, maxSize: 2
         evolucion              nullable: true, maxSize: 2
         eliminado              defaultValue:0
+        numOportunidadFabricante nullable: true, maxSize:100
        
             
     }

@@ -656,8 +656,7 @@ class PedidoService {
 	}
     
      @Transactional //cerrarPedidoPorCompras automaticamente y notifica 
-    def cerrarPedidoPorCompras(idpedido){
-        println "Listo entre al servicio cerrar pedido por compra Id pedido="
+    def cerrarPedidoPorCompras(idpedido){//todo verificar el cambio de estado luego de modificar por compras req=67 JD
         println idpedido
         def pedidoInstance=Pedido.get(idpedido)
         String query
@@ -677,12 +676,14 @@ class PedidoService {
         def swnoti=0
         
         if (numProcesados[0]==numTotal[0] && numTotal[0] > 0){
-            pedidoInstance.idEstadoPedido='pedpenfac2' // pedido cerrado por compras           
-            pedidoInstance.save()
-            swnoti=1
+            if(pedidoInstance?.idEstadoPedido == 'pedpencom3') {
+                pedidoInstance.idEstadoPedido = 'pedpenfac2' // pedido cerrado por compras
+                pedidoInstance.save()
+                swnoti = 1
+            }
         } else {
             if (pedidoInstance?.facturacionParcial=='S'){
-                pedidoInstance.idEstadoPedido='pedpenfp23' // Pedido pendiente por facturar               
+                pedidoInstance.idEstadoPedido='pedpenfp23' // Pedido pendiente por facturar
                 swnoti=1
             }
         }

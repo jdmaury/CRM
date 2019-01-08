@@ -1,14 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="584e527c-aaf1-4913-aa1f-98114319beb6" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/grails-app/views/anexo/indexo.gsp" />
+    <list default="true" id="584e527c-aaf1-4913-aa1f-98114319beb6" name="Default" comment="cambios Agregado anexos a oportunidades JCastro">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web-app/Archivos/Chrysanthemum-31357.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web-app/Archivos/Chrysanthemum-31359.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web-app/Archivos/Desert-31358.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web-app/Archivos/GUI-31348.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web-app/Archivos/GUI-31349.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web-app/Archivos/GUI-31350.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web-app/Archivos/Heat2-31345.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web-app/Archivos/Heat5-31344.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web-app/Archivos/IMG_20180608_092941-31343.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web-app/Archivos/Cambio CRM-31352.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.slcache/.index" afterPath="$PROJECT_DIR$/.slcache/.index" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/controllers/crm/AnexoController.groovy" afterPath="$PROJECT_DIR$/grails-app/controllers/crm/AnexoController.groovy" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/controllers/crm/DetPedidoController.groovy" afterPath="$PROJECT_DIR$/grails-app/controllers/crm/DetPedidoController.groovy" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/controllers/crm/EmpresaController.groovy" afterPath="$PROJECT_DIR$/grails-app/controllers/crm/EmpresaController.groovy" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/controllers/crm/OportunidadController.groovy" afterPath="$PROJECT_DIR$/grails-app/controllers/crm/OportunidadController.groovy" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/controllers/crm/PedidoController.groovy" afterPath="$PROJECT_DIR$/grails-app/controllers/crm/PedidoController.groovy" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/controllers/crm/ProspectoController.groovy" afterPath="$PROJECT_DIR$/grails-app/controllers/crm/ProspectoController.groovy" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/domain/crm/Pedido.groovy" afterPath="$PROJECT_DIR$/grails-app/domain/crm/Pedido.groovy" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/domain/crm/Prospecto.groovy" afterPath="$PROJECT_DIR$/grails-app/domain/crm/Prospecto.groovy" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/services/crm/GeneralService.groovy" afterPath="$PROJECT_DIR$/grails-app/services/crm/GeneralService.groovy" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/services/crm/OportunidadService.groovy" afterPath="$PROJECT_DIR$/grails-app/services/crm/OportunidadService.groovy" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/services/crm/PedidoService.groovy" afterPath="$PROJECT_DIR$/grails-app/services/crm/PedidoService.groovy" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/views/layouts/_acciones_r.gsp" afterPath="$PROJECT_DIR$/grails-app/views/layouts/_acciones_r.gsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/views/oportunidad/_form.gsp" afterPath="$PROJECT_DIR$/grails-app/views/oportunidad/_form.gsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/views/oportunidad/_formh.gsp" afterPath="$PROJECT_DIR$/grails-app/views/oportunidad/_formh.gsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/views/oportunidad/indexg.gsp" afterPath="$PROJECT_DIR$/grails-app/views/oportunidad/indexg.gsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/views/oportunidad/perdidas.gsp" afterPath="$PROJECT_DIR$/grails-app/views/oportunidad/perdidas.gsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/views/pedido/_form.gsp" afterPath="$PROJECT_DIR$/grails-app/views/pedido/_form.gsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/views/pedido/devolverPedido.gsp" afterPath="$PROJECT_DIR$/grails-app/views/pedido/devolverPedido.gsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/views/producto/_form.gsp" afterPath="$PROJECT_DIR$/grails-app/views/producto/_form.gsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/views/prospecto/_form.gsp" afterPath="$PROJECT_DIR$/grails-app/views/prospecto/_form.gsp" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$USER_HOME$/.grails/" />
@@ -34,21 +58,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="OportunidadController.groovy" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/grails-app/controllers/crm/OportunidadController.groovy">
+      <file leaf-file-name="ValorParametro.groovy" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/grails-app/domain/crm/ValorParametro.groovy">
+          <provider editor-type-id="org.jetbrains.plugins.grails.perspectives.DomainClassesRelationsEditorProvider">
+            <state />
+          </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="24" column="24" lean-forward="true" selection-start-line="24" selection-start-column="24" selection-end-line="24" selection-end-column="24" />
+            <state relative-caret-position="17">
+              <caret line="1" column="6" lean-forward="false" selection-start-line="1" selection-start-column="6" selection-end-line="1" selection-end-column="6" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="_form.gsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/grails-app/views/oportunidad/_form.gsp">
+      <file leaf-file-name="devolverPedido.gsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/grails-app/views/pedido/devolverPedido.gsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="412" column="105" lean-forward="false" selection-start-line="412" selection-start-column="105" selection-end-line="412" selection-end-column="105" />
+            <state relative-caret-position="1207">
+              <caret line="71" column="198" lean-forward="false" selection-start-line="71" selection-start-column="48" selection-end-line="71" selection-end-column="198" />
               <folding />
             </state>
           </provider>
@@ -57,14 +84,12 @@
       <file leaf-file-name="PedidoController.groovy" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/grails-app/controllers/crm/PedidoController.groovy">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="34" column="24" lean-forward="true" selection-start-line="34" selection-start-column="24" selection-end-line="34" selection-end-column="24" />
+            <state relative-caret-position="527">
+              <caret line="1649" column="77" lean-forward="false" selection-start-line="1649" selection-start-column="77" selection-end-line="1649" selection-end-column="77" />
               <folding>
                 <element signature="e#1759#1877#0" expanded="false" />
                 <element signature="e#2173#2269#0" expanded="false" />
                 <element signature="e#2313#2439#0" expanded="false" />
-                <element signature="e#2443#5241#0" expanded="false" />
-                <element signature="e#2465#5237#0" expanded="false" />
                 <element signature="e#2498#3941#0" expanded="false" />
                 <element signature="e#2837#3868#0" expanded="false" />
                 <element signature="e#3273#3393#0" expanded="false" />
@@ -73,7 +98,6 @@
                 <element signature="e#4001#4585#0" expanded="false" />
                 <element signature="e#4617#4720#0" expanded="false" />
                 <element signature="e#4756#4880#0" expanded="false" />
-                <element signature="e#4912#5231#0" expanded="false" />
                 <element signature="e#5887#6150#0" expanded="false" />
                 <element signature="e#7048#7225#0" expanded="false" />
                 <element signature="n#!!block;n#indexn#0;n#!!block;n#PedidoController#0" expanded="false" />
@@ -125,9 +149,7 @@
                 <element signature="n#!!block;n#indexp#0;n#!!block;n#PedidoController#0" expanded="false" />
                 <element signature="e#24472#24561#0" expanded="false" />
                 <element signature="n#!!block;n#listarBorrados#0;n#!!block;n#PedidoController#0" expanded="false" />
-                <element signature="n#!!block;n#borrar#0;n#!!block;n#PedidoController#0" expanded="false" />
                 <element signature="e#25862#25891#0" expanded="false" />
-                <element signature="n#!!block;n#show#0;n#!!block;n#PedidoController#0" expanded="false" />
                 <element signature="e#26320#26349#0" expanded="false" />
                 <element signature="e#26980#27124#0" expanded="false" />
                 <element signature="e#27151#27298#0" expanded="false" />
@@ -143,196 +165,167 @@
                 <element signature="e#30028#30107#0" expanded="false" />
                 <element signature="e#30145#31379#0" expanded="false" />
                 <element signature="e#30661#31375#0" expanded="false" />
-                <element signature="e#32239#32585#0" expanded="false" />
                 <element signature="e#32608#33068#0" expanded="false" />
                 <element signature="e#32749#32976#0" expanded="false" />
-                <element signature="e#34294#34933#0" expanded="false" />
-                <element signature="e#34438#34929#0" expanded="false" />
-                <element signature="e#34987#35793#0" expanded="false" />
-                <element signature="e#35132#35788#0" expanded="false" />
-                <element signature="e#36000#37016#0" expanded="false" />
-                <element signature="e#36645#37012#0" expanded="false" />
-                <element signature="n#!!block;n#delete#0;n#!!block;n#PedidoController#0" expanded="false" />
-                <element signature="e#37224#37253#0" expanded="false" />
-                <element signature="e#37313#37552#0" expanded="false" />
-                <element signature="e#37323#37511#0" expanded="false" />
+                <element signature="e#34297#34936#0" expanded="false" />
+                <element signature="e#34441#34932#0" expanded="false" />
+                <element signature="e#37227#37256#0" expanded="false" />
+                <element signature="e#37326#37514#0" expanded="false" />
                 <element signature="n#!!block;n#notFound#0;n#!!block;n#PedidoController#0" expanded="false" />
-                <element signature="e#37607#37847#0" expanded="false" />
-                <element signature="e#37617#37807#0" expanded="false" />
-                <element signature="n#!!block;n#generarPedido#0;n#!!block;n#PedidoController#0" expanded="false" />
-                <element signature="e#37940#38251#0" expanded="false" />
+                <element signature="e#37610#37850#0" expanded="false" />
+                <element signature="e#37620#37810#0" expanded="false" />
+                <element signature="e#37943#38254#0" expanded="false" />
                 <element signature="n#!!block;n#anularPedido#0;n#!!block;n#PedidoController#0" expanded="false" />
-                <element signature="e#39078#39148#0" expanded="false" />
-                <element signature="e#39177#39568#0" expanded="false" />
-                <element signature="e#39314#39396#0" expanded="false" />
-                <element signature="e#39413#39564#0" expanded="false" />
-                <element signature="e#39578#39713#0" expanded="false" />
-                <element signature="n#!!block;n#anularPedidoDef#0;n#!!block;n#PedidoController#0" expanded="false" />
+                <element signature="e#39081#39151#0" expanded="false" />
+                <element signature="e#39180#39571#0" expanded="false" />
+                <element signature="e#39317#39399#0" expanded="false" />
+                <element signature="e#39416#39567#0" expanded="false" />
+                <element signature="e#39581#39716#0" expanded="false" />
                 <element signature="n#!!block;n#cambiarDestinatarioFactura#0;n#!!block;n#PedidoController#0" expanded="false" />
-                <element signature="e#41355#41631#0" expanded="false" />
-                <element signature="e#41418#41543#0" expanded="false" />
-                <element signature="e#41548#41627#0" expanded="false" />
-                <element signature="e#41635#41757#0" expanded="false" />
+                <element signature="e#41358#41634#0" expanded="false" />
+                <element signature="e#41421#41546#0" expanded="false" />
+                <element signature="e#41551#41630#0" expanded="false" />
+                <element signature="e#41638#41760#0" expanded="false" />
                 <element signature="n#!!block;n#cambiarDestinatarioFacturaDef#0;n#!!block;n#PedidoController#0" expanded="false" />
                 <element signature="n#!!block;n#cambiarEstadoPedido#0;n#!!block;n#PedidoController#0" expanded="false" />
-                <element signature="e#42093#42434#0" expanded="false" />
-                <element signature="e#42870#43177#0" expanded="false" />
-                <element signature="e#42933#43058#0" expanded="false" />
-                <element signature="e#43062#43173#0" expanded="false" />
-                <element signature="e#43181#43303#0" expanded="false" />
+                <element signature="e#42096#42437#0" expanded="false" />
+                <element signature="e#42873#43180#0" expanded="false" />
+                <element signature="e#42936#43061#0" expanded="false" />
+                <element signature="e#43065#43176#0" expanded="false" />
+                <element signature="e#43184#43306#0" expanded="false" />
                 <element signature="n#!!block;n#cambiarEstadoPedidoDef#0;n#!!block;n#PedidoController#0" expanded="false" />
-                <element signature="e#43435#43710#0" expanded="false" />
+                <element signature="e#43438#43713#0" expanded="false" />
                 <element signature="n#!!block;n#cambiarOportunidad#0;n#!!block;n#PedidoController#0" expanded="false" />
-                <element signature="e#43936#44211#0" expanded="false" />
-                <element signature="e#43999#44124#0" expanded="false" />
-                <element signature="e#44128#44207#0" expanded="false" />
-                <element signature="e#44215#44337#0" expanded="false" />
+                <element signature="e#43939#44214#0" expanded="false" />
+                <element signature="e#44002#44127#0" expanded="false" />
+                <element signature="e#44131#44210#0" expanded="false" />
+                <element signature="e#44218#44340#0" expanded="false" />
                 <element signature="n#!!block;n#cambiarOportunidadDef#0;n#!!block;n#PedidoController#0" expanded="false" />
                 <element signature="n#!!block;n#CambiarVendedor#0;n#!!block;n#PedidoController#0" expanded="false" />
-                <element signature="e#44643#45116#0" expanded="false" />
-                <element signature="e#44706#44802#0" expanded="false" />
-                <element signature="e#44806#45112#0" expanded="false" />
-                <element signature="e#45120#45242#0" expanded="false" />
+                <element signature="e#44646#45119#0" expanded="false" />
+                <element signature="e#44709#44805#0" expanded="false" />
+                <element signature="e#44809#45115#0" expanded="false" />
+                <element signature="e#45123#45245#0" expanded="false" />
                 <element signature="n#!!block;n#cambiarVendedorDef#0;n#!!block;n#PedidoController#0" expanded="false" />
-                <element signature="e#45367#45440#0" expanded="false" />
-                <element signature="e#46477#46570#0" expanded="false" />
-                <element signature="e#46580#47116#0" expanded="false" />
-                <element signature="e#46622#46763#0" expanded="false" />
-                <element signature="e#46775#47112#0" expanded="false" />
-                <element signature="e#46938#47107#0" expanded="false" />
-                <element signature="e#47138#48059#0" expanded="false" />
-                <element signature="e#47871#47985#0" expanded="false" />
-                <element signature="e#49815#50398#0" expanded="false" />
-                <element signature="n#!!block;n#devolverAVendedor#0;n#!!block;n#PedidoController#0" expanded="false" />
-                <element signature="n#!!block;n#devolverAVendedorDef#0;n#!!block;n#PedidoController#0" expanded="false" />
+                <element signature="e#45370#45443#0" expanded="false" />
                 <element signature="n#!!block;n#asignarACompras#0;n#!!block;n#PedidoController#0" expanded="false" />
                 <element signature="n#!!block;n#aplicarDescuento#0;n#!!block;n#PedidoController#0" expanded="false" />
-                <element signature="e#54752#55027#0" expanded="false" />
-                <element signature="e#54815#54940#0" expanded="false" />
-                <element signature="e#54944#55023#0" expanded="false" />
-                <element signature="e#55031#55153#0" expanded="false" />
+                <element signature="e#56331#56606#0" expanded="false" />
+                <element signature="e#56394#56519#0" expanded="false" />
+                <element signature="e#56523#56602#0" expanded="false" />
+                <element signature="e#56610#56732#0" expanded="false" />
                 <element signature="n#!!block;n#aplicarDescuentoDef#0;n#!!block;n#PedidoController#0" expanded="false" />
-                <element signature="n#!!block;n#cerrarPedido#0;n#!!block;n#PedidoController#0" expanded="false" />
-                <element signature="e#55684#55808#0" expanded="false" />
-                <element signature="e#55813#55893#0" expanded="false" />
-                <element signature="n#!!block;n#autorizarCambioPedidoDef#0;n#!!block;n#PedidoController#0" expanded="false" />
+                <element signature="e#57392#57472#0" expanded="false" />
                 <element signature="n#!!block;n#resetCambioPedido#0;n#!!block;n#PedidoController#0" expanded="false" />
                 <element signature="n#!!block;n#facturacionParcial#0;n#!!block;n#PedidoController#0" expanded="false" />
-                <element signature="e#57042#57168#0" expanded="false" />
-                <element signature="e#57173#57255#0" expanded="false" />
+                <element signature="e#59158#59284#0" expanded="false" />
+                <element signature="e#59289#59371#0" expanded="false" />
                 <element signature="n#!!block;n#moverPedido#0;n#!!block;n#PedidoController#0" expanded="false" />
-                <element signature="e#57415#57699#0" expanded="false" />
-                <element signature="e#57480#57606#0" expanded="false" />
-                <element signature="e#57615#57695#0" expanded="false" />
-                <element signature="e#57703#57826#0" expanded="false" />
+                <element signature="e#59531#59815#0" expanded="false" />
+                <element signature="e#59596#59722#0" expanded="false" />
+                <element signature="e#59731#59811#0" expanded="false" />
+                <element signature="e#59819#59942#0" expanded="false" />
                 <element signature="n#!!block;n#moverPedidoDef#0;n#!!block;n#PedidoController#0" expanded="false" />
                 <element signature="n#!!block;n#actualizarIndicadores#0;n#!!block;n#PedidoController#0" expanded="false" />
-                <element signature="e#59780#60017#0" expanded="false" />
-                <element signature="e#60022#60073#0" expanded="false" />
-                <element signature="e#60617#60741#0" expanded="false" />
-                <element signature="e#60801#60894#0" expanded="false" />
+                <element signature="e#62731#62855#0" expanded="false" />
                 <element signature="n#!!block;n#titulos#0;n#!!block;n#PedidoController#0" expanded="false" />
-                <element signature="e#63698#63882#0" expanded="false" />
-                <element signature="e#63928#64008#0" expanded="false" />
+                <element signature="e#65914#66098#0" expanded="false" />
+                <element signature="e#66144#66224#0" expanded="false" />
                 <element signature="n#!!block;n#updateFilterLength#0;n#!!block;n#PedidoController#0" expanded="false" />
                 <element signature="n#!!block;n#todosLosPedidos#0;n#!!block;n#PedidoController#0" expanded="false" />
-                <element signature="e#65988#66114#0" expanded="false" />
-                <element signature="e#69816#71464#0" expanded="false" />
-                <element signature="e#70974#71175#0" expanded="false" />
-                <element signature="e#71179#71338#0" expanded="false" />
-                <element signature="e#73943#75801#0" expanded="false" />
-                <element signature="e#75119#75321#0" expanded="false" />
-                <element signature="e#75325#75485#0" expanded="false" />
-                <element signature="e#75601#75693#0" expanded="false" />
-                <element signature="e#79387#82703#0" expanded="false" />
-                <element signature="e#80569#80991#0" expanded="false" />
-                <element signature="e#80995#81375#0" expanded="false" />
-                <element signature="e#81704#82101#0" expanded="false" />
-                <element signature="e#82494#82586#0" expanded="false" />
-                <element signature="e#85448#87384#0" expanded="false" />
-                <element signature="e#86678#86883#0" expanded="false" />
-                <element signature="e#86887#87047#0" expanded="false" />
-                <element signature="e#87163#87264#0" expanded="false" />
-                <element signature="e#90142#92093#0" expanded="false" />
-                <element signature="e#91378#91583#0" expanded="false" />
-                <element signature="e#91587#91747#0" expanded="false" />
-                <element signature="e#91869#91973#0" expanded="false" />
+                <element signature="e#68204#68330#0" expanded="false" />
+                <element signature="e#72032#73680#0" expanded="false" />
+                <element signature="e#73190#73391#0" expanded="false" />
+                <element signature="e#73395#73554#0" expanded="false" />
+                <element signature="e#76159#78017#0" expanded="false" />
+                <element signature="e#77335#77537#0" expanded="false" />
+                <element signature="e#77541#77701#0" expanded="false" />
+                <element signature="e#77817#77909#0" expanded="false" />
+                <element signature="e#81603#84919#0" expanded="false" />
+                <element signature="e#82785#83207#0" expanded="false" />
+                <element signature="e#83211#83591#0" expanded="false" />
+                <element signature="e#83920#84317#0" expanded="false" />
+                <element signature="e#84710#84802#0" expanded="false" />
+                <element signature="e#87664#89600#0" expanded="false" />
+                <element signature="e#88894#89099#0" expanded="false" />
+                <element signature="e#89103#89263#0" expanded="false" />
+                <element signature="e#89379#89480#0" expanded="false" />
+                <element signature="e#92358#94309#0" expanded="false" />
+                <element signature="e#93594#93799#0" expanded="false" />
+                <element signature="e#93803#93963#0" expanded="false" />
+                <element signature="e#94085#94189#0" expanded="false" />
                 <element signature="n#!!block;n#detenidoEnCompras#0;n#!!block;n#PedidoController#0" expanded="false" />
-                <element signature="e#92448#92657#0" expanded="false" />
-                <element signature="e#94148#94555#0" expanded="false" />
+                <element signature="e#94664#94873#0" expanded="false" />
+                <element signature="e#96364#96771#0" expanded="false" />
                 <element signature="n#!!block;n#informacionSiesa#0;n#!!block;n#PedidoController#0" expanded="false" />
-                <element signature="n#!!block;n#informacionSiesaDef#0;n#!!block;n#PedidoController#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SeguridadService.groovy" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/grails-app/services/crm/SeguridadService.groovy">
+      <file leaf-file-name="Pedido.groovy" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/grails-app/domain/crm/Pedido.groovy">
+          <provider editor-type-id="org.jetbrains.plugins.grails.perspectives.DomainClassesRelationsEditorProvider">
+            <state />
+          </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="118" column="29" lean-forward="true" selection-start-line="118" selection-start-column="29" selection-end-line="118" selection-end-column="29" />
+            <state relative-caret-position="918">
+              <caret line="54" column="29" lean-forward="false" selection-start-line="54" selection-start-column="12" selection-end-line="54" selection-end-column="29" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="OportunidadService.groovy" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/grails-app/services/crm/OportunidadService.groovy">
+      <file leaf-file-name="show.gsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/grails-app/views/pedido/show.gsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3893">
-              <caret line="296" column="41" lean-forward="true" selection-start-line="296" selection-start-column="41" selection-end-line="296" selection-end-column="41" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="_form.gsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/grails-app/views/pedido/_form.gsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1258">
-              <caret line="622" column="21" lean-forward="false" selection-start-line="622" selection-start-column="21" selection-end-line="622" selection-end-column="21" />
+            <state relative-caret-position="374">
+              <caret line="22" column="12" lean-forward="false" selection-start-line="22" selection-start-column="12" selection-end-line="22" selection-end-column="12" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="index.gsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/grails-app/views/anexo/index.gsp">
+        <entry file="file://$PROJECT_DIR$/grails-app/views/producto/index.gsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" column="50" lean-forward="true" selection-start-line="4" selection-start-column="50" selection-end-line="4" selection-end-column="50" />
+            <state relative-caret-position="969">
+              <caret line="57" column="60" lean-forward="false" selection-start-line="57" selection-start-column="60" selection-end-line="57" selection-end-column="60" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="indexo.gsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/grails-app/views/anexo/indexo.gsp">
+      <file leaf-file-name="DetPedidoController.groovy" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/grails-app/controllers/crm/DetPedidoController.groovy">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="30" column="79" lean-forward="true" selection-start-line="30" selection-start-column="79" selection-end-line="30" selection-end-column="79" />
+            <state relative-caret-position="918">
+              <caret line="58" column="8" lean-forward="false" selection-start-line="58" selection-start-column="8" selection-end-line="58" selection-end-column="8" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PropuestaController.groovy" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/grails-app/controllers/crm/PropuestaController.groovy">
+      <file leaf-file-name="PedidoService.groovy" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/grails-app/services/crm/PedidoService.groovy">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-153">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="1462">
+              <caret line="89" column="15" lean-forward="false" selection-start-line="89" selection-start-column="12" selection-end-line="89" selection-end-column="15" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AnexoController.groovy" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/grails-app/controllers/crm/AnexoController.groovy">
+      <file leaf-file-name="GeneralService.groovy" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/grails-app/services/crm/GeneralService.groovy">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="26" column="14" lean-forward="false" selection-start-line="26" selection-start-column="14" selection-end-line="26" selection-end-column="14" />
-              <folding />
+            <state relative-caret-position="21318">
+              <caret line="1277" column="282" lean-forward="false" selection-start-line="1277" selection-start-column="279" selection-end-line="1277" selection-end-column="282" />
+              <folding>
+                <element signature="e#13#52#0" expanded="true" />
+                <element signature="e#91462#92636#0" expanded="false" />
+                <element signature="e#92651#97360#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -341,37 +334,40 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>arquite</find>
-      <find>lista</find>
+      <find>edit</find>
+      <find>numOportunidadFabricante</find>
+      <find>enviarar</find>
+      <find>valor_parametros</find>
+      <find>enviara</find>
+      <find>autorizarCambioPedido</find>
+      <find>getValoresParametro</find>
+      <find>convertir</find>
+      <find>notificado</find>
+      <find>vende</find>
+      <find>getvende</find>
+      <find>archivo</find>
+      <find>archivo no</find>
+      <find>a</find>
+      <find>trm</find>
+      <find>autorizarcambioped</find>
+      <find>getAdministrativos</find>
       <find>expor</find>
-      <find>pro</find>
-      <find>arq</find>
-      <find>exportar1</find>
-      <find>exportar</find>
-      <find>exportard</find>
-      <find>notificar</find>
-      <find>notifica</find>
-      <find>no</find>
+      <find>listarper</find>
+      <find>exportarda</find>
+      <find>modificar</find>
+      <find>gere</find>
+      <find>proy</find>
       <find>iva</find>
-      <find>condici</find>
-      <find>create</find>
-      <find>noti</find>
+      <find>x</find>
+      <find>xi</find>
+      <find>xiv</find>
+      <find>xiva</find>
       <find>show</find>
-      <find>filter</find>
-      <find>filterpa</find>
-      <find>filterpane</find>
-      <find>lis</find>
-      <find>reque</find>
-      <find>arqu</find>
-      <find>arqui</find>
-      <find>getnu</find>
-      <find>opor</find>
-      <find>cambio</find>
-      <find>requeri</find>
-      <find>anex</find>
-      <find>ifanexos</find>
-      <find>crea</find>
+      <find>proye</find>
     </findStrings>
+    <dirStrings>
+      <dir>C:\Users\jmaury\CRMGIT\crm</dir>
+    </dirStrings>
   </component>
   <component name="Git.Settings">
     <option name="PREVIOUS_COMMIT_AUTHORS">
@@ -405,40 +401,49 @@
         <option value="$PROJECT_DIR$/grails-app/domain/crm/Contrato.groovy" />
         <option value="$PROJECT_DIR$/grails-app/views/contrato/index.gsp" />
         <option value="$PROJECT_DIR$/grails-app/controllers/crm/ContratoController.groovy" />
-        <option value="$PROJECT_DIR$/grails-app/controllers/crm/DetPedidoController.groovy" />
         <option value="$PROJECT_DIR$/grails-app/views/detPedido/_acciones_r.gsp" />
         <option value="$PROJECT_DIR$/grails-app/views/detPedido/_form.gsp" />
         <option value="$PROJECT_DIR$/web-app/perfectum/css/style_d.css" />
         <option value="$PROJECT_DIR$/grails-app/controllers/crm/NotaController.groovy" />
-        <option value="$PROJECT_DIR$/grails-app/views/pedido/_form.gsp" />
         <option value="$PROJECT_DIR$/grails-app/views/prospecto/_acciones.gsp" />
         <option value="$PROJECT_DIR$/grails-app/services/crm/ProspectoService.groovy" />
         <option value="$PROJECT_DIR$/grails-app/domain/crm/Empresa.groovy" />
         <option value="$PROJECT_DIR$/grails-app/controllers/crm/ParametroController.groovy" />
         <option value="$PROJECT_DIR$/grails-app/services/crm/SeguridadService.groovy" />
         <option value="$PROJECT_DIR$/grails-app/controllers/crm/GeneralController.groovy" />
-        <option value="$PROJECT_DIR$/grails-app/controllers/crm/EmpresaController.groovy" />
         <option value="$PROJECT_DIR$/grails-app/conf/BuildConfig.groovy" />
         <option value="$PROJECT_DIR$/grails-app/controllers/crm/LoginController.groovy" />
         <option value="$PROJECT_DIR$/grails-app/controllers/crm/PruebaController.groovy" />
         <option value="$PROJECT_DIR$/grails-app/controllers/crm/WSController.groovy" />
         <option value="$PROJECT_DIR$/grails-app/views/pedido/vistaPedido.gsp" />
-        <option value="$MAVEN_REPOSITORY$/org/codehaus/groovy/groovy-all/2.1.9/groovy-all-2.1.9.jar!/org/codehaus/groovy/runtime/DefaultGroovyMethods.class" />
         <option value="$PROJECT_DIR$/grails-app/services/crm/ExportarService.groovy" />
         <option value="$PROJECT_DIR$/grails-app/views/pedido/index.gsp" />
-        <option value="$PROJECT_DIR$/grails-app/views/oportunidad/indexg.gsp" />
-        <option value="$PROJECT_DIR$/grails-app/services/crm/PedidoService.groovy" />
         <option value="$PROJECT_DIR$/grails-app/controllers/crm/VencimientoController.groovy" />
         <option value="$PROJECT_DIR$/grails-app/views/reqLotusSw/show.gsp" />
-        <option value="$PROJECT_DIR$/grails-app/controllers/crm/OportunidadController.groovy" />
-        <option value="$PROJECT_DIR$/grails-app/views/prospecto/_form.gsp" />
-        <option value="$PROJECT_DIR$/grails-app/services/crm/GeneralService.groovy" />
-        <option value="$PROJECT_DIR$/grails-app/controllers/crm/PedidoController.groovy" />
-        <option value="$PROJECT_DIR$/grails-app/views/oportunidad/_form.gsp" />
         <option value="$PROJECT_DIR$/grails-app/services/crm/OportunidadService.groovy" />
         <option value="$PROJECT_DIR$/grails-app/views/anexo/index.gsp" />
         <option value="$PROJECT_DIR$/grails-app/controllers/crm/AnexoController.groovy" />
         <option value="$PROJECT_DIR$/grails-app/views/anexo/indexo.gsp" />
+        <option value="$MAVEN_REPOSITORY$/org/codehaus/groovy/groovy-all/2.1.9/groovy-all-2.1.9.jar!/org/codehaus/groovy/runtime/DefaultGroovyMethods.class" />
+        <option value="$PROJECT_DIR$/grails-app/views/layouts/_acciones_r.gsp" />
+        <option value="$PROJECT_DIR$/grails-app/views/oportunidad/indexg.gsp" />
+        <option value="$PROJECT_DIR$/grails-app/controllers/crm/EmpresaController.groovy" />
+        <option value="$PROJECT_DIR$/grails-app/controllers/crm/OportunidadController.groovy" />
+        <option value="$PROJECT_DIR$/grails-app/domain/crm/Pedido.groovy" />
+        <option value="$PROJECT_DIR$/grails-app/views/pedido/devolverPedido.gsp" />
+        <option value="$PROJECT_DIR$/grails-app/views/oportunidad/_formh.gsp" />
+        <option value="$PROJECT_DIR$/grails-app/domain/crm/Prospecto.groovy" />
+        <option value="$PROJECT_DIR$/grails-app/controllers/crm/ProspectoController.groovy" />
+        <option value="$PROJECT_DIR$/grails-app/views/pedido/_form.gsp" />
+        <option value="$PROJECT_DIR$/grails-app/views/prospecto/_form.gsp" />
+        <option value="$PROJECT_DIR$/grails-app/views/oportunidad/_form.gsp" />
+        <option value="$PROJECT_DIR$/grails-app/views/producto/_form.gsp" />
+        <option value="$PROJECT_DIR$/grails-app/views/oportunidad/perdidas.gsp" />
+        <option value="$PROJECT_DIR$/grails-app/services/crm/GeneralService.groovy" />
+        <option value="$PROJECT_DIR$/grails-app/services/crm/PedidoService.groovy" />
+        <option value="$PROJECT_DIR$/grails-app/controllers/crm/DetPedidoController.groovy" />
+        <option value="$PROJECT_DIR$/grails-app/views/pedido/modificaGProyecto.gsp" />
+        <option value="$PROJECT_DIR$/grails-app/controllers/crm/PedidoController.groovy" />
       </list>
     </option>
   </component>
@@ -449,13 +454,13 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
+    <option name="x" value="-1928" />
     <option name="y" value="-8" />
-    <option name="width" value="1382" />
-    <option name="height" value="744" />
+    <option name="width" value="1936" />
+    <option name="height" value="1096" />
   </component>
   <component name="ProjectView">
-    <navigator currentView="Scope" currentSubView="Project Files" proportions="" version="1">
+    <navigator currentView="ProjectPane" proportions="" version="1">
       <flattenPackages />
       <showMembers />
       <showModules />
@@ -469,7 +474,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="PackagesPane">
         <subPane>
           <PATH>
@@ -481,93 +485,37 @@
               <option name="myItemId" value="crm" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
             </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
-      <pane id="Scope">
-        <subPane subId="Project Files">
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="crm">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="crm">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewLibrariesNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
+            <PATH_ELEMENT>
+              <option name="myItemId" value="crm" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="crm">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
+            <PATH_ELEMENT>
+              <option name="myItemId" value="crm" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="crm">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewLibrariesNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="grails-app">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="crm">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="crm">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="grails-app">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="services">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="crm">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
+            <PATH_ELEMENT>
+              <option name="myItemId" value="grails" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
+            <PATH_ELEMENT>
+              <option name="myItemId" value="crm" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="crm">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="crm">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="grails-app">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="controllers">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="crm">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
+            <PATH_ELEMENT>
+              <option name="myItemId" value="crm" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -581,6 +529,68 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="crm" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="crm" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="crm" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="grails-app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="crm" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="crm" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="grails-app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="producto" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="crm" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="crm" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="grails-app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pedido" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -680,11 +690,122 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope">
+        <subPane subId="Production">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="crm">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="crm">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="src/groovy">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="crm">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="crm">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="crm">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="grails-app">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+        <subPane subId="Changed Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="crm">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="crm">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT=".idea">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+        <subPane subId="Project Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="crm">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="crm">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="crm">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="crm">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="web-app">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+        <subPane subId="Tests">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="crm">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scratches" />
       <pane id="Grails" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="Groovy compiler" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -693,7 +814,7 @@
     <property name="grails.last.selected.app.url" value="file://$PROJECT_DIR$" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="SearchEverywhereHistoryKey" value="rolop&#9;FILE&#9;file://C:/Users/jmaury/CRMGIT/crm/grails-app/domain/crm/RolOpcionOperacion.groovy&#10;login&#9;FILE&#9;file://C:/Users/jmaury/CRMGIT/crm/grails-app/controllers/crm/LoginController.groovy&#10;seguridad&#9;FILE&#9;file://C:/Users/jmaury/CRMGIT/crm/grails-app/services/crm/SeguridadService.groovy&#10;seguridadse&#9;FILE&#9;file://C:/Users/jmaury/CRMGIT/crm/grails-app/services/crm/SeguridadService.groovy&#10;config&#9;FILE&#9;file://C:/Users/jmaury/CRMGIT/crm/grails-app/conf/Config.groovy&#10;buildco&#9;FILE&#9;file://C:/Users/jmaury/CRMGIT/crm/grails-app/conf/BuildConfig.groovy" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="D:/Oficina/InventarioEVA/inventario" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -1166,7 +1287,25 @@
       <workItem from="1532367499030" duration="8412000" />
       <workItem from="1533054295516" duration="28036000" />
       <workItem from="1534176057414" duration="10570000" />
-      <workItem from="1534339988783" duration="6409000" />
+      <workItem from="1534339988783" duration="22689000" />
+      <workItem from="1534857773069" duration="3153000" />
+      <workItem from="1534949436486" duration="28409000" />
+      <workItem from="1535982059944" duration="21436000" />
+      <workItem from="1536758519308" duration="1966000" />
+      <workItem from="1536843457587" duration="80931000" />
+      <workItem from="1539266911773" duration="19262000" />
+      <workItem from="1539721430378" duration="15310000" />
+      <workItem from="1540236755372" duration="9922000" />
+      <workItem from="1540387670870" duration="69000" />
+      <workItem from="1540389933504" duration="4022000" />
+      <workItem from="1540413111064" duration="16451000" />
+      <workItem from="1541797992099" duration="7874000" />
+      <workItem from="1542201662212" duration="883000" />
+      <workItem from="1542564032278" duration="19618000" />
+      <workItem from="1543855329136" duration="3710000" />
+      <workItem from="1544456693607" duration="1546000" />
+      <workItem from="1546442322043" duration="27857000" />
+      <workItem from="1546630995670" duration="1678000" />
     </task>
     <task id="LOCAL-00001" summary="cambios 1">
       <created>1533487119925</created>
@@ -1175,11 +1314,18 @@
       <option name="project" value="LOCAL" />
       <updated>1533487119925</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="cambios Agregado anexos a oportunidades JCastro">
+      <created>1534356861720</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1534356861721</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="462554000" />
+    <option name="totallyTimeSpent" value="742931000" />
   </component>
   <component name="TodoView" selected-index="3">
     <todo-panel id="selected-file">
@@ -1191,7 +1337,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-1928" y="-8" width="1936" height="1096" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1206,44 +1352,108 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32515338" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15196079" sideWeight="0.4969743" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14522822" sideWeight="0.4969743" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25816995" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25726143" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32352942" sideWeight="0.4969743" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23856209" sideWeight="0.49092284" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3251634" sideWeight="0.4969743" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1388889" sideWeight="0.49394855" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3226141" sideWeight="0.4969743" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3952282" sideWeight="0.49092284" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3246888" sideWeight="0.4969743" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16597511" sideWeight="0.49394855" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22541603" sideWeight="0.18161926" order="6" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18078668" sideWeight="0.6214442" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17217484" sideWeight="0.6214442" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22541603" sideWeight="0.3785558" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Grails Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2315951" sideWeight="0.4969743" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Grails Console" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.10995851" sideWeight="0.4969743" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32822084" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32780084" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
+    <layout-to-restore>
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25326797" sideWeight="0.50907713" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Grails Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14107884" sideWeight="0.4969743" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32954547" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24962178" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32515338" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14522822" sideWeight="0.4969743" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32822084" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25726143" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3226141" sideWeight="0.4969743" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.12863071" sideWeight="0.49092284" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3246888" sideWeight="0.4969743" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16597511" sideWeight="0.49394855" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22541603" sideWeight="0.18161926" order="6" side_tool="true" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15618336" sideWeight="0.6214442" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22541603" sideWeight="0.3785558" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="processedProjectFiles" value="true" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="cambios 1" />
-    <option name="LAST_COMMIT_MESSAGE" value="cambios 1" />
+    <MESSAGE value="cambios Agregado anexos a oportunidades JCastro" />
+    <option name="LAST_COMMIT_MESSAGE" value="cambios Agregado anexos a oportunidades JCastro" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="15" />
+      <option name="time" value="21" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1252,195 +1462,114 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/web-app/perfectum/css/style_d.css">
+    <entry file="file://$PROJECT_DIR$/grails-app/services/crm/ExportarService.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="141">
-          <caret line="2019" column="3" lean-forward="false" selection-start-line="2019" selection-start-column="3" selection-end-line="2019" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web-app/perfectum/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="141">
-          <caret line="2030" column="3" lean-forward="false" selection-start-line="2030" selection-start-column="3" selection-end-line="2030" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/controllers/crm/LoginController.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="986">
-          <caret line="58" column="23" lean-forward="true" selection-start-line="58" selection-start-column="23" selection-end-line="58" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/codehaus/groovy/groovy-all/2.1.9/groovy-all-2.1.9.jar!/org/codehaus/groovy/runtime/DefaultGroovyMethods.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="344" column="30" lean-forward="false" selection-start-line="344" selection-start-column="30" selection-end-line="344" selection-end-column="30" />
+        <state relative-caret-position="306">
+          <caret line="29" column="9" lean-forward="false" selection-start-line="29" selection-start-column="9" selection-end-line="29" selection-end-column="9" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/target/work/plugins/export-1.6/grails-app/services/de/andreasschmitt/export/ExportService.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="17" column="16" lean-forward="false" selection-start-line="17" selection-start-column="16" selection-end-line="17" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/controllers/crm/SeguridadController.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="9248">
-          <caret line="545" column="17" lean-forward="false" selection-start-line="545" selection-start-column="17" selection-end-line="545" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/views/oportunidad/_acciones.gsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="4" lean-forward="true" selection-start-line="23" selection-start-column="4" selection-end-line="23" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/views/oportunidad/_acciones_r.gsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-510">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/views/oportunidad/indexg.gsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1054">
-          <caret line="62" column="107" lean-forward="false" selection-start-line="62" selection-start-column="107" selection-end-line="62" selection-end-column="107" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/views/pedido/index.gsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3740">
-          <caret line="220" column="105" lean-forward="false" selection-start-line="220" selection-start-column="105" selection-end-line="220" selection-end-column="105" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/services/crm/ExportarService.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="20" column="8" lean-forward="false" selection-start-line="20" selection-start-column="8" selection-end-line="20" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/views/persona/create1.gsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="59" lean-forward="false" selection-start-line="20" selection-start-column="59" selection-end-line="20" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/views/persona/create.gsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/views/persona/_form.gsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="24" column="14" lean-forward="false" selection-start-line="24" selection-start-column="14" selection-end-line="24" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/controllers/crm/ProductoController.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="36" column="13" lean-forward="false" selection-start-line="36" selection-start-column="8" selection-end-line="36" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/controllers/crm/VencimientoController.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1615">
-          <caret line="653" column="4" lean-forward="true" selection-start-line="653" selection-start-column="4" selection-end-line="653" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/controllers/crm/PersonaController.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="98" column="54" lean-forward="true" selection-start-line="98" selection-start-column="54" selection-end-line="98" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/controllers/crm/EncVencimientoController.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3045">
-          <caret line="195" column="5" lean-forward="true" selection-start-line="195" selection-start-column="5" selection-end-line="195" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web-app/prueba2.gsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="6" lean-forward="true" selection-start-line="13" selection-start-column="6" selection-end-line="13" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web-app/regresar.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/groovy/crm/Requerimiento.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="32" column="16" lean-forward="false" selection-start-line="32" selection-start-column="16" selection-end-line="32" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/views/reqLotusSw/_listadoReq.gsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="748">
-          <caret line="44" column="52" lean-forward="false" selection-start-line="44" selection-start-column="52" selection-end-line="44" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/views/reqLotusSw/show.gsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="187">
+          <caret line="13" column="16" lean-forward="false" selection-start-line="13" selection-start-column="16" selection-end-line="13" selection-end-column="16" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/grails-app/views/oportunidad/index.gsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="212" column="0" lean-forward="true" selection-start-line="212" selection-start-column="0" selection-end-line="212" selection-end-column="0" />
+        <state relative-caret-position="2907">
+          <caret line="171" column="17" lean-forward="false" selection-start-line="171" selection-start-column="17" selection-end-line="171" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/controllers/crm/RegistroOportunidadController.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="395">
+          <caret line="94" column="13" lean-forward="true" selection-start-line="94" selection-start-column="13" selection-end-line="94" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/controllers/crm/ReqLotusSwController.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="389" column="37" lean-forward="false" selection-start-line="389" selection-start-column="37" selection-end-line="389" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/controllers/crm/EncLogController.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="8" column="6" lean-forward="false" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/views/prospecto/_form.gsp">
+    <entry file="file://$PROJECT_DIR$/grails-app/domain/crm/EncLog.groovy">
+      <provider editor-type-id="org.jetbrains.plugins.grails.perspectives.DomainClassesRelationsEditorProvider">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="76" column="50" lean-forward="false" selection-start-line="76" selection-start-column="50" selection-end-line="76" selection-end-column="50" />
+        <state relative-caret-position="85">
+          <caret line="5" column="21" lean-forward="false" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/controllers/crm/BaseController.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="918">
+          <caret line="54" column="55" lean-forward="false" selection-start-line="54" selection-start-column="55" selection-end-line="54" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/services/crm/SeguridadService.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1802">
+          <caret line="106" column="8" lean-forward="false" selection-start-line="106" selection-start-column="8" selection-end-line="106" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/views/oportunidad/_formh.gsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="89" column="26" lean-forward="true" selection-start-line="89" selection-start-column="26" selection-end-line="89" selection-end-column="26" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/views/vencimiento/show.gsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="27" column="77" lean-forward="true" selection-start-line="27" selection-start-column="77" selection-end-line="27" selection-end-column="77" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/grails-app/views/prospecto/edit.gsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="15" column="20" lean-forward="false" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="20" />
+        <state relative-caret-position="374">
+          <caret line="22" column="47" lean-forward="true" selection-start-line="22" selection-start-column="44" selection-end-line="22" selection-end-column="47" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/views/prospecto/show.gsp">
+    <entry file="file://$PROJECT_DIR$/grails-app/views/oportunidad/edit.gsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" column="42" lean-forward="false" selection-start-line="23" selection-start-column="42" selection-end-line="23" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/views/oportunidad/create.gsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/controllers/crm/DashboardController.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2448">
+          <caret line="144" column="8" lean-forward="false" selection-start-line="144" selection-start-column="8" selection-end-line="144" selection-end-column="8" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1449,8 +1578,53 @@
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="31">
+          <caret line="62" column="60" lean-forward="false" selection-start-line="62" selection-start-column="60" selection-end-line="62" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/views/prospecto/generarOportunidad.gsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/views/oportunidad/_form.gsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="430">
+          <caret line="117" column="80" lean-forward="true" selection-start-line="117" selection-start-column="80" selection-end-line="117" selection-end-column="80" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/views/prospecto/_form.gsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="23" column="35" lean-forward="false" selection-start-line="23" selection-start-column="35" selection-end-line="23" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/grails/grails-datastore-gorm/2.0.3.RELEASE/grails-datastore-gorm-2.0.3.RELEASE.jar!/org/grails/datastore/gorm/GormValidationApi.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="133" column="19" lean-forward="false" selection-start-line="133" selection-start-column="19" selection-end-line="133" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/controllers/crm/WSController.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="21" lean-forward="false" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/controllers/crm/NotaController.groovy">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
-          <caret line="26" column="24" lean-forward="false" selection-start-line="26" selection-start-column="24" selection-end-line="26" selection-end-column="24" />
+          <caret line="205" column="23" lean-forward="false" selection-start-line="205" selection-start-column="12" selection-end-line="205" selection-end-column="23" />
           <folding />
         </state>
       </provider>
@@ -1458,34 +1632,205 @@
     <entry file="file://$PROJECT_DIR$/grails-app/controllers/crm/ProspectoController.groovy">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
-          <caret line="510" column="8" lean-forward="false" selection-start-line="510" selection-start-column="8" selection-end-line="510" selection-end-column="8" />
+          <caret line="551" column="76" lean-forward="false" selection-start-line="551" selection-start-column="76" selection-end-line="551" selection-end-column="76" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/controllers/crm/ReqLotusSwController.groovy">
+    <entry file="file://$PROJECT_DIR$/grails-app/views/producto/_form.gsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="29">
-          <caret line="375" column="0" lean-forward="false" selection-start-line="375" selection-start-column="0" selection-end-line="375" selection-end-column="0" />
+        <state relative-caret-position="714">
+          <caret line="42" column="6" lean-forward="false" selection-start-line="42" selection-start-column="6" selection-end-line="42" selection-end-column="6" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/controllers/crm/ParametroController.groovy">
+    <entry file="file://$PROJECT_DIR$/grails-app/controllers/crm/AnexoController.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1513">
-          <caret line="5" column="6" lean-forward="false" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="6" />
+        <state relative-caret-position="17">
+          <caret line="153" column="105" lean-forward="false" selection-start-line="153" selection-start-column="105" selection-end-line="153" selection-end-column="105" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/domain/crm/ValorParametro.groovy">
+    <entry file="file://$PROJECT_DIR$/grails-app/views/producto/show.gsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/views/nota/_form.gsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="57" column="142" lean-forward="false" selection-start-line="57" selection-start-column="119" selection-end-line="57" selection-end-column="142" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/views/nota/show.gsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/views/pedido/autorizarPedido.gsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="46" lean-forward="true" selection-start-line="18" selection-start-column="46" selection-end-line="18" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/views/pedido/_acciones_r.gsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-246">
+          <caret line="118" column="13" lean-forward="true" selection-start-line="118" selection-start-column="13" selection-end-line="118" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/views/seguridad/application.gsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/views/oportunidad/_infoPerdida.gsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/views/oportunidad/_acciones.gsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/views/oportunidad/_acciones_r.gsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="74">
+          <caret line="39" column="20" lean-forward="true" selection-start-line="39" selection-start-column="20" selection-end-line="39" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/views/pedido/_form.gsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-85">
+          <caret line="34" column="9" lean-forward="true" selection-start-line="34" selection-start-column="9" selection-end-line="34" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/controllers/crm/OportunidadController.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="157">
+          <caret line="1461" column="29" lean-forward="false" selection-start-line="1461" selection-start-column="25" selection-end-line="1461" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/views/oportunidad/perdidas.gsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="151" column="24" lean-forward="false" selection-start-line="151" selection-start-column="24" selection-end-line="151" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/domain/crm/Oportunidad.groovy">
       <provider editor-type-id="org.jetbrains.plugins.grails.perspectives.DomainClassesRelationsEditorProvider">
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="3" lean-forward="false" selection-start-line="11" selection-start-column="3" selection-end-line="11" selection-end-column="3" />
+        <state relative-caret-position="153">
+          <caret line="73" column="21" lean-forward="false" selection-start-line="73" selection-start-column="21" selection-end-line="73" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/views/pedido/cambiarDestinatarioFactura.gsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-419">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/domain/crm/Empleado.groovy">
+      <provider editor-type-id="org.jetbrains.plugins.grails.perspectives.DomainClassesRelationsEditorProvider">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-703">
+          <caret line="2" column="6" lean-forward="false" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/controllers/crm/GeneralController.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-391">
+          <caret line="12" column="6" lean-forward="false" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/views/pedido/devolverPedido.gsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1207">
+          <caret line="71" column="198" lean-forward="false" selection-start-line="71" selection-start-column="48" selection-end-line="71" selection-end-column="198" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/services/crm/GeneralService.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="21318">
+          <caret line="1277" column="282" lean-forward="false" selection-start-line="1277" selection-start-column="279" selection-end-line="1277" selection-end-column="282" />
+          <folding>
+            <element signature="e#13#52#0" expanded="true" />
+            <element signature="e#91462#92636#0" expanded="false" />
+            <element signature="e#92651#97360#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/services/crm/PedidoService.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1462">
+          <caret line="89" column="15" lean-forward="false" selection-start-line="89" selection-start-column="12" selection-end-line="89" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/views/pedido/show.gsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" column="12" lean-forward="false" selection-start-line="22" selection-start-column="12" selection-end-line="22" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/views/producto/index.gsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="969">
+          <caret line="57" column="60" lean-forward="false" selection-start-line="57" selection-start-column="60" selection-end-line="57" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/controllers/crm/DetPedidoController.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="918">
+          <caret line="58" column="8" lean-forward="false" selection-start-line="58" selection-start-column="8" selection-end-line="58" selection-end-column="8" />
           <folding />
         </state>
       </provider>
@@ -1495,136 +1840,20 @@
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="524">
-          <caret line="138" column="24" lean-forward="false" selection-start-line="138" selection-start-column="24" selection-end-line="138" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/logs/crm.log">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/views/pedido/show.gsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="28" column="12" lean-forward="true" selection-start-line="28" selection-start-column="12" selection-end-line="28" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/controllers/crm/RegistroOportunidadController.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="148">
-          <caret line="249" column="10" lean-forward="false" selection-start-line="249" selection-start-column="8" selection-end-line="249" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/views/oportunidad/show.gsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/views/pedido/edit.gsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-102">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/views/anexo/indexh.gsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-102">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/services/crm/GeneralService.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="2398" column="12" lean-forward="false" selection-start-line="2398" selection-start-column="12" selection-end-line="2398" selection-end-column="12" />
-          <folding>
-            <element signature="e#13#52#0" expanded="true" />
-            <element signature="e#89213#90387#0" expanded="false" />
-            <element signature="e#90402#95111#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/services/crm/PedidoService.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="11" column="4" lean-forward="false" selection-start-line="11" selection-start-column="4" selection-end-line="31" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/views/pedido/_form.gsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1258">
-          <caret line="622" column="21" lean-forward="false" selection-start-line="622" selection-start-column="21" selection-end-line="622" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/views/oportunidad/_form.gsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="412" column="105" lean-forward="false" selection-start-line="412" selection-start-column="105" selection-end-line="412" selection-end-column="105" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/controllers/crm/AnexoController.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="26" column="14" lean-forward="false" selection-start-line="26" selection-start-column="14" selection-end-line="26" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/controllers/crm/OportunidadController.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="24" column="24" lean-forward="true" selection-start-line="24" selection-start-column="24" selection-end-line="24" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/controllers/crm/PropuestaController.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-153">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/services/crm/OportunidadService.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3893">
-          <caret line="296" column="41" lean-forward="true" selection-start-line="296" selection-start-column="41" selection-end-line="296" selection-end-column="41" />
+        <state relative-caret-position="918">
+          <caret line="54" column="29" lean-forward="false" selection-start-line="54" selection-start-column="12" selection-end-line="54" selection-end-column="29" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/grails-app/controllers/crm/PedidoController.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="34" column="24" lean-forward="true" selection-start-line="34" selection-start-column="24" selection-end-line="34" selection-end-column="24" />
+        <state relative-caret-position="527">
+          <caret line="1649" column="77" lean-forward="false" selection-start-line="1649" selection-start-column="77" selection-end-line="1649" selection-end-column="77" />
           <folding>
             <element signature="e#1759#1877#0" expanded="false" />
             <element signature="e#2173#2269#0" expanded="false" />
             <element signature="e#2313#2439#0" expanded="false" />
-            <element signature="e#2443#5241#0" expanded="false" />
-            <element signature="e#2465#5237#0" expanded="false" />
             <element signature="e#2498#3941#0" expanded="false" />
             <element signature="e#2837#3868#0" expanded="false" />
             <element signature="e#3273#3393#0" expanded="false" />
@@ -1633,7 +1862,6 @@
             <element signature="e#4001#4585#0" expanded="false" />
             <element signature="e#4617#4720#0" expanded="false" />
             <element signature="e#4756#4880#0" expanded="false" />
-            <element signature="e#4912#5231#0" expanded="false" />
             <element signature="e#5887#6150#0" expanded="false" />
             <element signature="e#7048#7225#0" expanded="false" />
             <element signature="n#!!block;n#indexn#0;n#!!block;n#PedidoController#0" expanded="false" />
@@ -1685,9 +1913,7 @@
             <element signature="n#!!block;n#indexp#0;n#!!block;n#PedidoController#0" expanded="false" />
             <element signature="e#24472#24561#0" expanded="false" />
             <element signature="n#!!block;n#listarBorrados#0;n#!!block;n#PedidoController#0" expanded="false" />
-            <element signature="n#!!block;n#borrar#0;n#!!block;n#PedidoController#0" expanded="false" />
             <element signature="e#25862#25891#0" expanded="false" />
-            <element signature="n#!!block;n#show#0;n#!!block;n#PedidoController#0" expanded="false" />
             <element signature="e#26320#26349#0" expanded="false" />
             <element signature="e#26980#27124#0" expanded="false" />
             <element signature="e#27151#27298#0" expanded="false" />
@@ -1703,149 +1929,118 @@
             <element signature="e#30028#30107#0" expanded="false" />
             <element signature="e#30145#31379#0" expanded="false" />
             <element signature="e#30661#31375#0" expanded="false" />
-            <element signature="e#32239#32585#0" expanded="false" />
             <element signature="e#32608#33068#0" expanded="false" />
             <element signature="e#32749#32976#0" expanded="false" />
-            <element signature="e#34294#34933#0" expanded="false" />
-            <element signature="e#34438#34929#0" expanded="false" />
-            <element signature="e#34987#35793#0" expanded="false" />
-            <element signature="e#35132#35788#0" expanded="false" />
-            <element signature="e#36000#37016#0" expanded="false" />
-            <element signature="e#36645#37012#0" expanded="false" />
-            <element signature="n#!!block;n#delete#0;n#!!block;n#PedidoController#0" expanded="false" />
-            <element signature="e#37224#37253#0" expanded="false" />
-            <element signature="e#37313#37552#0" expanded="false" />
-            <element signature="e#37323#37511#0" expanded="false" />
+            <element signature="e#34297#34936#0" expanded="false" />
+            <element signature="e#34441#34932#0" expanded="false" />
+            <element signature="e#37227#37256#0" expanded="false" />
+            <element signature="e#37326#37514#0" expanded="false" />
             <element signature="n#!!block;n#notFound#0;n#!!block;n#PedidoController#0" expanded="false" />
-            <element signature="e#37607#37847#0" expanded="false" />
-            <element signature="e#37617#37807#0" expanded="false" />
-            <element signature="n#!!block;n#generarPedido#0;n#!!block;n#PedidoController#0" expanded="false" />
-            <element signature="e#37940#38251#0" expanded="false" />
+            <element signature="e#37610#37850#0" expanded="false" />
+            <element signature="e#37620#37810#0" expanded="false" />
+            <element signature="e#37943#38254#0" expanded="false" />
             <element signature="n#!!block;n#anularPedido#0;n#!!block;n#PedidoController#0" expanded="false" />
-            <element signature="e#39078#39148#0" expanded="false" />
-            <element signature="e#39177#39568#0" expanded="false" />
-            <element signature="e#39314#39396#0" expanded="false" />
-            <element signature="e#39413#39564#0" expanded="false" />
-            <element signature="e#39578#39713#0" expanded="false" />
-            <element signature="n#!!block;n#anularPedidoDef#0;n#!!block;n#PedidoController#0" expanded="false" />
+            <element signature="e#39081#39151#0" expanded="false" />
+            <element signature="e#39180#39571#0" expanded="false" />
+            <element signature="e#39317#39399#0" expanded="false" />
+            <element signature="e#39416#39567#0" expanded="false" />
+            <element signature="e#39581#39716#0" expanded="false" />
             <element signature="n#!!block;n#cambiarDestinatarioFactura#0;n#!!block;n#PedidoController#0" expanded="false" />
-            <element signature="e#41355#41631#0" expanded="false" />
-            <element signature="e#41418#41543#0" expanded="false" />
-            <element signature="e#41548#41627#0" expanded="false" />
-            <element signature="e#41635#41757#0" expanded="false" />
+            <element signature="e#41358#41634#0" expanded="false" />
+            <element signature="e#41421#41546#0" expanded="false" />
+            <element signature="e#41551#41630#0" expanded="false" />
+            <element signature="e#41638#41760#0" expanded="false" />
             <element signature="n#!!block;n#cambiarDestinatarioFacturaDef#0;n#!!block;n#PedidoController#0" expanded="false" />
             <element signature="n#!!block;n#cambiarEstadoPedido#0;n#!!block;n#PedidoController#0" expanded="false" />
-            <element signature="e#42093#42434#0" expanded="false" />
-            <element signature="e#42870#43177#0" expanded="false" />
-            <element signature="e#42933#43058#0" expanded="false" />
-            <element signature="e#43062#43173#0" expanded="false" />
-            <element signature="e#43181#43303#0" expanded="false" />
+            <element signature="e#42096#42437#0" expanded="false" />
+            <element signature="e#42873#43180#0" expanded="false" />
+            <element signature="e#42936#43061#0" expanded="false" />
+            <element signature="e#43065#43176#0" expanded="false" />
+            <element signature="e#43184#43306#0" expanded="false" />
             <element signature="n#!!block;n#cambiarEstadoPedidoDef#0;n#!!block;n#PedidoController#0" expanded="false" />
-            <element signature="e#43435#43710#0" expanded="false" />
+            <element signature="e#43438#43713#0" expanded="false" />
             <element signature="n#!!block;n#cambiarOportunidad#0;n#!!block;n#PedidoController#0" expanded="false" />
-            <element signature="e#43936#44211#0" expanded="false" />
-            <element signature="e#43999#44124#0" expanded="false" />
-            <element signature="e#44128#44207#0" expanded="false" />
-            <element signature="e#44215#44337#0" expanded="false" />
+            <element signature="e#43939#44214#0" expanded="false" />
+            <element signature="e#44002#44127#0" expanded="false" />
+            <element signature="e#44131#44210#0" expanded="false" />
+            <element signature="e#44218#44340#0" expanded="false" />
             <element signature="n#!!block;n#cambiarOportunidadDef#0;n#!!block;n#PedidoController#0" expanded="false" />
             <element signature="n#!!block;n#CambiarVendedor#0;n#!!block;n#PedidoController#0" expanded="false" />
-            <element signature="e#44643#45116#0" expanded="false" />
-            <element signature="e#44706#44802#0" expanded="false" />
-            <element signature="e#44806#45112#0" expanded="false" />
-            <element signature="e#45120#45242#0" expanded="false" />
+            <element signature="e#44646#45119#0" expanded="false" />
+            <element signature="e#44709#44805#0" expanded="false" />
+            <element signature="e#44809#45115#0" expanded="false" />
+            <element signature="e#45123#45245#0" expanded="false" />
             <element signature="n#!!block;n#cambiarVendedorDef#0;n#!!block;n#PedidoController#0" expanded="false" />
-            <element signature="e#45367#45440#0" expanded="false" />
-            <element signature="e#46477#46570#0" expanded="false" />
-            <element signature="e#46580#47116#0" expanded="false" />
-            <element signature="e#46622#46763#0" expanded="false" />
-            <element signature="e#46775#47112#0" expanded="false" />
-            <element signature="e#46938#47107#0" expanded="false" />
-            <element signature="e#47138#48059#0" expanded="false" />
-            <element signature="e#47871#47985#0" expanded="false" />
-            <element signature="e#49815#50398#0" expanded="false" />
-            <element signature="n#!!block;n#devolverAVendedor#0;n#!!block;n#PedidoController#0" expanded="false" />
-            <element signature="n#!!block;n#devolverAVendedorDef#0;n#!!block;n#PedidoController#0" expanded="false" />
+            <element signature="e#45370#45443#0" expanded="false" />
             <element signature="n#!!block;n#asignarACompras#0;n#!!block;n#PedidoController#0" expanded="false" />
             <element signature="n#!!block;n#aplicarDescuento#0;n#!!block;n#PedidoController#0" expanded="false" />
-            <element signature="e#54752#55027#0" expanded="false" />
-            <element signature="e#54815#54940#0" expanded="false" />
-            <element signature="e#54944#55023#0" expanded="false" />
-            <element signature="e#55031#55153#0" expanded="false" />
+            <element signature="e#56331#56606#0" expanded="false" />
+            <element signature="e#56394#56519#0" expanded="false" />
+            <element signature="e#56523#56602#0" expanded="false" />
+            <element signature="e#56610#56732#0" expanded="false" />
             <element signature="n#!!block;n#aplicarDescuentoDef#0;n#!!block;n#PedidoController#0" expanded="false" />
-            <element signature="n#!!block;n#cerrarPedido#0;n#!!block;n#PedidoController#0" expanded="false" />
-            <element signature="e#55684#55808#0" expanded="false" />
-            <element signature="e#55813#55893#0" expanded="false" />
-            <element signature="n#!!block;n#autorizarCambioPedidoDef#0;n#!!block;n#PedidoController#0" expanded="false" />
+            <element signature="e#57392#57472#0" expanded="false" />
             <element signature="n#!!block;n#resetCambioPedido#0;n#!!block;n#PedidoController#0" expanded="false" />
             <element signature="n#!!block;n#facturacionParcial#0;n#!!block;n#PedidoController#0" expanded="false" />
-            <element signature="e#57042#57168#0" expanded="false" />
-            <element signature="e#57173#57255#0" expanded="false" />
+            <element signature="e#59158#59284#0" expanded="false" />
+            <element signature="e#59289#59371#0" expanded="false" />
             <element signature="n#!!block;n#moverPedido#0;n#!!block;n#PedidoController#0" expanded="false" />
-            <element signature="e#57415#57699#0" expanded="false" />
-            <element signature="e#57480#57606#0" expanded="false" />
-            <element signature="e#57615#57695#0" expanded="false" />
-            <element signature="e#57703#57826#0" expanded="false" />
+            <element signature="e#59531#59815#0" expanded="false" />
+            <element signature="e#59596#59722#0" expanded="false" />
+            <element signature="e#59731#59811#0" expanded="false" />
+            <element signature="e#59819#59942#0" expanded="false" />
             <element signature="n#!!block;n#moverPedidoDef#0;n#!!block;n#PedidoController#0" expanded="false" />
             <element signature="n#!!block;n#actualizarIndicadores#0;n#!!block;n#PedidoController#0" expanded="false" />
-            <element signature="e#59780#60017#0" expanded="false" />
-            <element signature="e#60022#60073#0" expanded="false" />
-            <element signature="e#60617#60741#0" expanded="false" />
-            <element signature="e#60801#60894#0" expanded="false" />
+            <element signature="e#62731#62855#0" expanded="false" />
             <element signature="n#!!block;n#titulos#0;n#!!block;n#PedidoController#0" expanded="false" />
-            <element signature="e#63698#63882#0" expanded="false" />
-            <element signature="e#63928#64008#0" expanded="false" />
+            <element signature="e#65914#66098#0" expanded="false" />
+            <element signature="e#66144#66224#0" expanded="false" />
             <element signature="n#!!block;n#updateFilterLength#0;n#!!block;n#PedidoController#0" expanded="false" />
             <element signature="n#!!block;n#todosLosPedidos#0;n#!!block;n#PedidoController#0" expanded="false" />
-            <element signature="e#65988#66114#0" expanded="false" />
-            <element signature="e#69816#71464#0" expanded="false" />
-            <element signature="e#70974#71175#0" expanded="false" />
-            <element signature="e#71179#71338#0" expanded="false" />
-            <element signature="e#73943#75801#0" expanded="false" />
-            <element signature="e#75119#75321#0" expanded="false" />
-            <element signature="e#75325#75485#0" expanded="false" />
-            <element signature="e#75601#75693#0" expanded="false" />
-            <element signature="e#79387#82703#0" expanded="false" />
-            <element signature="e#80569#80991#0" expanded="false" />
-            <element signature="e#80995#81375#0" expanded="false" />
-            <element signature="e#81704#82101#0" expanded="false" />
-            <element signature="e#82494#82586#0" expanded="false" />
-            <element signature="e#85448#87384#0" expanded="false" />
-            <element signature="e#86678#86883#0" expanded="false" />
-            <element signature="e#86887#87047#0" expanded="false" />
-            <element signature="e#87163#87264#0" expanded="false" />
-            <element signature="e#90142#92093#0" expanded="false" />
-            <element signature="e#91378#91583#0" expanded="false" />
-            <element signature="e#91587#91747#0" expanded="false" />
-            <element signature="e#91869#91973#0" expanded="false" />
+            <element signature="e#68204#68330#0" expanded="false" />
+            <element signature="e#72032#73680#0" expanded="false" />
+            <element signature="e#73190#73391#0" expanded="false" />
+            <element signature="e#73395#73554#0" expanded="false" />
+            <element signature="e#76159#78017#0" expanded="false" />
+            <element signature="e#77335#77537#0" expanded="false" />
+            <element signature="e#77541#77701#0" expanded="false" />
+            <element signature="e#77817#77909#0" expanded="false" />
+            <element signature="e#81603#84919#0" expanded="false" />
+            <element signature="e#82785#83207#0" expanded="false" />
+            <element signature="e#83211#83591#0" expanded="false" />
+            <element signature="e#83920#84317#0" expanded="false" />
+            <element signature="e#84710#84802#0" expanded="false" />
+            <element signature="e#87664#89600#0" expanded="false" />
+            <element signature="e#88894#89099#0" expanded="false" />
+            <element signature="e#89103#89263#0" expanded="false" />
+            <element signature="e#89379#89480#0" expanded="false" />
+            <element signature="e#92358#94309#0" expanded="false" />
+            <element signature="e#93594#93799#0" expanded="false" />
+            <element signature="e#93803#93963#0" expanded="false" />
+            <element signature="e#94085#94189#0" expanded="false" />
             <element signature="n#!!block;n#detenidoEnCompras#0;n#!!block;n#PedidoController#0" expanded="false" />
-            <element signature="e#92448#92657#0" expanded="false" />
-            <element signature="e#94148#94555#0" expanded="false" />
+            <element signature="e#94664#94873#0" expanded="false" />
+            <element signature="e#96364#96771#0" expanded="false" />
             <element signature="n#!!block;n#informacionSiesa#0;n#!!block;n#PedidoController#0" expanded="false" />
-            <element signature="n#!!block;n#informacionSiesaDef#0;n#!!block;n#PedidoController#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/views/anexo/index.gsp">
+    <entry file="file://$PROJECT_DIR$/grails-app/views/pedido/modificaGProyecto.gsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="50" lean-forward="true" selection-start-line="4" selection-start-column="50" selection-end-line="4" selection-end-column="50" />
+        <state relative-caret-position="642">
+          <caret line="42" column="49" lean-forward="false" selection-start-line="42" selection-start-column="49" selection-end-line="42" selection-end-column="49" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/views/anexo/indexo.gsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="30" column="79" lean-forward="true" selection-start-line="30" selection-start-column="79" selection-end-line="30" selection-end-column="79" />
-          <folding />
-        </state>
+    <entry file="file://$PROJECT_DIR$/grails-app/domain/crm/ValorParametro.groovy">
+      <provider editor-type-id="org.jetbrains.plugins.grails.perspectives.DomainClassesRelationsEditorProvider">
+        <state />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/services/crm/SeguridadService.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="118" column="29" lean-forward="true" selection-start-line="118" selection-start-column="29" selection-end-line="118" selection-end-column="29" />
+        <state relative-caret-position="17">
+          <caret line="1" column="6" lean-forward="false" selection-start-line="1" selection-start-column="6" selection-end-line="1" selection-end-column="6" />
           <folding />
         </state>
       </provider>
@@ -1879,5 +2074,67 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>grails-3.2.3</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.7</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.7</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
   </component>
 </project>

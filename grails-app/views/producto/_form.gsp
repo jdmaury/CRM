@@ -39,8 +39,8 @@
                   noSelection="['': 'Seleccione Línea']"   
                   onchange="${remoteFunction(controller:'Sublinea',
                          action:'infoSublineas', params:'\'id=\'+this.value',
-                         update: [success: 'divsublineas'])}"   disabled="${xronly}" />
-  </div>
+					 update: [success: 'divsublineas'])}"   disabled="${xronly}" />
+</div>
 </div>
 
  <div id="divsublineas">

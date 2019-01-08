@@ -327,7 +327,9 @@ class OportunidadController extends BaseController {
 		{
 			if(params.tipo_export=='3')//exportar oportunidades sin items
 			{
-				lista_export=generalService.oportunidadesSinItems()
+				lista_export=generalService.oportunidadesSin
+
+				Items()
 			}
 			else
 			{
@@ -1281,7 +1283,7 @@ class OportunidadController extends BaseController {
 
 	}
 	
-	def generarPedido(){
+	def generarPedido(){ //todo validar que este el anexo Solicitud de oferta RFI/RFP (obligaorio)
 	   
 		def falla=oportunidadService.validarOportunidad(params.id)
 		def oportunidadInstance=Oportunidad.get(params.id)
@@ -1293,16 +1295,15 @@ class OportunidadController extends BaseController {
 				return
 		}
 		
-		
+
+
 		if (falla !=0){
 			if (falla==1)  flash.warning="Vaya a pestaña 'propuestas' (abajo) y anexe o elija propuesta aprobada x cliente"
 			if (falla==2) flash.warning="Antes de generar Pedido debe adicionar items"
 			redirect url:"/oportunidad/show/${params.id}"
 			return
 		}
-		
 
-				
 		redirect url:"/pedido/generarPedido/${params.id}"
 	}
 	
@@ -1413,7 +1414,36 @@ class OportunidadController extends BaseController {
 		def datos=generalService.preExportar(entidad,query,campos,true)      //true filtrado false via query
 		exportService.export(params.id, response.outputStream,datos, formatters, parameters)
 	}
-	
+	def exportarPerdidas(){
+		String ext
+		if (!params.id  in ['excel','json','xml']) {
+			flash.warning="Format de exportación no permitido.Verifique"
+			return
+		}
+
+		if (params.id=='excel') ext='xls'
+		else if (params.formato=='json')  ext='json'  else ext='xml'
+
+		response.contentType = grailsApplication.config.grails.mime.types[params.id]
+		response.setHeader("Content-disposition", "attachment; filename=oportunidades.${ext}")
+
+		Map campos = ['1_Num_Op':'numOportunidad',
+					  '2_Cliente': 'nombreCliente',
+					  '3_Proyecto':"nombreOportunidad",
+					  '4_Num_Reg':'numOportunidadFabricante',
+					  '5_Valor':'valorOportunidad',
+					  '6_Apertura':'fechaApertura',
+					  '7_Vendedor':'nombreVendedor',
+					  '8_Estado':'idEstadoOportunidad',
+					  '9_Motivo_Perdida':'idMotivoPerdida']
+
+		Map formatters = [:]
+		Map parameters = [:]
+		def entidad="crm.Oportunidad"
+		def query="""from Oportunidad where  eliminado=0 and idEstadoOportunidad='xperdida'"""
+		def datos=generalService.preExportar(entidad,query,campos,true)      //true filtrado false via query
+		exportService.export(params.id, response.outputStream,datos, formatters, parameters)
+	}
 	 def exportar1(){ // Exporta vista forecast
 		String ext
 		if (!params.id  in ['excel','json','xml']) {
