@@ -50,14 +50,7 @@ class VencimientoController extends BaseController{
 		println "Entre a notificar vencimientos 2"
 		
 		//generalService.actualizarEstadoVencimientos()
-	 
-					
-		
-		
-		
-		
-		
-		int itemxview=generalService.getItemsxView(0)
+	 	int itemxview=generalService.getItemsxView(0)
 		params.max=10
 		String idenc=params.idenc?:params.xid//11
 		def encVencimientoInstance=EncVencimiento?.get(params.long('idenc'))
@@ -71,13 +64,8 @@ class VencimientoController extends BaseController{
 			xidemp:xidemp,xidencven:idenc])
 	}
 	
-
-	
-	
 	def softhw(Integer max)
 	{
-		
-
 		String xoffset=paginacion(params.clicSofthw)
 		
 		int itemxview=generalService.getItemsxView(0)
@@ -324,10 +312,7 @@ class VencimientoController extends BaseController{
 			params.filter.idTipoCobertura=generalService.getIdValorParametro('tipocobert',params.filter.idTipoCobertura)
 			
 			
-		
-	   
-			
-        
+
 		if(params.filter.serial)
 		{	
 			vencimientoInstanceList=filterPaneService.filter(params,Vencimiento)

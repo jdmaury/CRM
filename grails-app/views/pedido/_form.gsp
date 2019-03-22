@@ -476,9 +476,6 @@ para la fecha de mayo12--> --%>
             
 <!-- NOTIFICACION REQ POLIZA JD MAURY -->
 
-
-            
-
             <div class="control-group ${hasErrors(bean: pedidoInstance, field: 'campaniaRedsis', 'error')} ">
 
                 <label class="control-label">Campaña Redsis</label>
@@ -628,7 +625,6 @@ para la fecha de mayo12--> --%>
             </div>
 
             <div class="control-group ${hasErrors(bean: pedidoInstance, field: 'uniSinco', 'error')}  ">
-                <!-- todo control ára unidad SINCO-->
                 <label class="control-label">Unidad SINCO</label>
                 <div class="controls">
                     <label class="radio">Si   </label>
@@ -644,7 +640,6 @@ para la fecha de mayo12--> --%>
             </div>
 
             <div class="control-group ${hasErrors(bean: pedidoInstance, field: 'gerenteProye', 'error')}  ">
-                <!-- todo control para gerente de proyecto -->
                 <label class="control-label">Gerente de proyecto</label>
                 <div class="controls">
                     <label class="radio">Si   </label>
@@ -658,7 +653,25 @@ para la fecha de mayo12--> --%>
                 </div>
 
             </div>
+            <% String xgproye
+            String gproyect =pedidoInstance?.listaGerenteProye
+            if (pedidoInstance?.gerenteProye=='S')  xgproye='block' else xgproye='none'
+                gproyect = generalService.getValorParametroByIDValorParametro('gproyecto',gproyect)
+            %>
+            <div class="control-group ${hasErrors(bean: pedidoInstance, field: 'listaGerenteProye', 'error')} " style="display:${xgproye}" >
+                <label class="control-label" for="listaGerenteProye">
+                    <g:message code="pedido.listaGerenteProye.label" default="Gerente de Proyecto" />
 
+                </label>
+                <div class="controls">
+                    <g:textField name="listaGerenteProye" maxlength="50" value="${gproyect}" disabled="${xronly}"/>
+                    <% String xstylos
+                        if (pedidoInstance?.listaGerenteProye!='')    xstylos='inline-block' else xstylos='none'
+
+                    %>
+                    <img class="iconoAyudaEtiqueta" style="display:${xstylos}"  src="${resource(dir: 'images', file:'ayuda.png')}" title="Gerente de proyecto aun sin asignar">
+                </div>
+            </div>
 
             <div class="control-group ${hasErrors(bean: pedidoInstance, field: 'arquitectoSol', 'error')} ">
 

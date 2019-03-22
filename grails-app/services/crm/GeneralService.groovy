@@ -42,7 +42,22 @@ class GeneralService {
         return ValorParametro.findByIdValorParametro(id)
        
     }
-    
+
+    def getValorParametroByIDValorParametro(String idp, String val){
+        String resp
+        if (val !=null){
+            def lista = crm.ValorParametro.executeQuery("select valor from ValorParametro where idParametro='${idp}' and  idValorParametro='${val}' and eliminado = 0")
+            if (lista.size()>0){
+                resp=lista[0]
+            }else{
+                resp=''
+            }
+        }else {
+            resp=''
+        }
+        return resp
+    }
+
     def getIdValorParametro(String idp, String val){
         String resp
         if (val !=null){
@@ -1202,15 +1217,7 @@ class GeneralService {
 	   	return false
    } 
    
-   
-   
-   
-   
-   
-   
-   
-   
-   
+
    //------------------------------------------------INDICADORESXQ JDMAURY------------------------------------------------------------//
    
    
@@ -1736,13 +1743,7 @@ class GeneralService {
 	   
 	   return opptyProb
    }
-   
-   
-   
-   
-   
-   
-   
+
    def stringToDate(String dateString)
    {
 	   if(dateString.contains('/'))
@@ -1753,8 +1754,7 @@ class GeneralService {
 	   Date fechaParseada=df.parse(dateString)
 	   return fechaParseada
    }
-   
-   
+
    def stringDateWithTimeToDate(String dateString)
    {
 	   DateFormat inputFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS")
@@ -1763,18 +1763,8 @@ class GeneralService {
 	   dateString=outputFormatter.format(dateFormat)
 	   return dateString
    }
-   
-   
-   
- 
-   
-   
-   
-   
-   
-   
-   
-   
+
+
    def  notificarVencimiento(String idTipoVencimiento,Long idvendedor,String asunto,String cuerpo)
    {
 	   
@@ -1891,18 +1881,9 @@ class GeneralService {
 	   datosPlantilla.put("tipoContrato", contratoId)
 	   
 	   return datosPlantilla
-	   
-	   
-	   
-	   
+
    }
-   
-   
-   
-   
-   
-   
-   
+
    def leerArchivoExcel(File archivo)
    {
 	   String contenido=""
@@ -2434,8 +2415,8 @@ class GeneralService {
              def query=ValorParametro.where{idValorParametro==arquitecto}
              def correo=[query.find().descValParametro?:'auditorcorreocrm@redsis.com']
              println "Correo del arquitecto seleccionado: ${correo}"
-             //todo perfeccionado para tomar los arquitectos por paramatros
-             /*def query2 = ValorParametro.where {valor==arquitecto}
+             //todo perfeccionado para tomar los arquitectos por paramatros (LISTO)
+             def query2 = ValorParametro.where {valor==arquitecto}
              if (query2[0] != null) { // Se valida que exista concordancia en la otra lista y se agrega el correo al que se le va a copiar el correo
                  def arqAle = [query2.find().valor ?: arquitecto]
                  println "Consulta de Arquitecto en valor parametro: ${arqAle}"
@@ -2449,13 +2430,13 @@ class GeneralService {
 
 
                  }
-             }*/
+             }/*
              if (arquitecto == "pedarqui14" || arquitecto == "pedarqui25" || arquitecto == "pedarqui10" || arquitecto == "pedarqui28"
                      || arquitecto == "pedarqui16" || arquitecto == "pedarqui94" || arquitecto == "pedarqui07" || arquitecto == "pedarqui09"
                      || arquitecto == "pedarqui95" || arquitecto == "pedarqui93" || arquitecto == "pedarqui08" || arquitecto == "pedarqui20"){
                  //Empanada para notificar al señor Alessio de los proyectos que tengan sus coequiperos. (José Castro)
                  correo.add("adimare@redsis.com")
-                 }
+                 }*/
              //Empanada para notificar a Jazmin de los proyectos que tenga ingenieria junto con el seño Marlon. (José Castro)
 
              if (arquitecto == "pedarqui22") correo.add("jrebolledo@redsis.com")

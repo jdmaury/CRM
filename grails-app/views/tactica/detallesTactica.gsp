@@ -17,14 +17,7 @@
 		
 
     </head>
-    <body> 
-    				
-                
-
-                
-                
-                
-             
+    <body>
 
             <!-- <div class="controls input-append date form_date"  data-date-format="dd-mm-yyyy" style="margin-left:0px;">
             <input  type="text" name="fechaProspectos" value="${g.formatDate(format:'dd-MM-yyyy')}"
@@ -35,10 +28,7 @@
                     
         </div> -->
 
-                
-
-    
-     <div class="container">     	
+     <div class="container">
      	<div class="row" style="padding-top:30px;">
      	   	<div style="text-align:center;">
      	    	<p style="font-size:35px;font-family:'Lucida Console'">CAMPAÑAS Y EVENTOS<p>
@@ -78,8 +68,8 @@
     		<label class="control-label">
 	            <g:message code="tactica.anioFiltro" default="Año:" />
     	    </label>
-                   <g:select name="idFecha" id="idFecha"  from="${["2018","2017","2016","2015","2014"]}"
-                                 value="2018"
+                   <g:select name="idFecha" id="idFecha"  from="${["2019","2018","2017","2016","2015","2014"]}"
+                                 value="2019"
                     disabled="false" required="" style="width:80px;" />
             </div>
     </div>

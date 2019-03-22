@@ -40,12 +40,20 @@
          <g:if test="${(pedidoInstance.idEstadoPedido=='pedenelab1')}" > <%-- en elaboracion --%>
             <%  swacc=1 %>   
               <l1> <a 
-                     onMouseOver="${mover}" 
-                     onMouseOut="${mout}" 
+                     onMouseOver="${mover}"
+                     onMouseOut="${mout}"
                      style="${estilo}" 
                     href="/crm/pedido/enviarARevision/${pedidoInstance.id}" >Enviar a Revisión</a> </li>
                 </g:if>
             </g:if>
+        <g:if test="${'GERENTE_PROYECTO' in session['operaciones']}">
+                <%  swacc=1 %>
+                <l1> <a
+                       onMouseOver="${mover}"
+                     onMouseOut="${mout}"
+                     style="${estilo}"
+                    href="/crm/pedido/modificaGerenteProye/${pedidoInstance.id}" >Modificar Gerente de Proyecto</a> </li>
+        </g:if>
             <g:if test="${'DEVOLVER_A_VENDEDOR' in session['operaciones']}">     
                <g:if test="${pedidoInstance.idEstadoPedido in ['pedenrevi2']}" ><%-- en revision o pendiente x compras --%>
                 
@@ -99,9 +107,7 @@
                      style="${estilo}" 
                     href="/crm/pedido/autorizarCambioPedido/${pedidoInstance.id}" >Autorizar Cambiar Pedido</a> </li>               
              </g:if>
-             
-             
-             
+
              <!-- JOSE DANIEL 22/07/2016 -->
              
 	        <g:if test="${'AGREGAR_INFORMACION_SIESA' in session['operaciones']}">             
@@ -113,15 +119,7 @@
              </g:if>
              
              <!-- JOSE DANIEL 22/07/2016 -->
-             
-             
-             
-             
-             
-             
-             
-             
-             
+
              <!-- JOSE DANIEL 26/07/2016 -->
              
 	        <g:if test="${'ANULAR_PEDIDO' in session['operaciones']}">             
@@ -147,11 +145,6 @@
                      </a>
                  </li>             
              </g:if>
-             
-             
-             
-             
-             
              
                    <g:if test="${'RESET_CAMBIO_PEDIDO' in session['operaciones']}">
                     <%  swacc=1 %>

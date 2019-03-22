@@ -143,8 +143,7 @@ class TacticaController extends BaseController {
 		String nombreTactica=params.nombreTactica?:''	
 		
 		String date=params.fechaFiltro?:''	
-		
-		
+
 		def queryUrls="From ValorParametro where idParametro='cyeventos' and estadoValorParametro='A'"
 		def	listaUrls=ValorParametro.executeQuery(queryUrls)
 		

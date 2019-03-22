@@ -172,11 +172,7 @@
                         </li>
                     </g:if>
                     
-                    
-                    
-                    
-                    
-                    
+
 		             <!-- JOSE DANIEL 26/07/2016 -->
 		             
 			        <g:if test="${'ENVIAR_A_REVISION' in derechos}">
@@ -221,7 +217,7 @@
                                         <g:link action="exportarDatos" params="[tipo_export:'1',xaccionx:xaccion,titulo:xtitulo]">Todos</g:link>
                                     </li>                                    
                                     <li><g:actionSubmit  
-                                    onMouseOver="${mover}" 
+                                    onMouseOver="${mover}"
                                     onMouseOut="${mout}" 
                                     style="${estilo}"  
                                     value="Seleccionados" 

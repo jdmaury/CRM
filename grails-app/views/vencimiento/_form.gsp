@@ -94,14 +94,9 @@ input#refTipModNumContract,input#serial,input#descripcion,input#observaciones{
     	<g:set var="zronly" value="true" scope="request"/>
 	    <g:render template="/vencimiento/marcas"/>
 	</div>
-    
-            
-            
-            
+
   </div>
-        
-        
-        
+
 <% def mostrarContrato=''
 	if(vencimientoInstance?.idTipoVencimiento=='venarrter')
 		mostrarContrato='display:block;'		
@@ -139,9 +134,6 @@ input#refTipModNumContract,input#serial,input#descripcion,input#observaciones{
 		}	
 %>
 
-
-  
-    
     <div id="divNumeroRef" class="control-group ${hasErrors(bean: vencimientoInstance, field: 'refTipModNumContract', 'error')} ">
         <label class="control-label" for="refTipModNumContract" id="textoRef">
             <g:message code="vencimiento.refTipModNumContract.label" default="${textRefNumMod}" />            
@@ -150,23 +142,9 @@ input#refTipModNumContract,input#serial,input#descripcion,input#observaciones{
             <g:textField name="refTipModNumContract" maxlength="50" value="${vencimientoInstance?.refTipModNumContract}" disabled="${xronly}"  />
         </div>
     </div>  
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <!-- CONTINUAR POR ACÁ -->
-    
 
-    
+    <!-- CONTINUAR POR ACÁ -->
+
     <div id="radioButtonSeriales" style="${mostrarSerie}" class="control-group ${hasErrors(bean: vencimientoInstance, field: 'serialManual', 'error')}">
    				<label class="control-label" for="serial">
             		<g:message code="seriales.label" default="Seriales"/>
@@ -184,20 +162,6 @@ input#refTipModNumContract,input#serial,input#descripcion,input#observaciones{
                     ${generalService.checked('N',vencimientoInstance?.serialManual)} ${disableSeriales}>
                 </div>
     </div>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-  
-  
 
     <div id="numSerie" style="${mostrarSerie}" class="control-group ${hasErrors(bean: vencimientoInstance, field: 'serial', 'error')} ">
         <label class="control-label" for="serial">
@@ -232,14 +196,6 @@ input#refTipModNumContract,input#serial,input#descripcion,input#observaciones{
      </div>
     
 
-    
-    
-    
-    
-    
-    
-
-    
 	    <div id="descripcion" class="control-group ${hasErrors(bean: vencimientoInstance, field: 'descripcion', 'error')} ">
 	        <label class="control-label" for="descripcion">
 	            <g:message code="vencimiento.descripcion.label" default="Descripción" />
@@ -249,24 +205,13 @@ input#refTipModNumContract,input#serial,input#descripcion,input#observaciones{
 	            <g:textArea name="descripcion" style="width:235px;height:150px;" maxlength="200" value="${vencimientoInstance?.descripcion}" disabled="${xronly}"/>
 	        </div>
 		</div>
-    
-    
-    
-    
-              <% String xcant 
+              <% String xcant
 				if (vencimientoInstance?.idTipoVencimiento?.contains('soft'))  xcant='block' else xcant='none' %>
-            
-    
-    
-  
-    
+
     <% def mostrarCobertura=''
 		if(vencimientoInstance?.idTipoVencimiento=='venadmter' || vencimientoInstance?.idTipoVencimiento=='venarrend' ||  vencimientoInstance?.idTipoVencimiento=='venarrter')
 		mostrarCobertura='display:none;'
 	%>
-
-    
-    
 
     <div id="tipoCobertura" style="${mostrarCobertura}" class="control-group ${hasErrors(bean: vencimientoInstance, field: 'idTipoCobertura', 'error')} ">
         <label class="control-label" for="idTipoCobertura">
@@ -327,8 +272,6 @@ input#refTipModNumContract,input#serial,input#descripcion,input#observaciones{
         </div>
     </div>
 
-
-    
     <g:if test="${vencimientoInstance?.id !=null}" >
     <div class="control-group">
         <label class="control-label" >
@@ -349,13 +292,6 @@ input#refTipModNumContract,input#serial,input#descripcion,input#observaciones{
     <g:hiddenField  name="idEstadoVencimiento" value="${vencimientoInstance?.idEstadoVencimiento?:'vennoinici'}" />
     <g:hiddenField  name="layout" value="${layout?:''}"/>
     
-    
-
-
-
-
-
-
 
 <script src="${resource(dir: 'perfectum/js', file: 'bootstrap-datetimepicker.js')}"></script>
 <script src="${resource(dir: 'perfectum/js', file: 'bootstrap-datetimepicker.es.js')}"></script>
@@ -367,7 +303,7 @@ function validarDatos()
 	var tipovencimiento=$("#tipovenci option:selected").val()//me muestra el valor seleccionado		
 	var pedidoSelected=$("#pedido option:selected").val()//
 	var plataformaSelected=$("#plataformasdiv option:selected").val()
-	var rButtonSelected=$("input[name='serialManual']:checked").val()	
+	var rButtonSelected=$("input[name='serialManual']:checked").val()
 	var textoReferencia=$("input[name='refTipModNumContract']").val()
 	var numeroDeSerie=$("input[name='serial']").val()
 	var coberturaSelected=$("#tipoCobertura option:selected").val()
@@ -440,17 +376,6 @@ function validarDatos()
 		
 			}	
 	    }
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
 
 	}
 }	

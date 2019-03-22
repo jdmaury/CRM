@@ -101,15 +101,6 @@
              </g:if>
              
              <!-- JOSE DANIEL 22/07/2016 -->
-             
-             
-             
-             
-             
-             
-             
-             
-             
              <!-- JOSE DANIEL 26/07/2016 -->
              
 	        <g:if test="${'ANULAR_PEDIDO' in session['operaciones']}">             
@@ -117,19 +108,7 @@
              </g:if>
              
              <!-- JOSE DANIEL 26/07/2016 -->
-             
-             
-             
-             
-             
-             
-             
-             
-             
-             
-             
-             
-             
+
                    <g:if test="${'RESET_CAMBIO_PEDIDO' in session['operaciones']}">
                     <%  swacc=1 %>
                    <li> <a 

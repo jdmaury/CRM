@@ -454,7 +454,7 @@ class PedidoService {
         
         String ztrm=generalService.getValorParametro('trm')
         BigDecimal xtrm=new BigDecimal(ztrm)
-        if (xtrm==0) xtrm=2000
+        if (xtrm==0) xtrm=3150
         
         def lista =Indicador.findAll(query)
         
@@ -576,7 +576,6 @@ class PedidoService {
         
     }
     
-    
     def sacarNotificadosPorDefectoPedidos(params, tipoFuncionarios){
         def xiddestinatarios = []
         if(tipoFuncionarios ==3){
@@ -639,20 +638,20 @@ class PedidoService {
 		/* Numero de productos procesados x compra, es decir los que se encuentran pendientes x recibir */
 		query="select count(d) from DetPedido d  where pedido.id=${idpedido} and idEstadoDetPedido='peddetpd02' and eliminado=0"
 		def numProductosProcesados=DetPedido.executeQuery(query)[0]
-		
-		
+
 		if(numTotal==numProductosProcesados && numTotal > 0)
 		{
-			pedidoInstance.idEstadoPedido='pedpenrec4' // pedido marcado como pendiente x recibir
-			pedidoInstance.save(flush:true)
-			println "Todos los productos de este pedido han sido marcados como pendientes x recibir...estado pedido actualizado"
+            if(pedidoInstance.idEstadoPedido != 'pedfacpar2' || pedidoInstance.idEstadoPedido != 'pedfacturx'){
+                println "Pedido diferente a facturado parcial o facturado"
+
+                pedidoInstance.idEstadoPedido='pedpenrec4' // pedido marcado como pendiente x recibir
+                pedidoInstance.save(flush:true)
+                println "Todos los productos de este pedido han sido marcados como pendientes x recibir...estado pedido actualizado"
+            }
 		}
 		else			
 			println "Aun faltan ${numTotal}-${numProductosProcesados} productos pendientes por marcar..."
-			
 
-		
-		
 	}
     
      @Transactional //cerrarPedidoPorCompras automaticamente y notifica 

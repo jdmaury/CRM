@@ -327,9 +327,7 @@ class OportunidadController extends BaseController {
 		{
 			if(params.tipo_export=='3')//exportar oportunidades sin items
 			{
-				lista_export=generalService.oportunidadesSin
-
-				Items()
+				lista_export=generalService.oportunidadesSinItems()
 			}
 			else
 			{
@@ -1294,8 +1292,6 @@ class OportunidadController extends BaseController {
 				redirect url:"/oportunidad/show/${oportunidadInstance.id}"
 				return
 		}
-		
-
 
 		if (falla !=0){
 			if (falla==1)  flash.warning="Vaya a pestaña 'propuestas' (abajo) y anexe o elija propuesta aprobada x cliente"

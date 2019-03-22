@@ -1053,20 +1053,9 @@ class PedidoController extends BaseController{
 			}
 
 		}
-			
-			
 
- 
-				
-		
-		
 		//-----------JOSE DANIEL MAURY 18/07/2016
-		
-		
-		
-			 
-		
-		
+
 		pedidoService.crearAnexos(listaAnexos,pedidoInstance?.id) // crea los anexos pertinentes
 		if (params.swgenerar=='S' ){ // viene de oportunidad
 			// copiar anexo propuesta aprob cliente de oportunidades a  Anexo pedids pedidos
@@ -1483,9 +1472,7 @@ class PedidoController extends BaseController{
 		}		
 //----------------NOTIFICAR ARQUITECTO DE SOLUCIONES-------------------------
 
-// ----------------NOTIFICAR GERENTE DE PROYECTOS----------------------------
-		//TODO LUEGO EVALUAR EL COMO ASIGNAR POR EL GERENTE DE PROYECTOS
-		//def gproy= []
+// ----------------NOTIFICAR GERENTE DE PROYECTOS----------------------------JCASTRO
 		if(pedidoInstance.gerenteProye=='S')
 		{
 			println "Check gerente proyecto activado"
@@ -1633,7 +1620,7 @@ class PedidoController extends BaseController{
 		}
 		redirect url:"/pedido/index?sort=fechaApertura&order=desc&estado=2"
 	}
-	
+
 	def autorizarCambioPedido(){
 		def pedidoInstance=Pedido.get(params.id)
 		render view:"autorizarPedido", model:[pedidoInstance:pedidoInstance]
@@ -1644,9 +1631,19 @@ class PedidoController extends BaseController{
 	}
 	@Transactional  //modificaGerenteProyeDef
 	def modificaGerenteProyeDef(Pedido pedidoInstance){
+		String urlbase=generalService.getValorParametro('urlaplic')
+		String proyecto=pedidoInstance.oportunidad.nombreOportunidad
 		pedidoInstance.listaGerenteProye=params.gproyec
 		//println "Gerente Proyecto asignado " +  pedidoInstance.listaGerenteProye
 		pedidoInstance.save()
+		def query=ValorParametro.where{idValorParametro==params.gproyec}
+		def correo=[query.find().descValParametro?:'auditorcorreocrm@redsis.com']
+
+		String asunto="Usted a sido asignado como Gerente de Proyecto al pedido ${pedidoInstance.numPedido} - ${pedidoInstance.nombreCliente}"
+		String masInfo="Para visualizar el pedido o realizar seguimientos al mismo haga clic <a href='${urlbase}/pedido/show/${pedidoInstance.id}'> AQUI </a>"
+		String cuerpo="<b>Cliente: </b>${pedidoInstance.nombreCliente}<br><b>Proyecto: </b>${proyecto}<br><b>Valor: </b>${pedidoInstance.valorPedido} <br><br>${masInfo}" +
+				"<br><br>Asignar Gerente <a href='${urlbase}/pedido/modificaGerenteProye/${pedidoInstance.id}'>AQUI</a>"
+		generalService.enviarCorreo(1,correo,asunto,cuerpo)
 		flash.message="el gerente de proyecto fue agregado correctamente al pedido"
 		redirect url:"/pedido/index?sort=fechaApertura&order=desc"
 	}
@@ -1887,7 +1884,8 @@ class PedidoController extends BaseController{
 					  '2_Cliente': 'nombreCliente',
 					  '3_Valor_En_Pesos':'valorPedido',
 					  '4_Fecha':'fechaApertura',
-					  '5_Estado':'idEstadoPedido']
+					  '5_Estado':'idEstadoPedido',
+					  '6_Observaciones':'observacionesPedido']
 		 
 		Map formatters = [:]
 		Map parameters = [:]
@@ -1907,15 +1905,7 @@ class PedidoController extends BaseController{
 		  pedidoInstanceList2=filterPaneService.filter(filterList, Pedido)//lista con base en el filtro
 //		  params.max=10
 	  }
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
+
 	  def todosLosPedidos(Integer max)//TODOS EXCLUYENDO ANULADOS
 	  {
 		  
@@ -2731,10 +2721,7 @@ class PedidoController extends BaseController{
 		
 		redirect url:"/pedido/index?sort=fechaApertura&order=desc"
 	}
-	
-	
-		
-	
+
 	def informacionSiesa()
 	{
 		
